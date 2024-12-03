@@ -1,69 +1,65 @@
-// imports important things
-require('dotenv').config();
-const express = require("express")
-const mongoose = require("mongoose")
-const session = require("express-session")
+// Load environment variables
+require("dotenv").config();
 
-const app = express()
+// Import dependencies
+const express = require("express");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const path = require("path");
 
-const port = process.env.port || 5000;
+const app = express();
 
-// Connect to the database
-mongoose
-  .connect(process.env.DB_URL, {
-    useNewUrlParser: true, // Correct spelling of `useNewUrlParser`
-    useUnifiedTopology: true, // Recommended for modern MongoDB connections
-  })
+// Define the port
+const port = process.env.PORT || 5000;
+
+// Connect to the MongoDB database
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => {
     console.log("Connected to the database");
   })
   .catch((error) => {
-    console.error("Database connection error:", error);
+    console.error("Database connection error:", error.message);
   });
 
-// Access the database connection
-const db = mongoose.connection;
-
-// Log error events from the connection
-db.on("error", (error) => {
-  console.error("Database error:", error);
-});
-
-// Log a message when the connection is successfully opened
-db.once("open", () => {
-  console.log("Database connection is open");
-});
-
-// database connection end
-
-// middlewares
-app.use(express.urlencoded({extended:false}))
+// Middleware for parsing form data and JSON
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// Middleware for handling sessions
 app.use(
   session({
-    secret: process.env.secretKey,
+    secret: process.env.SECRET_KEY || "defaultsecretkey", // Use a fallback secret key if not in .env
     saveUninitialized: true,
     resave: false,
   })
 );
 
-app.use((req,res,next)=>{
-res.locals.message= req.session.message;
-delete req.session.message;
-next()
-})
+// Middleware to handle flash messages
+app.use((req, res, next) => {
+  res.locals.message = req.session.message;
+  delete req.session.message;
+  next();
+});
 
-app.use(express.static("uploads"))
+// Serve static files (e.g., uploaded images)
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// set template engin
+// Set EJS as the template engine
+app.set("views", path.join(__dirname, "views")); 
+app.set("view engine", "ejs");
 
-app.set("view engin","ejs")
+const methodOverride = require('method-override');
+app.use(methodOverride('_method')); // This allows the form to submit a PATCH request.
 
 
-// route prefix
+// Route prefixes
+app.use("/", require("./routes/routes")); // Public routes
+app.use("/admin", require("./routes/adminRoutes")); // Admin routes
 
-app.use("",require('./routes/routes'))
-
-app.listen(port,()=>{
-    console.log(`server is running ${port}`);
-})
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});

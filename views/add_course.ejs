@@ -1,0 +1,52 @@
+<!-- Include the admin header -->
+<%- include('./layout/admin_header.ejs') %>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- Card for Form -->
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Add Course</h3>
+        </div>
+        <div class="card-body">
+          <!-- Form starts here -->
+          <form action="/admin/addCourse" method="POST">
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Course Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Name"
+                required
+              />
+            </div>
+            <!-- Description Field -->
+            <div class="mb-3">
+              <label for="description" class="form-label"
+                >Course Description</label
+              ><br />
+              <textarea
+                rows="3"
+                class="w-100"
+                id="description"
+                name="description"
+                placeholder="Description"
+                required
+              ></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary px-4">Submit</button>
+            </div>
+          </form>
+          <!-- Form ends here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include("./layout/admin_footer.ejs") %>
