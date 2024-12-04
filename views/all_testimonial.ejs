@@ -20,43 +20,53 @@
       <% } %>
       <div>
         <!-- Table with static data -->
-        <table class="table table-bordered table-hover text-center align-middle">
+        <table
+          class="table table-bordered table-hover text-center align-middle"
+        >
           <thead class="text-white table-dark">
             <tr>
               <th>ID</th>
               <th>Image</th>
               <th>Name</th>
-              <th>Subject</th>
+              <th>message</th>
               <th>Description</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <!-- Static Row -->
+            <!-- Loop through the testimonials data -->
+            <% testimonials.forEach((testimonial, index) => { %>
             <tr>
-              <td>1</td>
+              <td><%= index + 1 %></td>
               <td>
                 <img
-                  src="/path/to/image1.jpg"
-                  alt="User Image"
+                  src="/uploads/<%= testimonial.testimonialImage %>"
+                  alt="<%= testimonial.name %> Image"
                   class="img-thumbnail"
                   style="width: 50px; height: 50px"
                 />
               </td>
-              <td>John Doe</td>
-              <td>Chemistry</td>
+              <td><%= testimonial.name %></td>
+              <td><%= testimonial.message %></td>
               <td class="text-truncate" style="max-width: 150px">
-                Edge through frequent practice. With weekly, fortnightly, part tests, and grand test assessments, our students gain invaluable exam experience.
+                <%= testimonial.description %>
               </td>
               <td>
-                <a href="/admin/testimonial/" class="btn btn-success btn-sm">
+                <a
+                  href="/admin/updateTestimonial/<%= testimonial._id %>"
+                  class="btn btn-success btn-sm"
+                >
                   <i class="fas fa-edit"></i>
                 </a>
-                <a href="/delete/1" class="btn btn-danger btn-sm">
+                <a
+                  href="/admin/deleteTestimonial/<%= testimonial._id %>"
+                  class="btn btn-danger btn-sm"
+                >
                   <i class="fas fa-trash"></i>
                 </a>
               </td>
             </tr>
+            <% }); %>
           </tbody>
         </table>
       </div>

@@ -55,8 +55,6 @@ const methodOverride = require('method-override');
 app.use(methodOverride('_method')); // This allows the form to submit a PATCH request.
 
 
-// Route prefixes
-app.use("/", require("./routes/routes")); // Public routes
 app.use("/admin", require("./routes/adminRoutes")); // Admin routes
 
 // Start the server

@@ -5,7 +5,7 @@ const testimonialSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  subject: {
+  message: {
     type: String,
     required: true,
   },
@@ -13,7 +13,7 @@ const testimonialSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
+  testimonialImage: {
     type: String,
     required: true,
   },

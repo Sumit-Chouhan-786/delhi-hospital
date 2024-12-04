@@ -7,61 +7,97 @@
       <!-- Card for Form -->
       <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
-          <h3>Add Testimonial</h3>
+          <h3>Update Testimonial</h3>
         </div>
         <div class="card-body">
-          <!-- Name Field -->
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              name="name"
-              placeholder="Enter name"
-              required
-            />
-          </div>
-          
-          <!-- Subject Field -->
-          <div class="mb-3">
-            <label for="subject" class="form-label">Subject</label>
-            <input
-              type="text"
-              class="form-control"
-              id="subject"
-              name="subject"
-              placeholder="Enter subject"
-              required
-            />
-          </div>
-          
-          <!-- Description Field -->
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea
-              class="form-control"
-              id="description"
-              name="description"
-              placeholder="Enter description"
-              rows="4"
-              required
-            ></textarea>
-          </div>
-          
-          <!-- Student Image Upload Field -->
-          <div class="mb-3">
-            <label for="studentImage" class="form-label">Student Image</label>
-            <input type="file" class="form-control" id="studentImage" name="studentImage" accept=".jpg, .png" required />
-            <div class="form-text">
-              Upload the student image here (JPG/PNG).
+          <!-- Form Start -->
+          <form
+            action="/admin/allTestimonial/<%= testimonial._id %>"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <!-- Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter name"
+                value="<%= testimonial.name %>"
+                required
+              />
             </div>
-          </div>
-          
-          <!-- Submit Button -->
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary px-4">Submit</button>
-          </div>
+
+            <!-- Message Field -->
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <input
+                type="text"
+                class="form-control"
+                id="message"
+                name="message"
+                placeholder="Enter message"
+                value="<%= testimonial.message %>"
+                required
+              />
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                name="description"
+                placeholder="Enter description"
+                rows="4"
+                required
+              ><%= testimonial.description %></textarea>
+            </div>
+
+            <!-- Existing Image Display -->
+            <div class="mb-3">
+              <label for="existingImage" class="form-label">Existing Image</label>
+              <div>
+                <img
+                  src="/uploads/<%= testimonial.testimonialImage %>"
+                  alt="<%= testimonial.name %> Image"
+                  class="img-thumbnail"
+                  style="width: 100px; height: 100px"
+                />
+              </div>
+              <div class="form-text">
+                If you want to change the image, upload a new one below.
+              </div>
+            </div>
+
+            <!-- Image Upload Field -->
+            <div class="mb-3">
+              <label for="testimonialImage" class="form-label">Upload New Image (Optional)</label>
+              <input
+                type="file"
+                class="form-control"
+                id="testimonialImage"
+                name="testimonialImage"
+                accept=".jpg, .png"
+              />
+            </div>
+
+            <!-- Hidden Input for Existing Image (if no new image is uploaded) -->
+            <input
+              type="hidden"
+              name="old_image"
+              value="<%= testimonial.testimonialImage %>"
+            />
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary px-4">Update</button>
+            </div>
+          </form>
+          <!-- Form End -->
         </div>
       </div>
     </div>

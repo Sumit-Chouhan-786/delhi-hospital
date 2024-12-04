@@ -20,9 +20,20 @@ router.get("/siteSetting", siteSettingsController.siteSettingsPage);
 
 // ============================================= testimonials  routes ================================================
 
-router.get("/allTestimonial", testimonialController.allTestimonialsPage);
+// Add Testimonial Routes
 router.get("/addTestimonial", testimonialController.addTestimonialPage);
-router.get("/updateTestimonial", testimonialController.updateTestimonialPage);
+router.post("/addTestimonial", upload.single("testimonialImage"), testimonialController.addTestimonial);
+
+// Update Testimonial Routes
+router.get("/updateTestimonial/:id", testimonialController.updateTestimonialPage);
+router.post("/updateTestimonial/:id", upload.single("testimonialImage"), testimonialController.updateTestimonial);
+router.patch("/updateTestimonial/:id", testimonialController.updateTestimonial);
+
+// All Testimonials Route
+router.get("/allTestimonial", testimonialController.allTestimonialsPage);
+
+// Delete Testimonial Route
+router.get("/deleteTestimonial/:id", testimonialController.deleteTestimonial);
 
 // ============================================= courses  routes ================================================
 
