@@ -18,41 +18,43 @@
         ></button>
       </div>
       <% } %>
-      <div>
-        <!-- Table with static data -->
-        <table class="table table-bordered table-hover text-center align-middle">
-          <thead class="text-white table-dark">
-            <tr>
-              <th>ID</th>
-              <th>Course Image</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Static Row 1 -->
-            <tr>
-              <td>1</td>
-              <td>
-                <img
-                  src="/path/to/image1.jpg"
-                  alt="Course 1 Image"
-                  class="img-thumbnail"
-                  style="width: 50px; height: 50px"
-                />
-              </td>
-              
-              <td>
-                <a href="/admin/updateSlider/" class="btn btn-success btn-sm">
-                  <i class="fas fa-edit"></i>
-                </a>
-                <a href="/delete/1" class="btn btn-danger btn-sm">
-                  <i class="fas fa-trash"></i>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+   <div>
+  <!-- Table to display all sliders -->
+  <table class="table table-bordered table-hover text-center align-middle">
+    <thead class="text-white table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Slider Image</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through the sliders -->
+      <% sliders.forEach((slider, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td>
+            <img
+              src="/uploads/<%= slider.sliderImage %>"
+              alt="Slider Image"
+              class="img-thumbnail"
+              style="width: 50px; height: 50px"
+            />
+          </td>
+          <td>
+            <a href="/admin/updateSlider/<%= slider._id %>" class="btn btn-success btn-sm">
+              <i class="fas fa-edit"></i>
+            </a>
+            <a href="/admin/deleteSlider/<%= slider._id %>" class="btn btn-danger btn-sm">
+              <i class="fas fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+
     </div>
   </div>
 </div>

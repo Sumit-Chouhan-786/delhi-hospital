@@ -11,28 +11,49 @@
         </div>
         <div class="card-body">
           <!-- Start of the form -->
-          <form action="/add-Slider" method="POST" enctype="multipart/form-data">
-            <!-- Slider Image Upload Field -->
+          <form
+            action="/admin/updateSlider/<%= slider._id %>"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <input
+              type="hidden"
+              name="old_image"
+              value="<%= slider.sliderImage %>"
+            />
             <div class="mb-3">
-              <label for="courseImage" class="form-label">Slider Image</label>
+              <label for="image" class="form-label">Select Image</label>
+
+              <!-- Input for the new image -->
               <input
                 type="file"
                 class="form-control"
-                id="courseImage"
-                name="courseImage"
-                accept=".jpg,.png"
-                required
+                name="sliderImage"
+                id="image"
               />
-              <div class="form-text">
-                Upload your slider image here (JPG/PNG).
-              </div>
+
+              <img
+                src="/uploads/<%=  slider.sliderImage %>"
+                alt="Slider image"
+                class="img-thumbnail"
+                style="width: 100px; height: 100px; object-fit: cover"
+              />
+
+              <!-- Hidden input to store the old image filename -->
+              <input
+                type="hidden"
+                name="old_image"
+                value="<%=  slider.sliderImage %>"
+              />
             </div>
-            
-            <!-- Submit Button -->
             <div class="text-center">
-              <button type="submit" class="btn btn-primary px-4">Submit</button>
+              <button type="submit" class="btn btn-primary px-4">
+                Update Course
+              </button>
             </div>
           </form>
+          </form>
+
           <!-- End of the form -->
         </div>
       </div>

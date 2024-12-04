@@ -1,4 +1,3 @@
-<!-- Include the admin header -->
 <%- include('./layout/admin_header.ejs') %>
 
 <div class="container mt-4">
@@ -11,25 +10,18 @@
         </div>
         <div class="card-body">
           <!-- Start of the form -->
-          <form action="/add-Slider" method="POST" enctype="multipart/form-data">
+          <form action="/admin/addSlider" method="POST" enctype="multipart/form-data">
             <!-- Slider Image Upload Field -->
             <div class="mb-3">
-              <label for="courseImage" class="form-label">Slider Image</label>
-              <input
-                type="file"
-                class="form-control"
-                id="courseImage"
-                name="courseImage"
-                accept=".jpg,.png"
-                required
-              />
-              <div class="form-text">
-                Upload your slider image here (JPG/PNG).
-              </div>
+              <label for="slider" class="form-label">Slider image</label><br />
+              <input id="slider" type="file" name="sliderImage" required>
+            </div>
+            <div class="form-text">
+              Upload your slider image here (JPG/PNG).
             </div>
             
             <!-- Submit Button -->
-            <div class="text-center">
+            <div class="text-center mt-4">
               <button type="submit" class="btn btn-primary px-4">Submit</button>
             </div>
           </form>
@@ -40,5 +32,4 @@
   </div>
 </div>
 
-<!-- Include the admin footer -->
 <%- include("./layout/admin_footer.ejs") %>

@@ -9,6 +9,15 @@ const courseSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  courseImage: {
+    type: String,
+    required: true,
+  },
+  created: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("Course", courseSchema);

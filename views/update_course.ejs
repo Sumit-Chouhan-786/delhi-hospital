@@ -11,7 +11,11 @@
         </div>
         <div class="card-body">
           <!-- Start of the form -->
-          <form action="/admin/updateCourse/<%= course._id %>?_method=PATCH" method="POST" id="update-course-form">
+          <form
+            action="/admin/updateCourse/<%= course._id %>?_method=PATCH"
+            method="POST"
+            id="update-course-form"
+          >
             <!-- Course Name Field -->
             <div class="mb-3">
               <label for="name" class="form-label">Course Name</label>
@@ -25,10 +29,12 @@
                 required
               />
             </div>
-            
+
             <!-- Course Description Field -->
             <div class="mb-3">
-              <label for="description" class="form-label">Course Description</label>
+              <label for="description" class="form-label"
+                >Course Description</label
+              >
               <textarea
                 class="form-control"
                 id="description"
@@ -36,12 +42,41 @@
                 placeholder="Enter course description"
                 rows="3"
                 required
-              ><%= course.description %></textarea>
+              >
+<%= course.description %></textarea
+              >
             </div>
-            
+            <div class="mb-3">
+              <label for="image" class="form-label">Select Image</label>
+
+              <!-- Input for the new image -->
+              <input
+                type="file"
+                class="form-control"
+                name="courseImage"
+                id="image"
+              />
+
+              <img
+                src="/uploads/<%= course.courseImage %>"
+                alt="Course Image"
+                class="img-thumbnail"
+                style="width: 100px; height: 100px; object-fit: cover"
+              />
+
+              <!-- Hidden input to store the old image filename -->
+              <input
+                type="hidden"
+                name="old_image"
+                value="<%= course.courseImage %>"
+              />
+            </div>
+
             <!-- Submit Button -->
             <div class="text-center">
-              <button type="submit" class="btn btn-primary px-4">Update Course</button>
+              <button type="submit" class="btn btn-primary px-4">
+                Update Course
+              </button>
             </div>
           </form>
           <!-- End of the form -->

@@ -10,7 +10,7 @@
         </div>
         <div class="card-body">
           <!-- Form starts here -->
-          <form action="/admin/addCourse" method="POST">
+          <form action="/admin/addCourse" method="POST" enctype="multipart/form-data">
             <!-- Name Field -->
             <div class="mb-3">
               <label for="name" class="form-label">Course Name</label>
@@ -36,6 +36,14 @@
                 placeholder="Description"
                 required
               ></textarea>
+            </div>
+              <!-- image Field -->
+            <div class="mb-3">
+              <label for="courseImage" class="form-label"
+                >Course image</label
+              ><br />
+              <input id="courseImage" type="file" name="courseImage">
+             
             </div>
 
             <!-- Submit Button -->
