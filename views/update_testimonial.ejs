@@ -12,9 +12,10 @@
         <div class="card-body">
           <!-- Form Start -->
           <form
-            action="/admin/allTestimonial/<%= testimonial._id %>"
+            action="/admin/allTestimonial/<%= testimonial._id %>?_method=PATCH"
             method="POST"
             enctype="multipart/form-data"
+            
           >
             <!-- Name Field -->
             <div class="mb-3">
@@ -94,7 +95,7 @@
 
             <!-- Submit Button -->
             <div class="text-center">
-              <button type="submit" class="btn btn-primary px-4">Update</button>
+              <button type="submit" class="btn btn-primary px-4">Update Testimonial</button>
             </div>
           </form>
           <!-- Form End -->
