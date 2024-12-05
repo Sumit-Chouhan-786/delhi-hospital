@@ -18,6 +18,12 @@ router.get("/dashboard", (req, res) => {
 // Route to render Site Settings page (GET)
 router.get("/siteSetting", siteSettingsController.siteSettingsPage);
 
+// Route to display current Site Settings (GET)
+router.get(
+  "/siteSettingsDisplay",
+  siteSettingsController.siteSettingsDisplayPage
+);
+
 // Route to add Site Settings (POST)
 router.post(
   "/siteSetting",
@@ -31,6 +37,7 @@ router.patch(
   upload.single("logo"), // Handle file upload for the logo
   siteSettingsController.updateSiteSetting
 );
+
 // ============================================= testimonials  routes ================================================
 
 // Add Testimonial Routes

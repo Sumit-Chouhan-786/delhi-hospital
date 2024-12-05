@@ -1,30 +1,36 @@
 const SiteSetting = require("../models/siteSettingModel");
 const path = require("path");
 const fs = require("fs");
-const multer = require("multer");
-const Joi = require("joi");
-const upload = require("../middlewares/multerMiddleware")
 
-
-// Input validation schema
-const siteSettingSchema = Joi.object({
-  email: Joi.string().email().required(),
-  address: Joi.string().min(5).required(),
-  number: Joi.string()
-    .pattern(/^\d{10}$/)
-    .required(), // Ensure it's a 10-digit number
-  facebook: Joi.string().uri().optional(),
-  twitter: Joi.string().uri().optional(),
-  pinterest: Joi.string().uri().optional(),
-  instagram: Joi.string().uri().optional(),
-  logo: Joi.string().optional(),
-});
+const upload = require("../middlewares/multerMiddleware");
 
 // Render Site Settings page
 const siteSettingsPage = async (req, res) => {
   try {
-   const settings = await SiteSetting.findOne(); // Fetch the first (and only) site setting
+    const settings = await SiteSetting.findOne(); // Fetch the first (and only) site setting
     res.render("site_setting.ejs", { title: "Site Setting", settings });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading site settings.");
+  }
+};
+
+// Render the page to display current Site Settings (GET)
+const siteSettingsDisplayPage = async (req, res) => {
+  try {
+    const settings = await SiteSetting.findOne(); // Fetch the current site setting
+    if (!settings) {
+      req.session.message = {
+        type: "error",
+        message: "No site settings found.",
+      };
+      return res.redirect("/admin/siteSetting");
+    }
+
+    res.render("all_siteSetting", {
+      title: "Current Site Settings",
+      settings,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading site settings.");
@@ -34,16 +40,6 @@ const siteSettingsPage = async (req, res) => {
 // Add Site Setting
 const addSiteSetting = async (req, res) => {
   try {
-    // Validate input
-    const { error } = siteSettingSchema.validate(req.body);
-    if (error) {
-      req.session.message = {
-        type: "error",
-        message: error.details[0].message,
-      };
-      return res.redirect("/admin/siteSetting");
-    }
-
     // Handle logo upload
     const siteSettingData = {
       email: req.body.email,
@@ -75,7 +71,7 @@ const addSiteSetting = async (req, res) => {
       };
     }
 
-    res.redirect("/admin/siteSetting");
+    res.redirect("/admin/siteSettingsDisplay"); 
   } catch (err) {
     console.error(err);
     req.session.message = {
@@ -90,16 +86,6 @@ const addSiteSetting = async (req, res) => {
 const updateSiteSetting = async (req, res) => {
   try {
     const id = req.params.id;
-
-    // Validate input
-    const { error } = siteSettingSchema.validate(req.body);
-    if (error) {
-      req.session.message = {
-        type: "error",
-        message: error.details[0].message,
-      };
-      return res.redirect("/admin/siteSetting");
-    }
 
     let newLogo = "";
     if (req.file) {
@@ -135,7 +121,7 @@ const updateSiteSetting = async (req, res) => {
       type: "success",
       message: "Site setting updated successfully!",
     };
-    res.redirect("/admin/siteSetting");
+    res.redirect("/admin/siteSettingsDisplay"); // Redirect to the display page
   } catch (err) {
     console.error(err);
     res.status(500).send("Error updating site setting.");
@@ -144,6 +130,7 @@ const updateSiteSetting = async (req, res) => {
 
 module.exports = {
   siteSettingsPage,
+  siteSettingsDisplayPage,
   addSiteSetting,
   updateSiteSetting,
 };
