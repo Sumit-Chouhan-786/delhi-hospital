@@ -1,11 +1,29 @@
 const SiteSetting = require("../models/siteSettingModel");
 const path = require("path");
 const fs = require("fs");
+const multer = require("multer");
+const Joi = require("joi");
+const upload = require("../middlewares/multerMiddleware")
+
+
+// Input validation schema
+const siteSettingSchema = Joi.object({
+  email: Joi.string().email().required(),
+  address: Joi.string().min(5).required(),
+  number: Joi.string()
+    .pattern(/^\d{10}$/)
+    .required(), // Ensure it's a 10-digit number
+  facebook: Joi.string().uri().optional(),
+  twitter: Joi.string().uri().optional(),
+  pinterest: Joi.string().uri().optional(),
+  instagram: Joi.string().uri().optional(),
+  logo: Joi.string().optional(),
+});
 
 // Render Site Settings page
 const siteSettingsPage = async (req, res) => {
   try {
-    const settings = await SiteSetting.findOne(); // Fetch the first (and only) site setting
+   const settings = await SiteSetting.findOne(); // Fetch the first (and only) site setting
     res.render("site_setting.ejs", { title: "Site Setting", settings });
   } catch (err) {
     console.error(err);
@@ -16,7 +34,17 @@ const siteSettingsPage = async (req, res) => {
 // Add Site Setting
 const addSiteSetting = async (req, res) => {
   try {
-    // Extract data from request
+    // Validate input
+    const { error } = siteSettingSchema.validate(req.body);
+    if (error) {
+      req.session.message = {
+        type: "error",
+        message: error.details[0].message,
+      };
+      return res.redirect("/admin/siteSetting");
+    }
+
+    // Handle logo upload
     const siteSettingData = {
       email: req.body.email,
       address: req.body.address,
@@ -47,7 +75,6 @@ const addSiteSetting = async (req, res) => {
       };
     }
 
-    // Redirect to the site setting page
     res.redirect("/admin/siteSetting");
   } catch (err) {
     console.error(err);
@@ -64,7 +91,16 @@ const updateSiteSetting = async (req, res) => {
   try {
     const id = req.params.id;
 
-    // Check if a new logo is uploaded
+    // Validate input
+    const { error } = siteSettingSchema.validate(req.body);
+    if (error) {
+      req.session.message = {
+        type: "error",
+        message: error.details[0].message,
+      };
+      return res.redirect("/admin/siteSetting");
+    }
+
     let newLogo = "";
     if (req.file) {
       newLogo = req.file.filename;

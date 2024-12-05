@@ -44,6 +44,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Serve static files (e.g., uploaded images)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -55,7 +58,13 @@ const methodOverride = require('method-override');
 app.use(methodOverride('_method')); // This allows the form to submit a PATCH request.
 
 
-app.use("/admin", require("./routes/adminRoutes")); // Admin routes
+app.use("/", require("./routes/userRoutes")); 
+app.use("/admin", require("./routes/adminRoutes")); 
+
+// Catch-all route for undefined routes (404 error page)
+app.all("*", (req, res) => {
+  res.render("ui/404", { title: "Delhi Hospital" }); // Render 404.ejs for any other undefined route
+});
 
 // Start the server
 app.listen(port, () => {
