@@ -129,38 +129,19 @@ const allDoctorsPage = async (req, res) => {
   }
 };
 
-const allDoctorsPageForIndex = async (req, res) => {
+const getAllDoctorsForIndex = async () => {
   try {
-    const doctors = await Doctor.find();
-
-    res.render("../views/ui/index.ejs", {
-      title: "All Doctors",
-      doctors: doctors,
-    });
+    return await Doctor.find();
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Error fetching doctors.");
+    throw new Error("Error fetching doctors");
   }
 };
-const DoctorsPageForIndex = async (req, res) => {
-  try {
-    const doctors = await Doctor.find();
 
-    res.render("../views/ui/doctor.ejs", {
-      title: "All Doctors",
-      doctors: doctors,
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error fetching doctors.");
-  }
-};
 
 // Export the functions
 module.exports = {
   addDoctorPage,
-  DoctorsPageForIndex,
-  allDoctorsPageForIndex,
+  getAllDoctorsForIndex,
   addDoctor,
   updateDoctorPage,
   updateDoctor,

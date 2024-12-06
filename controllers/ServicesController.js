@@ -54,11 +54,10 @@ const updateServices = async (req, res) => {
   let new_image = "";
 
   try {
-   
     if (req.file) {
       new_image = req.file.filename;
       try {
-        fs.unlinkSync("./uploads" + req.body.old_image); 
+        fs.unlinkSync("./uploads" + req.body.old_image);
       } catch (err) {
         console.log(err);
       }
@@ -101,7 +100,7 @@ const deleteServices = async (req, res) => {
     );
 
     try {
-      fs.unlinkSync(imagePath); 
+      fs.unlinkSync(imagePath);
     } catch (err) {
       console.log("Error deleting image:", err);
     }
@@ -134,10 +133,20 @@ const allServicesPage = async (req, res) => {
   }
 };
 
+const getAllServicesForIndex = async () => {
+  try {
+    // Ensure it returns an array of services
+    return await Service.find();
+  } catch (err) {
+    throw new Error("Error fetching services");
+  }
+};
+
 
 
 // Export the functions
 module.exports = {
+  getAllServicesForIndex,
   addServicesPage,
   addServices,
   updateServicesPage,

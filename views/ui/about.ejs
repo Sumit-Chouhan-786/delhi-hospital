@@ -183,171 +183,45 @@
 </section>
 <!-- End Speciality -->
 
- <!-- Services -->
-    <section class="services-area pb-70">
-      <div class="container">
-        <div class="section-title">
-          <h2>Our Hospital Services</h2>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".3s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-doctor"></i>
-                <h3>Expert Doctor</h3>
-                <p>
-                    <p>
-          Our highly qualified and experienced doctors provide top-notch healthcare services with a patient-centered approach.
-        </p>
-                </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-doctor"></i>
-                <h3>Expert Doctor</h3>
-                 <p>
-          Our team of doctors is dedicated to diagnosing and treating your health concerns with precision and care.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
+<!-- Services -->
+<section class="services-area pb-70">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Hospital Services</h2>
+    </div>
+    <div class="row justify-content-center">
+      <% services.forEach((service) => { %>
+      <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".3s">
+        <div class="service-item">
+          <div class="service-front">
+            <!-- <i class="icofont-doctor"></i> -->
+            <img
+              height="50px"
+              class="meet_doctor_img"
+              src="/uploads/<%= service.servicesImage %>"
+              alt="Services"
+            />
+            <h3><%= service.title %></h3>
+            <p><%= service.description %></p>
           </div>
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".5s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-prescription"></i>
-                <h3>Diagnosis</h3>
-                 <p>
-          Advanced diagnostic services to detect and monitor various health conditions for accurate treatment plans.
-        </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-prescription"></i>
-                <h3>Diagnosis</h3>
-                  <p>
-          We offer state-of-the-art diagnostic facilities to help identify and address your medical concerns efficiently.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".7s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-patient-file"></i>
-                <h3>Pathology</h3>
-                <p>
-          Comprehensive pathology services to ensure accurate and timely test results for better healthcare outcomes.
-        </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-patient-file"></i>
-                <h3>Pathology</h3>
-                  <p>
-          Our laboratory is equipped with modern technology to perform a wide range of diagnostic tests with precision.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".9s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-tooth"></i>
-                <h3>Dental Care</h3>
-                   <p>
-          Comprehensive dental services for maintaining healthy teeth and gums, including cleaning, fillings, and more.
-        </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-tooth"></i>
-                <h3>Dental Care</h3>
-                 <p>
-          From routine checkups to advanced procedures, we offer expert dental care for patients of all ages.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".3s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-heart-beat-alt"></i>
-                <h3>Cardiology</h3>
-                 <p>
-          Comprehensive cardiac care with advanced treatment options for heart-related conditions.
-        </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-heart-beat-alt"></i>
-                <h3>Cardiology</h3>
-             <p>
-          Our cardiology experts provide specialized care for heart diseases, focusing on prevention and recovery.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".5s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-drug"></i>
-                <h3>Medicine</h3>
-                 <p>
-          Wide-ranging medical care and treatment plans tailored to meet your individual healthcare needs.
-        </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-drug"></i>
-                <h3>Medicine</h3>
-                <p>
-          Our physicians are committed to providing personalized care to manage and treat various health conditions.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".7s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-dna-alt-1"></i>
-                <h3>Neurology</h3>
-                <p>
-          Expert neurology services for diagnosing and treating disorders of the nervous system with advanced techniques.
-        </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-dna-alt-1"></i>
-                <h3>Neurology</h3>
-               <p>
-          Our neurology department specializes in conditions like strokes, migraines, and neurological disorders.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-lg-3 wow fadeInUp" data-wow-delay=".9s">
-            <div class="service-item">
-              <div class="service-front">
-                <i class="icofont-ambulance-cross"></i>
-                <h3>Ambulance</h3>
-               <p>
-          24/7 ambulance services for rapid and reliable medical transportation in emergency situations.
-        </p>
-              </div>
-              <div class="service-end">
-                <i class="icofont-ambulance-cross"></i>
-                <h3>Ambulance</h3>
-               <p>
-          Our emergency response team ensures quick and safe transportation during critical situations.
-        </p>
-                <a href="/service-details">Read More</a>
-              </div>
-            </div>
+          <div class="service-end">
+            <img
+              height="50px"
+              class="meet_doctor_img"
+              src="/uploads/<%= service.servicesImage %>"
+              alt="Services"
+            />
+            <h3><%= service.title %></h3>
+            <p><%= service.description %></p>
+            <a href="/service-details">Read More</a>
           </div>
         </div>
       </div>
-    </section>
-    <!-- End Services -->
+      <% }) %>
+    </div>
+  </div>
+</section>
+<!-- End Services -->
 
 <!-- Testimonials -->
 <section class="testimonial-area ptb-100">
@@ -356,146 +230,61 @@
       <h2>What our patient say</h2>
 
       <div class="testimonial-slider owl-theme owl-carousel">
+        <% testimonials.forEach((testimonial)=>{ %>
         <div class="testimonial-item">
-          <img src="assets/img/home-three/7.png" alt="Testimonial" />
-          <h3>John Mic</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-            id labore vitae cupiditate dolorum voluptates dicta delectus
-            quibusdam excepturi, veniam deserunt magni ipsam mollitia optio,
-            quas quis rem non reprehenderit.
-          </p>
+          <img height="100" width="100"
+           src="/uploads/<%= testimonial.testimonialImage %>"
+            alt="Testimonial"
+          />
+          <h3><%= testimonial.name %></h3>
+          <p><%= testimonial.description %></p>
         </div>
-        <div class="testimonial-item">
-          <img src="assets/img/home-three/8.png" alt="Testimonial" />
-          <h3>Adam Smith</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-            id labore vitae cupiditate dolorum voluptates dicta delectus
-            quibusdam excepturi, veniam deserunt magni ipsam mollitia optio,
-            quas quis rem non reprehenderit.
-          </p>
-        </div>
-        <div class="testimonial-item">
-          <img src="assets/img/home-three/9.png" alt="Testimonial" />
-          <h3>Jac Jacson</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam
-            id labore vitae cupiditate dolorum voluptates dicta delectus
-            quibusdam excepturi, veniam deserunt magni ipsam mollitia optio,
-            quas quis rem non reprehenderit.
-          </p>
-        </div>
+        <% }) %>
       </div>
     </div>
   </div>
 </section>
 <!-- End Testimonials -->
 
- <!-- Blog -->
-    <section class="blog-area pt-100 pb-70">
-      <div class="container">
-        <div class="section-title">
-          <h2>Our Latest Blogs</h2>
+<!-- Blog -->
+<section class="blog-area pt-100 pb-70">
+  <div class="container">
+    <div class="section-title">
+      <h2>Our Latest Blogs</h2>
+    </div>
+    <div class="row justify-content-center">
+   <% blogs.forEach((blog) => { %>
+      <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
+        <div class="blog-item">
+          <div class="blog-top">
+            <a href="/blog-details">
+              <img  src="/uploads/<%= blog.blogImage %>" alt="Blog" />
+            </a>
+          </div>
+          <div class="blog-bottom">
+            <h3>
+              <a href="/blog-details"> <%= blog.title %> </a>
+            </h3>
+            <p><%= blog.description %></p>
+            <ul>
+              <li>
+                <a href="/blog-details">
+                  Read More
+                  <i class="icofont-long-arrow-right"></i>
+                </a>
+              </li>
+              <li>
+                <i class="icofont-calendar"></i>
+                <%= new Date(blog.created).toLocaleDateString() %>
+              </li>
+            </ul>
+          </div>
         </div>
-       <div class="row justify-content-center">
-  <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".3s">
-    <div class="blog-item">
-      <div class="blog-top">
-        <a href="/blog-details">
-          <img src="assets/img/home-one/11.jpg" alt="Blog" />
-        </a>
       </div>
-      <div class="blog-bottom">
-        <h3>
-          <a href="/blog-details"
-            >In this hospital, there are specialized surgeons.</a
-          >
-        </h3>
-        <p>
-          Our hospital is renowned for its team of highly trained surgeons who specialize in advanced and complex procedures.
-        </p>
-        <ul>
-          <li>
-            <a href="/blog-details">
-              Read More
-              <i class="icofont-long-arrow-right"></i>
-            </a>
-          </li>
-          <li>
-            <i class="icofont-calendar"></i>
-            Jan 03, 2024
-          </li>
-        </ul>
-      </div>
+      <% }) %>
     </div>
   </div>
-  <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".5s">
-    <div class="blog-item">
-      <div class="blog-top">
-        <a href="/blog-details">
-          <img src="assets/img/home-one/11.jpg" alt="Blog" />
-        </a>
-      </div>
-      <div class="blog-bottom">
-        <h3>
-          <a href="/blog-details"
-            >World AIDS Day: Raising Awareness and Hope.</a
-          >
-        </h3>
-        <p>
-          Observed on December 1st, World AIDS Day highlights the global effort to combat HIV/AIDS and support those living with the condition.
-        </p>
-        <ul>
-          <li>
-            <a href="/blog-details">
-              Read More
-              <i class="icofont-long-arrow-right"></i>
-            </a>
-          </li>
-          <li>
-            <i class="icofont-calendar"></i>
-            Jan 03, 2024
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-6 col-lg-4 wow fadeInUp" data-wow-delay=".7s">
-    <div class="blog-item">
-      <div class="blog-top">
-        <a href="/blog-details">
-          <img src="assets/img/home-one/11.jpg" alt="Blog" />
-        </a>
-      </div>
-      <div class="blog-bottom">
-        <h3>
-          <a href="/blog-details"
-            >Over 80 Clinical Trials Launched for Coronavirus.</a
-          >
-        </h3>
-        <p>
-          Scientists and medical teams worldwide are testing innovative solutions to combat the coronavirus pandemic through clinical trials.
-        </p>
-        <ul>
-          <li>
-            <a href="/blog-details">
-              Read More
-              <i class="icofont-long-arrow-right"></i>
-            </a>
-          </li>
-          <li>
-            <i class="icofont-calendar"></i>
-            Jan 03, 2024
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-
-      </div>
-    </section>
+</section>
 
 <script src="assets/js/owl.carousel.min.js"></script>
 <!-- Meanmenu JS -->

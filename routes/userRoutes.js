@@ -1,16 +1,93 @@
 const express = require("express");
 const router = express.Router();
-const {
-  allDoctorsPageForIndex,
-  DoctorsPageForIndex,
-} = require("../controllers/doctorController");
+const { getAllDoctorsForIndex } = require("../controllers/doctorController");
+const { SliderPageForIndex } = require("../controllers/sliderController");
+const { getAllServicesForIndex } = require("../controllers/ServicesController");
+const { getAllBlogsForIndex } = require("../controllers/blogController");
+const { getAllTestimonialsForIndex } = require("../controllers/testimonialController");
 
-router.get("/", allDoctorsPageForIndex);
-router.get("/doctor", DoctorsPageForIndex);
+router.get("/", async (req, res) => {
+  try {
+    // Fetch all doctors and sliders
+    const [doctors, sliders, services, blogs] = await Promise.all([
+      getAllDoctorsForIndex(),
+      SliderPageForIndex(),
+      getAllServicesForIndex(),
+      getAllBlogsForIndex(),
+    ]);
 
-router.get("/about", (req, res) => {
-  res.render("ui/about.ejs", { title: "Delhi Hospital" });
+    // Render the index page with fetched data
+    res.render("../views/ui/index.ejs", {
+      title: "Hospital",
+      doctors: doctors,
+      blogs: blogs,
+      sliders: sliders,
+      services: services,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching doctors and sliders.");
+  }
 });
+
+router.get("/blog", async (req, res) => {
+  try {
+    const blogs = await getAllBlogsForIndex();
+    res.render("../views/ui/blog.ejs", { blogs, title: "Hospital" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching blogs.");
+  }
+});
+router.get("/doctor", async (req, res) => {
+  try {
+    const doctors = await getAllDoctorsForIndex();
+    res.render("../views/ui/doctor.ejs", { doctors, title: "Hospital" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching doctors.");
+  }
+});
+
+// /service route - fetches and returns all services
+router.get("/service", async (req, res) => {
+  try {
+    const services = await getAllServicesForIndex();
+    res.render("../views/ui/service.ejs", { services, title: "Hospital" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching services.");
+  }
+});
+// /about route - fetches and returns all services
+router.get("/about", async (req, res) => {
+  try {
+    // Fetch data for services, testimonials, and blogs in parallel
+    const [services, testimonials, blogs] = await Promise.all([
+      getAllServicesForIndex(),
+      getAllTestimonialsForIndex(),
+      getAllBlogsForIndex(),
+    ]);
+
+    // Render the about page with the fetched data
+    res.render("ui/about", {
+      title: "Hospital",
+      services,
+      testimonials,
+      blogs,
+    });
+  } catch (err) {
+    console.error("Error fetching data for about page:", err.message);
+
+    // Render an error page or send an error message
+    res.status(500).render("error", {
+      title: "Error",
+      message: "An error occurred while loading the About page.",
+    });
+  }
+});
+
+
 router.get("/departments", (req, res) => {
   res.render("ui/departments.ejs", { title: "Delhi Hospital" });
 });

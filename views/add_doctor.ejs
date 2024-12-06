@@ -6,46 +6,43 @@
       <!-- Card for Form -->
       <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
-          <h3>Add doctor</h3>
+          <h3>Add Blog</h3>
         </div>
         <div class="card-body">
           <!-- Form starts here -->
           <form
-            action="/admin/addDoctor"
+            action="/admin/addBlog"
             method="POST"
             enctype="multipart/form-data"
           >
-            <!-- Name Field -->
+            <!-- Title Field -->
             <div class="mb-3">
-              <label for="name" class="form-label">Doctor Name</label>
+              <label for="title" class="form-label">Blog Title</label>
               <input
                 type="text"
                 class="form-control"
-                id="name"
-                name="name"
-                placeholder="Name"
+                id="title"
+                name="title"
+                placeholder="Enter Blog Title"
                 required
               />
             </div>
             <!-- Description Field -->
             <div class="mb-3">
-              <label for="description" class="form-label"
-                >Doctor Specialist</label
-              ><br />
-              <input
+              <label for="description" class="form-label">Blog Description</label>
+              <textarea
                 class="form-control"
-                
-                id="specialist"
-                name="specialist"
-                placeholder="specialist"
+                id="description"
+                name="description"
+                placeholder="Enter Blog Description"
+                rows="5"
                 required
-              ></input>
+              ></textarea>
             </div>
-            <!-- image Field -->
+            <!-- Image Field -->
             <div class="mb-3">
-              <label for="doctorImage" class="form-label">Doctor image</label
-              ><br />
-              <input id="doctorImage" type="file" name="doctorImage" />
+              <label for="blogImage" class="form-label">Blog Image</label><br />
+              <input id="blogImage" type="file" name="blogImage" required />
             </div>
 
             <!-- Submit Button -->

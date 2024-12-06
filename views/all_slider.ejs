@@ -26,8 +26,10 @@
     <thead class="text-white table-dark">
       <tr>
         <th>ID</th>
-        <th>Title</th>  <!-- Added Title Column -->
-        <th>Description</th>  <!-- Added Description Column -->
+        <th>Title</th>
+        <!-- Added Title Column -->
+        <th>Description</th>
+        <!-- Added Description Column -->
         <th>Slider Image</th>
         <th>Actions</th>
       </tr>
@@ -35,27 +37,38 @@
     <tbody>
       <!-- Loop through the sliders -->
       <% sliders.forEach((slider, index) => { %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= slider.title %></td>  <!-- Displaying the title -->
-          <td><%= slider.description %></td>  <!-- Displaying the description -->
-          <td>
-            <img
-              src="/uploads/<%= slider.sliderImage %>"
-              alt="Slider Image"
-              class="img-thumbnail"
-              style="width: 50px; height: 50px"
-            />
-          </td>
-          <td>
-            <a href="/admin/updateSlider/<%= slider._id %>" class="btn btn-success btn-sm">
-              <i class="fas fa-edit"></i>
-            </a>
-            <a href="/admin/deleteSlider/<%= slider._id %>" class="btn btn-danger btn-sm">
-              <i class="fas fa-trash"></i>
-            </a>
-          </td>
-        </tr>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td class="text-truncate" style="max-width: 200px">
+          <%= slider.title %>
+        </td>
+        <td class="text-truncate" style="max-width: 300px">
+          <%= slider.description %>
+        </td>
+
+        <td>
+          <img
+            src="/uploads/<%= slider.sliderImage %>"
+            alt="Slider Image"
+            class="img-thumbnail"
+            style="width: 50px; height: 50px"
+          />
+        </td>
+        <td>
+          <a
+            href="/admin/updateSlider/<%= slider._id %>"
+            class="btn btn-success btn-sm"
+          >
+            <i class="fas fa-edit"></i>
+          </a>
+          <a
+            href="/admin/deleteSlider/<%= slider._id %>"
+            class="btn btn-danger btn-sm"
+          >
+            <i class="fas fa-trash"></i>
+          </a>
+        </td>
+      </tr>
       <% }); %>
     </tbody>
   </table>

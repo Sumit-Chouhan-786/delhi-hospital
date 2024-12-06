@@ -8,10 +8,11 @@ const servicesController = require("../controllers/ServicesController");
 const doctorController = require("../controllers/doctorController");
 const siteSettingsController = require("../controllers/siteSettingController");
 const adminController = require("../controllers/adminController");
+const blogController = require("../controllers/blogController");
 
-// ===== Routes for dashboard, site settings, testimonials, doctors, sliders, and toppers =====
 
-// Admin Routes
+
+//============================================================================== Admin Routes
 router.get("/signup", adminController.renderSignUp);
 router.post("/signup", adminController.handleSignUp);
 
@@ -25,7 +26,7 @@ router.post("/update", isAuthenticated, adminController.handleUpdatePassword);
 
 router.get("/logout", adminController.handleLogout);
 
-// Site Setting Routes
+//============================================================================== Site Setting Routes
 router.get("/siteSetting", siteSettingsController.siteSettingsPage);
 router.get(
   "/siteSettingsDisplay",
@@ -42,7 +43,7 @@ router.patch(
   siteSettingsController.updateSiteSetting
 );
 
-// Testimonial Routes
+//============================================================================== Testimonial Routes
 router.get("/addTestimonial", testimonialController.addTestimonialPage);
 router.post(
   "/addTestimonial",
@@ -62,7 +63,7 @@ router.patch("/updateTestimonial/:id", testimonialController.updateTestimonial);
 router.get("/allTestimonial", testimonialController.allTestimonialsPage);
 router.get("/deleteTestimonial/:id", testimonialController.deleteTestimonial);
 
-// Doctor Routes
+//============================================================================== Doctor Routes
 router.get("/addDoctor", doctorController.addDoctorPage);
 router.post(
   "/addDoctor",
@@ -78,7 +79,7 @@ router.post(
 router.get("/allDoctors", doctorController.allDoctorsPage);
 router.get("/deleteDoctor/:id", doctorController.deleteDoctor);
 
-// Slider Routes
+//============================================================================== Slider Routes
 router.get("/addSlider", sliderController.addSliderPage);
 router.post(
   "/addSlider",
@@ -94,7 +95,7 @@ router.post(
 );
 router.get("/deleteSlider/:id", sliderController.deleteSlider);
 
-// services routes
+//============================================================================== services routes
 router.get("/addServices", servicesController.addServicesPage);
 router.get("/updateServices/:id", servicesController.updateServicesPage);
 router.get("/allServices", servicesController.allServicesPage);
@@ -111,7 +112,17 @@ router.post(
 router.get("/deleteServices/:id", servicesController.deleteServices);
 
 
-
+//============================================================================== blogs routes
+router.get("/addBlog", blogController.addBlogPage);
+router.post("/addBlog", upload.single("blogImage"), blogController.addBlog);
+router.get("/updateBlog/:id", blogController.updateBlogPage);
+router.post(
+  "/updateBlog/:id",
+  upload.single("blogImage"),
+  blogController.updateBlog
+);
+router.get("/deleteBlog/:id", blogController.deleteBlog);
+router.get("/allBlogs", blogController.allBlogsPage);
 
 
 module.exports = router;

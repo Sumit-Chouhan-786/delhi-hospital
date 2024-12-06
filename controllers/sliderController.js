@@ -137,9 +137,21 @@ const allSlidersPage = async (req, res) => {
   }
 };
 
+
+const SliderPageForIndex = async () => {
+  try {
+    // Fetch all sliders
+    return await Slider.find();
+  } catch (err) {
+    throw new Error("Error fetching sliders");
+  }
+};
+
+
 // Export the functions
 module.exports = {
   addSliderPage,
+  SliderPageForIndex,
   addSlider,
   updateSliderPage,
   updateSlider,

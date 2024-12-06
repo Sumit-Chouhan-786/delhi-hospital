@@ -2,38 +2,41 @@ const Testimonial = require("../models/testimonialsModel");
 const path = require("path");
 const fs = require("fs");
 
-// Add Testimonial controller function
-
+// Add Testimonial Controller
 const addTestimonial = async (req, res) => {
   if (!req.file) {
-    return res.json({ message: "Image upload failed", type: "danger" });
+    return res
+      .status(400)
+      .json({ message: "Image upload failed", type: "danger" });
   }
+
   try {
     const testimonial = new Testimonial({
       name: req.body.name,
-      message: req.body.message,
       description: req.body.description,
       testimonialImage: req.file.filename,
     });
 
     await testimonial.save();
+
     req.session.message = {
       type: "success",
       message: "Testimonial added successfully!",
     };
     res.redirect("/admin/allTestimonial");
   } catch (err) {
-    res.json({ message: err.message, type: "danger" });
+    res
+      .status(500)
+      .json({ message: "Failed to add testimonial", error: err.message });
   }
 };
 
-// Render Add Testimonial page
-
+// Render Add Testimonial Page
 const addTestimonialPage = (req, res) => {
   res.render("add_testimonial", { title: "Add Testimonial" });
 };
 
-// Update Testimonial Page
+// Render Update Testimonial Page
 const updateTestimonialPage = async (req, res) => {
   try {
     const testimonial = await Testimonial.findById(req.params.id);
@@ -44,35 +47,43 @@ const updateTestimonialPage = async (req, res) => {
 
     res.render("update_testimonial", {
       title: "Update Testimonial",
-      testimonial: testimonial,
+      testimonial,
     });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res
+      .status(500)
+      .json({ message: "Failed to load testimonial", error: err.message });
   }
 };
 
-// Update Testimonial controller function
+// Update Testimonial Controller
 const updateTestimonial = async (req, res) => {
   const id = req.params.id;
-  let new_image = "";
+  let newImage = "";
 
   try {
-    // Check if a new image is uploaded
+    // Handle image replacement
     if (req.file) {
-      new_image = req.file.filename;
-      try {
-        fs.unlinkSync("./uploads" + req.body.old_image);
-      } catch (err) {
-        console.log(err);
+      newImage = req.file.filename;
+
+      // Delete old image if a new one is uploaded
+      const oldImagePath = path.join(
+        __dirname,
+        "..",
+        "uploads",
+        req.body.old_image
+      );
+      if (fs.existsSync(oldImagePath)) {
+        fs.unlinkSync(oldImagePath);
       }
     } else {
-      new_image = req.body.old_image;
+      newImage = req.body.old_image;
     }
+
     await Testimonial.findByIdAndUpdate(id, {
       name: req.body.name,
-      message: req.body.message,
       description: req.body.description,
-      testimonialImage: new_image,
+      testimonialImage: newImage,
     });
 
     req.session.message = {
@@ -81,17 +92,19 @@ const updateTestimonial = async (req, res) => {
     };
     res.redirect("/admin/allTestimonial");
   } catch (err) {
-    res.json({ message: err.message, type: "danger" });
+    res
+      .status(500)
+      .json({ message: "Failed to update testimonial", error: err.message });
   }
 };
 
-// Delete Testimonial controller function
+// Delete Testimonial Controller
 const deleteTestimonial = async (req, res) => {
   try {
     const testimonial = await Testimonial.findById(req.params.id);
 
     if (!testimonial) {
-      return res.status(404).send("Testimonial not found");
+      return res.status(404).json({ message: "Testimonial not found" });
     }
 
     const imagePath = path.join(
@@ -100,11 +113,8 @@ const deleteTestimonial = async (req, res) => {
       "uploads",
       testimonial.testimonialImage
     );
-
-    try {
+    if (fs.existsSync(imagePath)) {
       fs.unlinkSync(imagePath);
-    } catch (err) {
-      console.log("Error deleting image:", err);
     }
 
     await Testimonial.findByIdAndDelete(req.params.id);
@@ -115,29 +125,39 @@ const deleteTestimonial = async (req, res) => {
     };
     res.redirect("/admin/allTestimonial");
   } catch (err) {
-    console.error(err);
-    res.json({ message: err.message, type: "danger" });
+    res
+      .status(500)
+      .json({ message: "Failed to delete testimonial", error: err.message });
   }
 };
 
-// All Testimonials Page controller function
+// All Testimonials Page Controller
 const allTestimonialsPage = async (req, res) => {
   try {
     const testimonials = await Testimonial.find();
 
     res.render("all_testimonial", {
       title: "All Testimonials",
-      testimonials: testimonials,
+      testimonials,
     });
   } catch (err) {
-    console.error(err);
     res.status(500).send("Error fetching testimonials.");
   }
 };
 
-// Export the functions
+// Fetch All Testimonials for Index Page
+const getAllTestimonialsForIndex = async () => {
+  try {
+    return await Testimonial.find();
+  } catch (err) {
+    throw new Error("Error fetching testimonials");
+  }
+};
+
+// Export Controllers
 module.exports = {
   addTestimonialPage,
+  getAllTestimonialsForIndex,
   addTestimonial,
   updateTestimonialPage,
   updateTestimonial,

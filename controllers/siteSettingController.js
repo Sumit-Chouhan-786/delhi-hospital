@@ -121,12 +121,15 @@ const updateSiteSetting = async (req, res) => {
       type: "success",
       message: "Site setting updated successfully!",
     };
-    res.redirect("/admin/siteSettingsDisplay"); // Redirect to the display page
+    res.redirect("/admin/siteSettingsDisplay"); 
   } catch (err) {
     console.error(err);
     res.status(500).send("Error updating site setting.");
   }
 };
+
+
+
 
 module.exports = {
   siteSettingsPage,
