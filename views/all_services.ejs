@@ -20,7 +20,7 @@
       </div>
       <% } %>
 
-      <!-- Table for displaying toppers -->
+      <!-- Table for displaying all services -->
       <div>
         <table
           class="table table-bordered table-hover text-center align-middle"
@@ -28,37 +28,47 @@
           <thead class="text-white table-dark">
             <tr>
               <th>ID</th>
-              <th>Student Image</th>
-              <th>Student Name</th>
-              <th>Title</th>
-              <th>Year</th>
+              <th>Service Image</th>
+              <th>title</th>
+              <th>Description</th>
+            
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <!-- Static Row 1 -->
+            <!-- Loop through services and display each -->
+            <% services.forEach((service, index) => { %>
             <tr>
-              <td>1</td>
+              <td><%= index + 1 %></td>
               <td>
                 <img
-                  src="/path/to/student1.jpg"
-                  alt="Student 1 Image"
+                  src="/uploads/<%= service.servicesImage %>"
+                  alt="Service Image"
                   class="img-thumbnail"
                   style="width: 50px; height: 50px"
                 />
               </td>
-              <td>John Doe</td>
-              <td>Top Scorer in Mathematics</td>
-              <td>2024</td>
+              <td><%= service.title %></td>
+              <td class="text-truncate" style="max-width: 200px">
+                <%= service.description %>
+              </td>
+             
               <td>
-                <a href="/admin/updateTopper/1" class="btn btn-success btn-sm">
+                <a
+                  href="/admin/updateServices/<%= service._id %>"
+                  class="btn btn-success btn-sm"
+                >
                   <i class="fas fa-edit"></i>
                 </a>
-                <a href="/delete-topper/1" class="btn btn-danger btn-sm">
+                <a
+                  href="/admin/deleteServices/<%= service._id %>"
+                  class="btn btn-danger btn-sm"
+                >
                   <i class="fas fa-trash"></i>
                 </a>
               </td>
             </tr>
+            <% }) %>
           </tbody>
         </table>
       </div>

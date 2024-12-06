@@ -4742,37 +4742,91 @@ footer {
   color: #ffffff; /* White icon color on hover */
 }
 
-
 /* Style for the fixed icons */
-  .fixed-icons {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    padding: 15px 10px;
-    background-color: white;
-    border-radius: 10px 0 0 10px;
-    box-shadow: 0px 0px 8px black;
-  }
+.fixed-icons {
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 15px 10px;
+  background-color: white;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0px 0px 8px black;
+}
 
-  .phone-side-icon {
-    display: block;
-    margin-bottom: 15px;
-    color: blue;
-    text-decoration: none;
-  }
-  .whatsUpp-side-icon {
-    display: block;
-    margin-bottom: 15px;
-    color: green;
-    text-decoration: none;
-  }
+.phone-side-icon {
+  display: block;
+  margin-bottom: 15px;
+  color: blue;
+  text-decoration: none;
+}
+.whatsUpp-side-icon {
+  display: block;
+  margin-bottom: 15px;
+  color: green;
+  text-decoration: none;
+}
 
-  .icon-link i {
-    color: #007bff; /* Icon color */
-    transition: color 0.3s ease;
-  }
+.icon-link i {
+  color: #007bff; /* Icon color */
+  transition: color 0.3s ease;
+}
 
-  .icon-link:hover i {
-    color: #28a745; 
-  }
+.icon-link:hover i {
+  color: #28a745;
+}
+
+.meet_doctor_img {
+  max-height: 400px;
+  object-fit: 100%, 100%;
+}
+
+.admin_nav_bg {
+  background: linear-gradient(to right, #1b4a92, #842ac9);
+  position: relative;
+  z-index: 2;
+}
+.admin_sidebar {
+  box-shadow: 0 0 8px black;
+  padding: 10px;
+  position: relative;
+  z-index: 0;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+/* Custom Accordion Styles */
+.custom-accordion .accordion-button {
+  background-color: white; /* Set white background */
+  border: none; /* Remove default border */
+  outline: none; /* Remove focus outline */
+  color: #333; /* Set text color */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover Effect */
+.custom-accordion .accordion-button:hover {
+  background-color: #f1f1f1; /* Light gray hover background */
+  color: #095779; /* Hover text color */
+}
+
+/* Focus State */
+.custom-accordion .accordion-button:focus {
+  box-shadow: none; /* Remove focus shadow */
+  outline: none; /* Remove focus outline */
+  background-color: #e8f6f8; /* Light blue focus background */
+}
+
+/* Collapsed Button Styles */
+.custom-accordion .accordion-button.collapsed {
+  background-color: white; /* White background for collapsed state */
+  color: #333; /* Text color for collapsed state */
+}
+
+/* Accordion Body */
+.custom-accordion .accordion-body {
+  background-color: #f9f9f9; /* Light gray background for accordion content */
+  color: #555; /* Text color for content */
+  border-top: 1px solid #ddd; /* Add subtle border to accordion content */
+}

@@ -19,7 +19,7 @@
       </div>
       <% } %>
       <div>
-        <!-- Table with dynamic course data -->
+        <!-- Table with dynamic doctor data -->
         <table
           class="table table-bordered table-hover text-center align-middle"
         >
@@ -27,37 +27,37 @@
             <tr>
               <th>ID</th>
               <th>Image</th>
-              <th>Course Name</th>
-              <th>Course Description</th>
+              <th>Doctor Name</th>
+              <th>Specialist</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <!-- Loop through courses and display each -->
-            <% courses.forEach((course, index) => { %>
+            <!-- Loop through doctors and display each -->
+            <% doctors.forEach((doctor, index) => { %>
             <tr>
               <td><%= index + 1 %></td>
               <td>
                 <img
-                  src="/uploads/<%= course.courseImage %>"
-                  alt="Course Image"
+                  src="/uploads/<%= doctor.doctorImage %>"
+                  alt="Doctor Image"
                   class="img-thumbnail"
                   style="width: 50px; height: 50px"
                 />
               </td>
-              <td><%= course.name %></td>
+              <td><%= doctor.name %></td>
               <td class="text-truncate" style="max-width: 150px">
-                <%= course.description %>
+                <%= doctor.specialist %>
               </td>
               <td>
                 <a
-                  href="/admin/updateCourse/<%= course._id %>"
+                  href="/admin/updateDoctor/<%= doctor._id %>"
                   class="btn btn-success btn-sm"
                 >
                   <i class="fas fa-edit"></i>
                 </a>
                 <a
-                  href="/admin/deleteCourse/<%= course._id %>"
+                  href="/admin/deleteDoctor/<%= doctor._id %>"
                   class="btn btn-danger btn-sm"
                 >
                   <i class="fas fa-trash"></i>

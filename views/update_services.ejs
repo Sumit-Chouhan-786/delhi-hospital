@@ -7,24 +7,15 @@
       <!-- Card for Form -->
       <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
-          <h3>Add Topper</h3>
+          <h3>Update Service</h3>
         </div>
         <div class="card-body">
           <!-- Start of the form -->
-          <form action="/add-topper" method="POST" enctype="multipart/form-data">
-            <!-- Student Name Field -->
-            <div class="mb-3">
-              <label for="studentName" class="form-label">Student Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="studentName"
-                name="studentName"
-                placeholder="Enter student name"
-                required
-              />
-            </div>
-            
+          <form
+            action="/admin/updateServices/<%= service._id %>"
+            method="POST"
+            enctype="multipart/form-data"
+          >
             <!-- Title Field -->
             <div class="mb-3">
               <label for="title" class="form-label">Title</label>
@@ -33,43 +24,55 @@
                 class="form-control"
                 id="title"
                 name="title"
-                placeholder="Enter title"
+                placeholder="Enter service title"
+                value="<%= service.title || '' %>"
                 required
               />
             </div>
-            
-            <!-- Year Field -->
+
+            <!-- Description Field -->
             <div class="mb-3">
-              <label for="year" class="form-label">Year</label>
+              <label for="description" class="form-label">Description</label>
               <input
                 type="text"
                 class="form-control"
-                id="year"
-                name="year"
-                placeholder="Enter year"
+                id="description"
+                name="description"
+                placeholder="Enter service description"
+                value="<%= service.description || '' %>"
                 required
               />
             </div>
-            
-            <!-- Student Image Upload Field -->
+
+            <!-- Service Image Upload Field -->
             <div class="mb-3">
-              <label for="studentImage" class="form-label">Student Image</label>
+              <label for="servicesImage" class="form-label">Service Image</label>
               <input
                 type="file"
                 class="form-control"
-                id="studentImage"
-                name="studentImage"
+                id="servicesImage"
+                name="servicesImage"
                 accept=".jpg,.png"
-                required
               />
               <div class="form-text">
-                Upload the student's image here (JPG/PNG).
+                Upload a new image to update (JPG/PNG). Leave blank to keep the current image.
               </div>
+              <% if (service.image) { %>
+              <div class="mt-3">
+                <img
+                  src="/uploads/<%= service.image %>"
+                  alt="Current Service Image"
+                  class="img-thumbnail"
+                  style="width: 100px; height: 100px"
+                />
+                <p class="text-muted">Current Image</p>
+              </div>
+              <% } %>
             </div>
-            
+
             <!-- Submit Button -->
             <div class="text-center">
-              <button type="submit" class="btn btn-primary px-4">Submit</button>
+              <button type="submit" class="btn btn-primary px-4">Update</button>
             </div>
           </form>
           <!-- End of the form -->

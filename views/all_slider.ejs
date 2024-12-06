@@ -18,12 +18,16 @@
         ></button>
       </div>
       <% } %>
-   <div>
+    </div>
+  </div>
+
   <!-- Table to display all sliders -->
   <table class="table table-bordered table-hover text-center align-middle">
     <thead class="text-white table-dark">
       <tr>
         <th>ID</th>
+        <th>Title</th>  <!-- Added Title Column -->
+        <th>Description</th>  <!-- Added Description Column -->
         <th>Slider Image</th>
         <th>Actions</th>
       </tr>
@@ -33,6 +37,8 @@
       <% sliders.forEach((slider, index) => { %>
         <tr>
           <td><%= index + 1 %></td>
+          <td><%= slider.title %></td>  <!-- Displaying the title -->
+          <td><%= slider.description %></td>  <!-- Displaying the description -->
           <td>
             <img
               src="/uploads/<%= slider.sliderImage %>"
@@ -55,8 +61,5 @@
   </table>
 </div>
 
-    </div>
-  </div>
-</div>
-
+<!-- Include the admin footer -->
 <%- include("./layout/admin_footer.ejs") %>

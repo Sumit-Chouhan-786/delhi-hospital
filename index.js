@@ -13,10 +13,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 // Connect to the MongoDB database
-mongoose.connect(process.env.DB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose
+  .connect(process.env.DB_URL)
   .then(() => {
     console.log("Connected to the database");
   })
@@ -45,21 +43,20 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the 'public' directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Serve static files (e.g., uploaded images)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Set EJS as the template engine
-app.set("views", path.join(__dirname, "views")); 
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-const methodOverride = require('method-override');
-app.use(methodOverride('_method')); // This allows the form to submit a PATCH request.
+const methodOverride = require("method-override");
+app.use(methodOverride("_method")); // This allows the form to submit a PATCH request.
 
-
-app.use("/", require("./routes/userRoutes")); 
-app.use("/admin", require("./routes/adminRoutes")); 
+app.use("/", require("./routes/userRoutes"));
+app.use("/admin", require("./routes/adminRoutes"));
 
 // Catch-all route for undefined routes (404 error page)
 app.all("*", (req, res) => {

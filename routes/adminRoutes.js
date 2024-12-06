@@ -1,54 +1,54 @@
 const express = require("express");
 const router = express.Router();
+const isAuthenticated = require("../middlewares/isAuthenticated");
 const upload = require("../middlewares/multerMiddleware");
 const testimonialController = require("../controllers/testimonialController");
 const sliderController = require("../controllers/sliderController");
-const topperController = require("../controllers/topperController");
-const courseController = require("../controllers/courseController");
+const servicesController = require("../controllers/ServicesController");
+const doctorController = require("../controllers/doctorController");
 const siteSettingsController = require("../controllers/siteSettingController");
+const adminController = require("../controllers/adminController");
 
-// ============================================= dashboard  routes ================================================
+// ===== Routes for dashboard, site settings, testimonials, doctors, sliders, and toppers =====
 
-router.get("/dashboard", (req, res) => {
-  res.render("admin_panel.ejs", { title: "Dashboard" });
-});
+// Admin Routes
+router.get("/signup", adminController.renderSignUp);
+router.post("/signup", adminController.handleSignUp);
 
-// ============================================= site setting  routes ================================================
+router.get("/login", adminController.renderLogin);
+router.post("/login", adminController.handleLogin);
 
-// Route to render Site Settings page (GET)
+// Protected Routes
+router.get("/dashboard", isAuthenticated, adminController.renderDashboard);
+router.get("/update", isAuthenticated, adminController.renderUpdate);
+router.post("/update", isAuthenticated, adminController.handleUpdatePassword);
+
+router.get("/logout", adminController.handleLogout);
+
+// Site Setting Routes
 router.get("/siteSetting", siteSettingsController.siteSettingsPage);
-
-// Route to display current Site Settings (GET)
 router.get(
   "/siteSettingsDisplay",
   siteSettingsController.siteSettingsDisplayPage
 );
-
-// Route to add Site Settings (POST)
 router.post(
   "/siteSetting",
-  upload.single("logo"), // Handle file upload for the logo
+  upload.single("logo"),
   siteSettingsController.addSiteSetting
 );
-
-// Route to update Site Settings (PATCH)
 router.patch(
   "/siteSetting/:id",
-  upload.single("logo"), // Handle file upload for the logo
+  upload.single("logo"),
   siteSettingsController.updateSiteSetting
 );
 
-// ============================================= testimonials  routes ================================================
-
-// Add Testimonial Routes
+// Testimonial Routes
 router.get("/addTestimonial", testimonialController.addTestimonialPage);
 router.post(
   "/addTestimonial",
   upload.single("testimonialImage"),
   testimonialController.addTestimonial
 );
-
-// Update Testimonial Routes
 router.get(
   "/updateTestimonial/:id",
   testimonialController.updateTestimonialPage
@@ -59,64 +59,59 @@ router.post(
   testimonialController.updateTestimonial
 );
 router.patch("/updateTestimonial/:id", testimonialController.updateTestimonial);
-
-// All Testimonials Route
 router.get("/allTestimonial", testimonialController.allTestimonialsPage);
-
-// Delete Testimonial Route
 router.get("/deleteTestimonial/:id", testimonialController.deleteTestimonial);
 
-// ============================================= courses  routes ================================================
-
-// Add Course Routes
-router.get("/addCourse", courseController.addCoursePage);
+// Doctor Routes
+router.get("/addDoctor", doctorController.addDoctorPage);
 router.post(
-  "/addCourse",
-  upload.single("courseImage"),
-  courseController.addCourse
+  "/addDoctor",
+  upload.single("doctorImage"),
+  doctorController.addDoctor
 );
-
-// Update Course Routes
-router.get("/updateCourse/:id", courseController.updateCoursePage);
+router.get("/updateDoctor/:id", doctorController.updateDoctorPage);
 router.post(
-  "/updateCourse/:id",
-  upload.single("courseImage"),
-  courseController.updateCourse
+  "/updateDoctor/:id",
+  upload.single("doctorImage"),
+  doctorController.updateDoctor
 );
-router.patch("/updateCourse/:id", courseController.updateCourse);
+router.get("/allDoctors", doctorController.allDoctorsPage);
+router.get("/deleteDoctor/:id", doctorController.deleteDoctor);
 
-// All Courses Route
-router.get("/allCourse", courseController.allCoursesPage);
-
-// Delete Course Route
-router.get("/deleteCourse/:id", courseController.deleteCourse);
-
-// ============================================= slider  routes ================================================
-// Route for adding a slider
+// Slider Routes
 router.get("/addSlider", sliderController.addSliderPage);
 router.post(
   "/addSlider",
   upload.single("sliderImage"),
   sliderController.addSlider
 );
-
-// Route for viewing all sliders
 router.get("/allSliders", sliderController.allSlidersPage);
-
-// Route for updating a slider
 router.get("/updateSlider/:id", sliderController.updateSliderPage);
 router.post(
   "/updateSlider/:id",
   upload.single("sliderImage"),
   sliderController.updateSlider
 );
-
-// Route for deleting a slider
 router.get("/deleteSlider/:id", sliderController.deleteSlider);
 
-// ============================================= topper  routes ================================================
-router.get("/addTopper", topperController.addTopperPage);
-router.get("/updateTopper", topperController.updateTopperPage);
-router.get("/allTopper", topperController.allToppersPage);
+// services routes
+router.get("/addServices", servicesController.addServicesPage);
+router.get("/updateServices/:id", servicesController.updateServicesPage);
+router.get("/allServices", servicesController.allServicesPage);
+router.post(
+  "/addServices",
+  upload.single("servicesImage"),
+  servicesController.addServices
+);
+router.post(
+  "/updateServices/:id",
+  upload.single("servicesImage"),
+  servicesController.updateServices
+);
+router.get("/deleteServices/:id", servicesController.deleteServices);
+
+
+
+
 
 module.exports = router;

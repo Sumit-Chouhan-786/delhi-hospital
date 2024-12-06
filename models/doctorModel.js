@@ -1,15 +1,15 @@
 const mongoose = require("mongoose");
 
-const sliderSchema = new mongoose.Schema({
-  sliderImage: {
+const doctorSchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
   },
-  title: {
+  specialist: {
     type: String,
-    required: true, 
+    required: true,
   },
-  description: {
+  doctorImage: {
     type: String,
     required: true,
   },
@@ -20,4 +20,4 @@ const sliderSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("Slider", sliderSchema);
+module.exports = mongoose.model("Doctor", doctorSchema);

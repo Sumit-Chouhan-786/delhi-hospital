@@ -7,12 +7,16 @@ const addSlider = async (req, res) => {
   if (!req.file) {
     return res.json({ message: "Image upload failed", type: "danger" });
   }
+
   try {
     const slider = new Slider({
       sliderImage: req.file.filename,
+      title: req.body.title, 
+      description: req.body.description, 
     });
 
     await slider.save();
+
     req.session.message = {
       type: "success",
       message: "Slider added successfully!",
@@ -22,6 +26,7 @@ const addSlider = async (req, res) => {
     res.json({ message: err.message, type: "danger" });
   }
 };
+
 
 // Render Add Slider page
 const addSliderPage = (req, res) => {
@@ -47,9 +52,11 @@ const updateSlider = async (req, res) => {
       new_image = req.body.old_image;
     }
 
-    // Update the slider with the new or old image
+    // Update the slider with the new or old image, title, and description
     await Slider.findByIdAndUpdate(id, {
       sliderImage: new_image,
+      title: req.body.title, // Title from the form input
+      description: req.body.description, // Description from the form input
     });
 
     // Set success message in session and redirect
@@ -63,6 +70,7 @@ const updateSlider = async (req, res) => {
   }
 };
 
+
 // Render Update Slider page
 const updateSliderPage = async (req, res) => {
   try {
@@ -74,12 +82,13 @@ const updateSliderPage = async (req, res) => {
 
     res.render("update_slider", {
       title: "Update Slider",
-      slider: slider,
+      slider: slider, // Now includes title and description in the slider object
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 // Delete Slider controller function
 const deleteSlider = async (req, res) => {

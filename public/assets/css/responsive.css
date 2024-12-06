@@ -3009,7 +3009,7 @@
     padding: 0;
   }
   .mean-container a.meanmenu-reveal {
-    padding: 15px 15px 0 0;
+    padding: 35px 15px 0 0;
   }
   .mobile-nav nav .navbar-nav .nav-item a i {
     display: none;
@@ -3018,7 +3018,7 @@
     display: none !important;
   }
   .mobile-nav nav .navbar-nav {
-    height: 300px;
+    height: 350px;
     overflow-y: scroll;
   }
   .mean-container a.meanmenu-reveal span {

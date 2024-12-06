@@ -10,7 +10,7 @@ a.meanmenu-reveal {
 	padding: 20px 0 0;
 	z-index: 999;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-	height: 55px;
+	height: 100px;
 }
 .mean-container a.meanmenu-reveal {
 	width: 35px;

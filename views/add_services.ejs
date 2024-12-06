@@ -7,23 +7,14 @@
       <!-- Card for Form -->
       <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
-          <h3>Update Topper</h3>
+          <h3>Add Services</h3>
         </div>
         <div class="card-body">
           <!-- Start of the form -->
-          <form action="/add-topper" method="POST" enctype="multipart/form-data">
+          <form action="/admin/addServices"
+            method="POST"
+            enctype="multipart/form-data">
             <!-- Student Name Field -->
-            <div class="mb-3">
-              <label for="studentName" class="form-label">Student Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="studentName"
-                name="studentName"
-                placeholder="Enter student name"
-                required
-              />
-            </div>
             
             <!-- Title Field -->
             <div class="mb-3">
@@ -40,30 +31,30 @@
             
             <!-- Year Field -->
             <div class="mb-3">
-              <label for="year" class="form-label">Year</label>
+              <label for="Description" class="form-label">Description</label>
               <input
                 type="text"
                 class="form-control"
-                id="year"
-                name="year"
-                placeholder="Enter year"
+                id="Description"
+                name="description"
+                placeholder="Enter Description"
                 required
               />
             </div>
             
-            <!-- Student Image Upload Field -->
+           
+               <!-- Image Upload Field -->
             <div class="mb-3">
-              <label for="studentImage" class="form-label">Student Image</label>
+              <label for="servicesImage" class="form-label">Service Image</label>
               <input
                 type="file"
                 class="form-control"
-                id="studentImage"
-                name="studentImage"
-                accept=".jpg,.png"
+                id="servicesImage"
+                name="servicesImage"
                 required
               />
               <div class="form-text">
-                Upload the student's image here (JPG/PNG).
+                Upload the service's image here (JPG/PNG).
               </div>
             </div>
             

@@ -9,21 +9,34 @@
           <h3>Add Slider</h3>
         </div>
         <div class="card-body">
-          <!-- Start of the form -->
-          <form action="/admin/addSlider" method="POST" enctype="multipart/form-data">
-            <!-- Slider Image Upload Field -->
-            <div class="mb-3">
-              <label for="slider" class="form-label">Slider image</label><br />
-              <input id="slider" type="file" name="sliderImage" required>
+          <form
+            action="/admin/addSlider"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+           
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" name="title" class="form-control" required />
             </div>
-            <div class="form-text">
-              Upload your slider image here (JPG/PNG).
+            <div class="form-group my-3">
+              <label for="description">Description</label>
+              <textarea
+                name="description"
+                class="form-control"
+                required
+              ></textarea>
             </div>
-            
-            <!-- Submit Button -->
-            <div class="text-center mt-4">
-              <button type="submit" class="btn btn-primary px-4">Submit</button>
+             <div class="form-group">
+              <label for="sliderImage">Slider Image</label>
+              <input
+                type="file"
+                name="sliderImage"
+                class="form-control"
+                required
+              />
             </div>
+            <button  type="submit" class="btn mt-3 btn-primary">Add Slider</button>
           </form>
           <!-- End of the form -->
         </div>

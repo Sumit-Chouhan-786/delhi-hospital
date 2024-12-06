@@ -1,27 +1,22 @@
 const mongoose = require("mongoose");
 
-const topperSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+const servicesSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
   },
-  year: {
+  description: {
     type: String,
     required: true,
   },
-  image: {
+  servicesImage: {
     type: String,
-    required: true,
+    required:true,
   },
   created: {
     type: Date,
-    required: true,
     default: Date.now,
   },
 });
 
-module.exports = mongoose.model("Topper", topperSchema);
+module.exports = mongoose.model("Services", servicesSchema);

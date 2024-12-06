@@ -1,9 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const {
+  allDoctorsPageForIndex,
+  DoctorsPageForIndex,
+} = require("../controllers/doctorController");
 
-router.get("/", (req, res) => {
-  res.render("ui/index.ejs", { title: "Delhi Hospital" });
-});
+router.get("/", allDoctorsPageForIndex);
+router.get("/doctor", DoctorsPageForIndex);
+
 router.get("/about", (req, res) => {
   res.render("ui/about.ejs", { title: "Delhi Hospital" });
 });
@@ -46,6 +50,5 @@ router.get("/terms-condition", (req, res) => {
 router.get("/privacy-policy", (req, res) => {
   res.render("ui/privacy-policy.ejs", { title: "Delhi Hospital" });
 });
-
 
 module.exports = router;
