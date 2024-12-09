@@ -1,0 +1,1 @@
+// make  a function and get deta database and send deta direct

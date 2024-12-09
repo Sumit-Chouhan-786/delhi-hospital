@@ -145,10 +145,6 @@ router.get("/doctor", (req, res) => {
   res.render("ui/doctor.ejs", { title: "Delhi Hospital" });
 });
 
-// Static route for rendering the blog page
-router.get("/blog", (req, res) => {
-  res.render("ui/blog.ejs", { title: "Delhi Hospital" });
-});
 
 // Static route for rendering the blog details page
 router.get("/blog-details", (req, res) => {
