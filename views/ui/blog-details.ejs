@@ -27,9 +27,9 @@
           <div class="col-lg-8">
             <div class="blog-details-item">
               <div class="blog-details-img">
-                <img src="assets/img/blog/2.jpg" alt="Blog" />
+                <img  src="/uploads/<%= blog.blogImage %>" alt="Blog" />
                 <h2>
-                  More than 80 clinical trials launch to test the coronavirus
+                  <%= blog.title %>
                 </h2>
                 <ul>
                   <li>
@@ -40,39 +40,10 @@
                   </li>
                   <li>
                     <i class="icofont-calendar"></i>
-                    Jan 03, 2024
+                    <%= new Date(blog.created).toLocaleDateString() %>
                   </li>
                 </ul>
-                <p>
-                  The rapid advancements in medical science have led to
-                  groundbreaking innovations in healthcare. New therapies,
-                  improved diagnostic tools, and personalized treatment plans
-                  are revolutionizing patient care. This shift is not only
-                  enhancing the effectiveness of medical treatments but also
-                  increasing life expectancy across various regions. Research
-                  and technology continue to push boundaries, promising even
-                  greater breakthroughs in the future.
-                </p>
-
-                <p>
-                  As the world continues to evolve, it is crucial to stay
-                  informed about the latest developments in healthcare and
-                  medical technologies. This awareness can empower individuals
-                  to make informed decisions about their health and wellness. In
-                  the coming years, we anticipate significant changes in the way
-                  healthcare services are delivered and accessed globally.
-                </p>
-
-                <p>
-                  The healthcare industry is on the brink of a transformation,
-                  with artificial intelligence, robotic surgeries, and
-                  telemedicine playing pivotal roles in improving patient
-                  outcomes. These advancements are helping to bridge gaps in
-                  healthcare access, especially in underserved areas, and are
-                  making medical services more affordable and efficient. As we
-                  look forward, the potential for positive change in the
-                  healthcare sector is limitless.
-                </p>
+              <p><%= blog.description %></p>
               </div>
               <div class="blog-details-previous">
                 <h3>

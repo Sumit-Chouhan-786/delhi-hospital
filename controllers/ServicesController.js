@@ -143,6 +143,14 @@ const getAllServicesForIndex = async () => {
 };
 
 
+// const getService = async (getService) => {
+//   try {
+//     return await Service.findById(getService);
+//   } catch (err) {
+//     throw new Error("Error fetching Service");
+//   }
+// };
+
 module.exports = {
   getAllServicesForIndex,
   addServicesPage,

@@ -3,7 +3,7 @@ const router = express.Router();
 const { getAllDoctorsForIndex } = require("../controllers/doctorController");
 const { SliderPageForIndex } = require("../controllers/sliderController");
 const { getAllServicesForIndex } = require("../controllers/ServicesController");
-const { getAllBlogsForIndex } = require("../controllers/blogController");
+const { getAllBlogsForIndex, getBlog } = require("../controllers/blogController");
 const {
   getAllTestimonialsForIndex,
 } = require("../controllers/testimonialController");
@@ -147,12 +147,16 @@ router.get("/doctor", (req, res) => {
 
 
 // Static route for rendering the blog details page
-router.get("/blog-details", (req, res) => {
-  res.render("ui/blog-details.ejs", { title: "Delhi Hospital" });
+router.get("/blog-details/:id", async (req, res) => {
+  const blogId = req.params.id;
+  const blog = await getBlog(blogId);
+  console.log("blogDetails", blog);
+  res.render("ui/blog-details.ejs", { blog, title: "Delhi Hospital" });
 });
 
 // Static route for rendering the contact page
 router.get("/contact", (req, res) => {
+
   res.render("ui/contact.ejs", { title: "Delhi Hospital" });
 });
 

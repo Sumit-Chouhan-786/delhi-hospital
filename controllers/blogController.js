@@ -159,6 +159,15 @@ const getAllBlogsForIndex = async () => {
   }
 };
 
+// ======================================================================== show blogs on ui
+const getBlog = async (blogId) => {
+  try {
+    return await Blog.findById(blogId);
+  } catch (err) {
+    throw new Error("Error fetching blogs");
+  }
+};
+
 // Export the functions
 module.exports = {
   addBlogPage,
@@ -170,4 +179,5 @@ module.exports = {
   updateBlog,
   allBlogsPage,
   deleteBlog,
+  getBlog
 };

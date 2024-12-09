@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { unique } = require("next/dist/build/utils");
 
 const appointmentSchema = new mongoose.Schema({
   name: { type: String, required: true },
