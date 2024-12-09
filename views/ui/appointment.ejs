@@ -86,7 +86,7 @@
                     <select class="form-control" name="services" required>
                       <option value="">Select a Service</option>
                       <% services.forEach(service => { %>
-                        <option value="<%= service.id %>">
+                        <option value="<%= service.title %>">
                           <%= service.title %>
                         </option>
                       <% }); %>
@@ -100,7 +100,7 @@
                     <select class="form-control" name="doctor" required>
                       <option value="">Choose Your Doctor</option>
                       <% doctors.forEach(doctor => { %>
-                        <option value="<%= doctor.id %>">
+                        <option value="<%= doctor.name %>">
                           <%= doctor.name %>
                         </option>
                       <% }); %>
