@@ -1,12 +1,12 @@
 const Admin = require("../models/adminModel");
 const bcrypt = require("bcrypt");
 
-// Render Signup Page
+//======================================================================== Render Signup Page
 const renderSignUp = (req, res) => {
   res.render("signup", { title: "Admin Signup", error: null });
 };
 
-// Handle Signup
+//======================================================================== Handle Signup
 const handleSignUp = async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -30,12 +30,12 @@ const handleSignUp = async (req, res) => {
   }
 };
 
-// Render Login Page
+//======================================================================== Render Login Page
 const renderLogin = (req, res) => {
   res.render("login", { title: "Admin Login", error: null });
 };
 
-// Handle Login
+//======================================================================== Handle Login
 const handleLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -64,7 +64,7 @@ const handleLogin = async (req, res) => {
   }
 };
 
-// Render Dashboard Page
+//======================================================================== Render Dashboard Page
 const renderDashboard = (req, res) => {
   if (!req.session.admin) {
     return res.redirect("/admin/login");
@@ -75,7 +75,7 @@ const renderDashboard = (req, res) => {
   });
 };
 
-// Render Update Password Page
+//======================================================================== Render Update Password Page
 const renderUpdate = (req, res) => {
   if (!req.session.admin) {
     return res.redirect("/admin/login");
@@ -83,7 +83,7 @@ const renderUpdate = (req, res) => {
   res.render("update", { title: "Update Password", error: null });
 };
 
-// Handle Update Password
+//======================================================================== Handle Update Password
 const handleUpdatePassword = async (req, res) => {
   const { currentPassword, newPassword } = req.body;
   try {
@@ -114,13 +114,13 @@ const handleUpdatePassword = async (req, res) => {
   }
 };
 
-// Handle Logout
+//======================================================================== Handle Logout
 const handleLogout = (req, res) => {
   req.session.destroy();
   res.redirect("/admin/login");
 };
 
-// Exporting all functions
+//======================================================================== Exporting all functions
 module.exports = {
   renderSignUp,
   handleSignUp,

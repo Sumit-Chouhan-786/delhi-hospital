@@ -29,7 +29,7 @@ app.use(express.json());
 // Middleware for handling sessions
 app.use(
   session({
-    secret: process.env.SECRET_KEY || "defaultsecretkey", // Use a fallback secret key if not in .env
+    secret: process.env.SECRET_KEY || "sumitChouhan786", // Use a fallback secret key if not in .env
     saveUninitialized: true,
     resave: false,
   })

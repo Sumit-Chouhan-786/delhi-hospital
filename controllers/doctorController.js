@@ -2,7 +2,7 @@ const Doctor = require("../models/doctorModel");
 const path = require("path");
 const fs = require("fs");
 
-// Add Doctor controller function
+//======================================================================== Add Doctor controller function
 const addDoctor = async (req, res) => {
   if (!req.file) {
     return res.json({ message: "Image upload failed", type: "danger" });
@@ -25,7 +25,7 @@ const addDoctor = async (req, res) => {
   }
 };
 
-// Render Add Doctor page
+//======================================================================== Render Add Doctor page
 const addDoctorPage = (req, res) => {
   res.render("add_doctor", { title: "Add Doctor" });
 };
@@ -52,7 +52,6 @@ const updateDoctor = async (req, res) => {
   let new_image = "";
 
   try {
-    // Check if a new image is uploaded
     if (req.file) {
       new_image = req.file.filename;
       try {
@@ -64,14 +63,14 @@ const updateDoctor = async (req, res) => {
       new_image = req.body.old_image;
     }
 
-    // Update the doctor with the new or old image
+    //======================================================================== Update the doctor with the new or old image
     await Doctor.findByIdAndUpdate(id, {
       name: req.body.name,
       specialist: req.body.specialist,
       doctorImage: new_image,
     });
 
-    // Set success message in session and redirect
+    //======================================================================== Set success message in session and redirect
     req.session.message = {
       type: "success",
       message: "Doctor updated successfully!",
@@ -82,30 +81,22 @@ const updateDoctor = async (req, res) => {
   }
 };
 
-// Delete Doctor controller function
+//======================================================================== Delete Doctor controller function
 const deleteDoctor = async (req, res) => {
   try {
-    // Find the doctor by its ID
     const doctor = await Doctor.findById(req.params.id);
 
     if (!doctor) {
       return res.status(404).send("Doctor not found");
     }
-
-    // Get the image file path from the doctor object
-    const imagePath = path.join(__dirname, "..", "uploads", doctor.doctorImage); // Update the field name if different
-
-    // Delete the image file from the server
+    const imagePath = path.join(__dirname, "..", "uploads", doctor.doctorImage);
     try {
-      fs.unlinkSync(imagePath); // Delete the file from the uploads folder
+      fs.unlinkSync(imagePath); 
     } catch (err) {
       console.log("Error deleting image:", err);
     }
-
-    // Now delete the doctor record from the database
     await Doctor.findByIdAndDelete(req.params.id);
 
-    // Set success message and redirect
     req.session.message = {
       type: "success",
       message: "Doctor deleted successfully!",
@@ -117,7 +108,7 @@ const deleteDoctor = async (req, res) => {
   }
 };
 
-// All Doctors Page controller function
+//======================================================================== All Doctors Page controller function
 const allDoctorsPage = async (req, res) => {
   try {
     const doctors = await Doctor.find();
@@ -129,6 +120,7 @@ const allDoctorsPage = async (req, res) => {
   }
 };
 
+// ======================================================================== get all doctors for ui
 const getAllDoctorsForIndex = async () => {
   try {
     return await Doctor.find();
@@ -138,7 +130,6 @@ const getAllDoctorsForIndex = async () => {
 };
 
 
-// Export the functions
 module.exports = {
   addDoctorPage,
   getAllDoctorsForIndex,

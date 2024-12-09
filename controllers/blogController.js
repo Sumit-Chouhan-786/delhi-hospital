@@ -2,7 +2,7 @@ const Blog = require("../models/blogModel");
 const path = require("path");
 const fs = require("fs");
 
-// Add Blog controller function
+//======================================================================== Add Blog controller function
 const addBlog = async (req, res) => {
   if (!req.file) {
     return res.json({ message: "Image upload failed", type: "danger" });
@@ -25,12 +25,12 @@ const addBlog = async (req, res) => {
   }
 };
 
-// Render Add Blog page
+//======================================================================== Render Add Blog page
 const addBlogPage = (req, res) => {
   res.render("add_blog", { title: "Add Blog" });
 };
 
-// Render Update Blog page
+//======================================================================== Render Update Blog page
 const updateBlogPage = async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id);
@@ -48,13 +48,12 @@ const updateBlogPage = async (req, res) => {
   }
 };
 
-// Update Blog controller function
+//======================================================================== Update Blog controller function
 const updateBlog = async (req, res) => {
   const id = req.params.id;
   let new_image = "";
 
   try {
-    // Check if a new image is uploaded
     if (req.file) {
       new_image = req.file.filename;
       try {
@@ -66,14 +65,14 @@ const updateBlog = async (req, res) => {
       new_image = req.body.old_image;
     }
 
-    // Update the blog with the new or old image
+    //======================================================================== Update the blog with the new or old image
     await Blog.findByIdAndUpdate(id, {
       title: req.body.title,
       description: req.body.description,
       blogImage: new_image,
     });
 
-    // Set success message in session and redirect
+    //======================================================================== Set success message in session and redirect
     req.session.message = {
       type: "success",
       message: "Blog updated successfully!",
@@ -84,30 +83,20 @@ const updateBlog = async (req, res) => {
   }
 };
 
-// Delete Blog controller function
+//======================================================================== Delete Blog controller function
 const deleteBlog = async (req, res) => {
   try {
-    // Find the blog by its ID
     const blog = await Blog.findById(req.params.id);
-
     if (!blog) {
       return res.status(404).send("Blog not found");
     }
-
-    // Get the image file path from the blog object
     const imagePath = path.join(__dirname, "..", "uploads", blog.blogImage);
-
-    // Delete the image file from the server
     try {
       fs.unlinkSync(imagePath);
     } catch (err) {
       console.log("Error deleting image:", err);
     }
-
-    // Now delete the blog record from the database
     await Blog.findByIdAndDelete(req.params.id);
-
-    // Set success message and redirect
     req.session.message = {
       type: "success",
       message: "Blog deleted successfully!",
@@ -119,7 +108,7 @@ const deleteBlog = async (req, res) => {
   }
 };
 
-// All Blogs Page controller function
+//======================================================================== All Blogs Page controller function
 const allBlogsPage = async (req, res) => {
   try {
     const blogs = await Blog.find();
@@ -131,7 +120,7 @@ const allBlogsPage = async (req, res) => {
   }
 };
 
-// All Blogs for Index Page controller function
+//======================================================================== All Blogs for Index Page controller function
 const allBlogsPageForIndex = async (req, res) => {
   try {
     const blogs = await Blog.find();
@@ -146,7 +135,7 @@ const allBlogsPageForIndex = async (req, res) => {
   }
 };
 
-// Blogs Page for Index controller function
+//======================================================================== Blogs Page for Index controller function
 const blogsPageForIndex = async (req, res) => {
   try {
     const blogs = await Blog.find();
@@ -161,9 +150,9 @@ const blogsPageForIndex = async (req, res) => {
   }
 };
 
+// ======================================================================== show blogs on ui
 const getAllBlogsForIndex = async () => {
   try {
-    // Ensure it returns an array of blogs
     return await Blog.find();
   } catch (err) {
     throw new Error("Error fetching blogs");

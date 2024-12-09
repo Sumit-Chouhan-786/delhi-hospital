@@ -1,4 +1,5 @@
 <%- include('../layout/ui_header.ejs') %>
+
 <!-- Page Title -->
 <div class="page-title-area page-title-two">
   <div class="d-table">
@@ -31,6 +32,14 @@
           </div>
           <h2>Book your appointment</h2>
           <span>We will confirm your appointment within 2 hours</span>
+
+          <!-- Display message if exists -->
+          <% if (message) { %>
+            <div class="alert alert-info">
+              <%= message %>
+            </div>
+          <% } %>
+
           <div class="appointment-form">
             <form action="/appointment" method="POST">
               <div class="row justify-content-center">
@@ -74,16 +83,13 @@
                   <div class="form-group">
                     <i class="icofont-hospital"></i>
                     <label>Services</label>
-                    <select
-                      class="form-control"
-                      id="exampleFormControlSelect1"
-                      name="services"
-                    >
-                      <option>Dental Care</option>
-                      <option>Option 2</option>
-                      <option>Option 3</option>
-                      <option>Option 4</option>
-                      <option>Option 5</option>
+                    <select class="form-control" name="services" required>
+                      <option value="">Select a Service</option>
+                      <% services.forEach(service => { %>
+                        <option value="<%= service.id %>">
+                          <%= service.title %>
+                        </option>
+                      <% }); %>
                     </select>
                   </div>
                 </div>
@@ -91,15 +97,13 @@
                   <div class="form-group">
                     <i class="icofont-doctor"></i>
                     <label>Doctor</label>
-                    <select
-                      class="form-control"
-                      id="exampleFormControlSelect1"
-                      name="doctor"
-                    >
-                      <option>Choose Your Doctor</option>
-                      <option>John Smith</option>
-                      <option>Sarah Taylor</option>
-                      <option>Stevn King</option>
+                    <select class="form-control" name="doctor" required>
+                      <option value="">Choose Your Doctor</option>
+                      <% doctors.forEach(doctor => { %>
+                        <option value="<%= doctor.id %>">
+                          <%= doctor.name %>
+                        </option>
+                      <% }); %>
                     </select>
                   </div>
                 </div>
@@ -157,6 +161,14 @@
 </section>
 <!-- End Appointment -->
 
+<script>
+  // Check for error in query parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("error") === "email_exists") {
+    alert("An appointment with this email already exists. Please use a different email.");
+  }
+</script>
+
 <script src="assets/js/owl.carousel.min.js"></script>
 <!-- Meanmenu JS -->
 <script src="assets/js/jquery.meanmenu.js"></script>
@@ -177,4 +189,5 @@
 <script src="assets/js/jquery.appear.min.js"></script>
 <!-- Custom JS -->
 <script src="assets/js/custom.js"></script>
+
 <%- include("../layout/ui_footer.ejs") %>

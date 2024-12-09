@@ -27,7 +27,14 @@
               <td><%= appointment.email %></td>
               <td><%= appointment.phone %></td>
               <td><%= appointment.age %></td>
-              <td><%= appointment.services.join(', ') %></td>
+              <td>
+                <!-- Safely handle services, check if it's an array before joining -->
+                <% if (Array.isArray(appointment.services)) { %>
+                  <%= appointment.services.join(', ') %>
+                <% } else { %>
+                  <%= appointment.services %>
+                <% } %>
+              </td>
               <td><%= appointment.doctor %></td>
               <td>
                 <a

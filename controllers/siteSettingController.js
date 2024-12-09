@@ -4,10 +4,10 @@ const fs = require("fs");
 
 const upload = require("../middlewares/multerMiddleware");
 
-// Render Site Settings page
+//======================================================================== Render Site Settings page
 const siteSettingsPage = async (req, res) => {
   try {
-    const settings = await SiteSetting.findOne(); // Fetch the first (and only) site setting
+    const settings = await SiteSetting.findOne(); 
     res.render("site_setting.ejs", { title: "Site Setting", settings });
   } catch (err) {
     console.error(err);
@@ -15,10 +15,10 @@ const siteSettingsPage = async (req, res) => {
   }
 };
 
-// Render the page to display current Site Settings (GET)
+//======================================================================== Render the page to display current Site Settings (GET)
 const siteSettingsDisplayPage = async (req, res) => {
   try {
-    const settings = await SiteSetting.findOne(); // Fetch the current site setting
+    const settings = await SiteSetting.findOne(); 
     if (!settings) {
       req.session.message = {
         type: "error",
@@ -37,10 +37,10 @@ const siteSettingsDisplayPage = async (req, res) => {
   }
 };
 
-// Add Site Setting
+//======================================================================== Add Site Setting
 const addSiteSetting = async (req, res) => {
   try {
-    // Handle logo upload
+  
     const siteSettingData = {
       email: req.body.email,
       address: req.body.address,
@@ -49,7 +49,7 @@ const addSiteSetting = async (req, res) => {
       twitter: req.body.twitter,
       pinterest: req.body.pinterest,
       instagram: req.body.instagram,
-      logo: req.file ? req.file.filename : null, // Handle logo upload
+      logo: req.file ? req.file.filename : null, 
     };
 
     // Check if a site setting already exists
@@ -82,7 +82,7 @@ const addSiteSetting = async (req, res) => {
   }
 };
 
-// Update Site Setting (PATCH)
+//======================================================================== Update Site Setting (PATCH)
 const updateSiteSetting = async (req, res) => {
   try {
     const id = req.params.id;

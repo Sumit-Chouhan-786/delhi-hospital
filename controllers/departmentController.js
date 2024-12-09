@@ -2,7 +2,7 @@ const Department = require("../models/departmentModel");
 const path = require("path");
 const fs = require("fs");
 
-// Add Department controller function
+//======================================================================== Add Department 
 const addDepartment = async (req, res) => {
   if (!req.file) {
     return res.json({ message: "Image upload failed", type: "danger" });
@@ -25,12 +25,12 @@ const addDepartment = async (req, res) => {
   }
 };
 
-// Render Add Department page
+//======================================================================== Render Add Department page
 const addDepartmentPage = (req, res) => {
   res.render("add_department", { title: "Add Department" });
 };
 
-// Update Department controller function
+//======================================================================== Update Department controller function
 const updateDepartmentPage = async (req, res) => {
   try {
     const department = await Department.findById(req.params.id);
@@ -48,7 +48,7 @@ const updateDepartmentPage = async (req, res) => {
   }
 };
 
-// Update the department with the new details
+//======================================================================== Update the department with the new details
 const updateDepartment = async (req, res) => {
   const id = req.params.id;
   let new_image = "";
@@ -65,14 +65,11 @@ const updateDepartment = async (req, res) => {
       new_image = req.body.old_image;
     }
 
-    // Update the department
     await Department.findByIdAndUpdate(id, {
       title: req.body.title,
       description: req.body.description,
       departmentImage: new_image,
     });
-
-    // Success message and redirect
     req.session.message = {
       type: "success",
       message: "Department updated successfully!",
@@ -83,7 +80,7 @@ const updateDepartment = async (req, res) => {
   }
 };
 
-// Delete Department controller function
+//======================================================================== Delete Department controller function
 const deleteDepartment = async (req, res) => {
   try {
     const department = await Department.findById(req.params.id);
@@ -118,7 +115,7 @@ const deleteDepartment = async (req, res) => {
   }
 };
 
-// All Departments Page controller function
+//======================================================================== All Departments Page controller function
 const allDepartmentsPage = async (req, res) => {
   try {
     const departments = await Department.find();
@@ -132,7 +129,7 @@ const allDepartmentsPage = async (req, res) => {
     res.status(500).send("Error fetching departments.");
   }
 };
-
+// ======================================================================== get all departments for show in ui
 const getAllDepartmentsForIndex = async () => {
   try {
     return await Department.find();
@@ -141,7 +138,6 @@ const getAllDepartmentsForIndex = async () => {
   }
 };
 
-// Export the functions
 module.exports = {
   getAllDepartmentsForIndex,
   addDepartmentPage,

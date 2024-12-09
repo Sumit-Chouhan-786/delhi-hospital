@@ -2,7 +2,7 @@ const Slider = require("../models/sliderModel");
 const fs = require("fs");
 const path = require("path");
 
-// Add Slider controller function
+//======================================================================== Add Slider 
 const addSlider = async (req, res) => {
   if (!req.file) {
     return res.json({ message: "Image upload failed", type: "danger" });
@@ -28,12 +28,12 @@ const addSlider = async (req, res) => {
 };
 
 
-// Render Add Slider page
+//======================================================================== Render Add Slider page
 const addSliderPage = (req, res) => {
   res.render("add_slider.ejs", { title: "Add Slider" });
 };
 
-// Update Slider controller function
+//======================================================================== Update Slider controller function
 const updateSlider = async (req, res) => {
   const id = req.params.id;
   let new_image = "";
@@ -71,7 +71,7 @@ const updateSlider = async (req, res) => {
 };
 
 
-// Render Update Slider page
+//======================================================================== Render Update Slider page
 const updateSliderPage = async (req, res) => {
   try {
     const slider = await Slider.findById(req.params.id);
@@ -90,7 +90,7 @@ const updateSliderPage = async (req, res) => {
 };
 
 
-// Delete Slider controller function
+//======================================================================== Delete Slider controller function
 const deleteSlider = async (req, res) => {
   try {
     // Find the slider by its ID
@@ -125,7 +125,7 @@ const deleteSlider = async (req, res) => {
   }
 };
 
-// All Sliders Page controller function
+//======================================================================== All Sliders Page controller function
 const allSlidersPage = async (req, res) => {
   try {
     const sliders = await Slider.find();
@@ -137,10 +137,9 @@ const allSlidersPage = async (req, res) => {
   }
 };
 
-
+// ======================================================================== fath all sliders image for ui 
 const SliderPageForIndex = async () => {
   try {
-    // Fetch all sliders
     return await Slider.find();
   } catch (err) {
     throw new Error("Error fetching sliders");
@@ -148,7 +147,6 @@ const SliderPageForIndex = async () => {
 };
 
 
-// Export the functions
 module.exports = {
   addSliderPage,
   SliderPageForIndex,

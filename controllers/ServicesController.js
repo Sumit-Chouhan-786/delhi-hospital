@@ -2,7 +2,7 @@ const Service = require("../models/servicesModel");
 const path = require("path");
 const fs = require("fs");
 
-// Add Service controller function
+//======================================================================== Add Service controller function
 const addServices = async (req, res) => {
   if (!req.file) {
     return res.json({ message: "Image upload failed", type: "danger" });
@@ -25,12 +25,12 @@ const addServices = async (req, res) => {
   }
 };
 
-// Render Add Service page
+//======================================================================== Render Add Service page
 const addServicesPage = (req, res) => {
   res.render("add_services", { title: "Add Service" });
 };
 
-// Update Service controller function
+//======================================================================== Update Service controller function
 const updateServicesPage = async (req, res) => {
   try {
     const service = await Service.findById(req.params.id);
@@ -48,7 +48,7 @@ const updateServicesPage = async (req, res) => {
   }
 };
 
-// Update the service with the new details
+//======================================================================== Update the service with the new details
 const updateServices = async (req, res) => {
   const id = req.params.id;
   let new_image = "";
@@ -65,14 +65,12 @@ const updateServices = async (req, res) => {
       new_image = req.body.old_image;
     }
 
-    // Update the service
     await Service.findByIdAndUpdate(id, {
       title: req.body.title,
       description: req.body.description,
       servicesImage: new_image,
     });
 
-    // Success message and redirect
     req.session.message = {
       type: "success",
       message: "Service updated successfully!",
@@ -83,7 +81,7 @@ const updateServices = async (req, res) => {
   }
 };
 
-// Delete Service controller function
+//======================================================================== Delete Service controller function
 const deleteServices = async (req, res) => {
   try {
     const service = await Service.findById(req.params.id);
@@ -119,7 +117,7 @@ const deleteServices = async (req, res) => {
 };
 
 
-// All Services Page controller function
+//======================================================================== All Services 
 const allServicesPage = async (req, res) => {
   try {
     const services = await Service.find();
@@ -134,16 +132,17 @@ const allServicesPage = async (req, res) => {
   }
 };
 
+
+// ======================================================================== all services show in ui
 const getAllServicesForIndex = async () => {
   try {
-    // Ensure it returns an array of services
     return await Service.find();
   } catch (err) {
     throw new Error("Error fetching services");
   }
 };
 
-// Export the functions
+
 module.exports = {
   getAllServicesForIndex,
   addServicesPage,

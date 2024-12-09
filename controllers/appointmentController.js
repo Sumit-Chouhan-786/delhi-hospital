@@ -1,9 +1,19 @@
 const Appointment = require("../models/appointmentModel");
-
+// ======================================================================== create appointment
 const createAppointment = async (req, res) => {
   try {
     const { name, email, phone, services, doctor, age } = req.body;
-
+    if (!name || !email || !phone || !services || !doctor || !age) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+    const existingAppointment = await Appointment.findOne({ email });
+    if (existingAppointment) {
+      return res
+        .status(400)
+        .json({
+          message: "This email is already registered for an appointment.",
+        });
+    }
     const newAppointment = new Appointment({
       name,
       email,
@@ -14,39 +24,37 @@ const createAppointment = async (req, res) => {
     });
 
     await newAppointment.save();
-
     res.status(201).json({ message: "Appointment created successfully." });
   } catch (error) {
-    console.error(error);
+    console.error("Error details:", error);
     res
       .status(500)
       .json({ message: "An error occurred while creating the appointment." });
   }
 };
 
+// ======================================================================== show all appointments in admin dashboard
+
 const getAllAppointmentForIndex = async () => {
   try {
-    return await Appointment.find(); 
+    return await Appointment.find();
   } catch (err) {
     throw new Error("Error fetching appointments");
   }
 };
 
+// ======================================================================== delete all appointments
 const deleteAppointment = async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Find and delete the appointment by its ID
     const deletedAppointment = await Appointment.findByIdAndDelete(id);
 
     if (!deletedAppointment) {
       return res.status(404).json({ message: "Appointment not found." });
     }
-
-    // Fetch all remaining appointments after deletion
     const appointments = await Appointment.find();
 
-    // Render the updated appointments page with a success message
     res.render("../views/all_appointment.ejs", {
       appointments,
       title: "Hospital",
@@ -62,7 +70,6 @@ const deleteAppointment = async (req, res) => {
       .json({ message: "An error occurred while deleting the appointment." });
   }
 };
-
 
 module.exports = {
   createAppointment,

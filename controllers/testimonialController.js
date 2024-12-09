@@ -2,7 +2,7 @@ const Testimonial = require("../models/testimonialsModel");
 const path = require("path");
 const fs = require("fs");
 
-// Add Testimonial Controller
+//======================================================================== Add Testimonial Controller
 const addTestimonial = async (req, res) => {
   if (!req.file) {
     return res
@@ -31,12 +31,12 @@ const addTestimonial = async (req, res) => {
   }
 };
 
-// Render Add Testimonial Page
+//======================================================================== Render Add Testimonial Page
 const addTestimonialPage = (req, res) => {
   res.render("add_testimonial", { title: "Add Testimonial" });
 };
 
-// Render Update Testimonial Page
+//======================================================================== Render Update Testimonial Page
 const updateTestimonialPage = async (req, res) => {
   try {
     const testimonial = await Testimonial.findById(req.params.id);
@@ -56,17 +56,15 @@ const updateTestimonialPage = async (req, res) => {
   }
 };
 
-// Update Testimonial Controller
+//======================================================================== Update Testimonial Controller
 const updateTestimonial = async (req, res) => {
   const id = req.params.id;
   let newImage = "";
 
   try {
-    // Handle image replacement
     if (req.file) {
       newImage = req.file.filename;
 
-      // Delete old image if a new one is uploaded
       const oldImagePath = path.join(
         __dirname,
         "..",
@@ -98,7 +96,7 @@ const updateTestimonial = async (req, res) => {
   }
 };
 
-// Delete Testimonial Controller
+//======================================================================== Delete Testimonial Controller
 const deleteTestimonial = async (req, res) => {
   try {
     const testimonial = await Testimonial.findById(req.params.id);
@@ -131,7 +129,7 @@ const deleteTestimonial = async (req, res) => {
   }
 };
 
-// All Testimonials Page Controller
+//======================================================================== All Testimonials Page Controller
 const allTestimonialsPage = async (req, res) => {
   try {
     const testimonials = await Testimonial.find();
@@ -145,7 +143,7 @@ const allTestimonialsPage = async (req, res) => {
   }
 };
 
-// Fetch All Testimonials for Index Page
+//======================================================================== Fetch All Testimonials for Index Page
 const getAllTestimonialsForIndex = async () => {
   try {
     return await Testimonial.find();
@@ -154,7 +152,7 @@ const getAllTestimonialsForIndex = async () => {
   }
 };
 
-// Export Controllers
+
 module.exports = {
   addTestimonialPage,
   getAllTestimonialsForIndex,
