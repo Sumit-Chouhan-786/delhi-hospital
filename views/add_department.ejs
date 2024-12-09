@@ -1,0 +1,68 @@
+<!-- Include the admin header -->
+<%- include('./layout/admin_header.ejs') %>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- Card for Form -->
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Add Department</h3>
+        </div>
+        <div class="card-body">
+          <!-- Start of the form -->
+          <form 
+            action="/admin/addDepartment" 
+            method="POST" 
+            enctype="multipart/form-data">
+            <!-- Department Name Field -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Department Name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="name" 
+                name="title" 
+                placeholder="Enter department name" 
+                required />
+            </div>
+
+            <!-- Description Field -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="description" 
+                name="description" 
+                placeholder="Enter department description" 
+                required />
+            </div>
+
+            <!-- Image Upload Field -->
+            <div class="mb-3">
+              <label for="departmentImage" class="form-label">Department Image</label>
+              <input 
+                type="file" 
+                class="form-control" 
+                id="departmentImage" 
+                name="departmentImage" 
+                required />
+              <div class="form-text">
+                Upload the department's image here (JPG/PNG).
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary px-4">Submit</button>
+            </div>
+          </form>
+          <!-- End of the form -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("./layout/admin_footer.ejs") %>

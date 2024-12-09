@@ -32,7 +32,7 @@
           <h2>Book your appointment</h2>
           <span>We will confirm your appointment within 2 hours</span>
           <div class="appointment-form">
-            <form>
+            <form action="/appointment" method="POST">
               <div class="row justify-content-center">
                 <div class="col-lg-6">
                   <div class="form-group">
@@ -42,6 +42,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter Your Name"
+                      name="name"
                     />
                   </div>
                 </div>
@@ -53,6 +54,7 @@
                       type="email"
                       class="form-control"
                       placeholder="Enter Your Email"
+                      name="email"
                     />
                   </div>
                 </div>
@@ -64,6 +66,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Enter Your Number"
+                      name="phone"
                     />
                   </div>
                 </div>
@@ -71,12 +74,16 @@
                   <div class="form-group">
                     <i class="icofont-hospital"></i>
                     <label>Services</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select
+                      class="form-control"
+                      id="exampleFormControlSelect1"
+                      name="services"
+                    >
                       <option>Dental Care</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                      <option>Option 2</option>
+                      <option>Option 3</option>
+                      <option>Option 4</option>
+                      <option>Option 5</option>
                     </select>
                   </div>
                 </div>
@@ -84,7 +91,11 @@
                   <div class="form-group">
                     <i class="icofont-doctor"></i>
                     <label>Doctor</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select
+                      class="form-control"
+                      id="exampleFormControlSelect1"
+                      name="doctor"
+                    >
                       <option>Choose Your Doctor</option>
                       <option>John Smith</option>
                       <option>Sarah Taylor</option>
@@ -100,6 +111,7 @@
                       type="text"
                       class="form-control"
                       placeholder="Your Age"
+                      name="age"
                     />
                   </div>
                 </div>

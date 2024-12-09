@@ -1,0 +1,84 @@
+<!-- Include the admin header -->
+<%- include('./layout/admin_header.ejs') %>
+
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- Card for Form -->
+      <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+          <h3>Update Department</h3>
+        </div>
+        <div class="card-body">
+          <!-- Start of the form -->
+          <form
+            action="/admin/updateDepartment/<%= department._id %>"
+            method="POST"
+            enctype="multipart/form-data"
+          >
+            <!-- Department Name Field -->
+            <div class="mb-3">
+              <label for="title" class="form-label">Department Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                placeholder="Enter department name"
+                value="<%= department.title %>"
+                required
+              />
+            </div>
+            <!-- Description Field -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                name="description"
+                placeholder="Enter department description"
+                value="<%= department.description %>"
+                required
+              />
+            </div>
+
+            <!-- Department Image Upload Field -->
+            <div class="mb-3">
+              <label for="departmentImage" class="form-label">Department Image</label>
+              <input
+                type="file"
+                class="form-control"
+                id="departmentImage"
+                name="departmentImage"
+                accept=".jpg,.png"
+              />
+              <div class="form-text">
+                Upload a new image to update (JPG/PNG). Leave blank to keep the current image.
+              </div>
+              <% if (department.image) { %>
+              <div class="mt-3">
+                <img
+                  src="/uploads/<%= department.image %>"
+                  alt="Current Department Image"
+                  class="img-thumbnail"
+                  style="width: 100px; height: 100px"
+                />
+                <p class="text-muted">Current Image</p>
+              </div>
+              <% } %>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary px-4">Update</button>
+            </div>
+          </form>
+          <!-- End of the form -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include("./layout/admin_footer.ejs") %>

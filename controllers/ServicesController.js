@@ -118,6 +118,7 @@ const deleteServices = async (req, res) => {
   }
 };
 
+
 // All Services Page controller function
 const allServicesPage = async (req, res) => {
   try {
@@ -141,8 +142,6 @@ const getAllServicesForIndex = async () => {
     throw new Error("Error fetching services");
   }
 };
-
-
 
 // Export the functions
 module.exports = {

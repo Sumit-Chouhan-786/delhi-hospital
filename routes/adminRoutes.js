@@ -9,8 +9,11 @@ const doctorController = require("../controllers/doctorController");
 const siteSettingsController = require("../controllers/siteSettingController");
 const adminController = require("../controllers/adminController");
 const blogController = require("../controllers/blogController");
-
-
+const departmentsController = require("../controllers/departmentController");
+const {
+  getAllAppointmentForIndex,
+  deleteAppointment,
+} = require("../controllers/appointmentController");
 
 //============================================================================== Admin Routes
 router.get("/signup", adminController.renderSignUp);
@@ -110,6 +113,21 @@ router.post(
   servicesController.updateServices
 );
 router.get("/deleteServices/:id", servicesController.deleteServices);
+// ================================================================== all appointments
+router.delete("/deleteAppointment/:id", deleteAppointment);
+
+router.get("/allAppointment", async (req, res) => {
+  try {
+    const appointments = await getAllAppointmentForIndex(); 
+    res.render("all_appointment", {
+      appointments, 
+      title: "Hospital", 
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching appointments.");
+  }
+});
 
 
 //============================================================================== blogs routes
@@ -124,5 +142,20 @@ router.post(
 router.get("/deleteBlog/:id", blogController.deleteBlog);
 router.get("/allBlogs", blogController.allBlogsPage);
 
+// ========================================================================== department routes
+router.get("/addDepartment", departmentsController.addDepartmentPage);
+router.get("/updateDepartment/:id", departmentsController.updateDepartmentPage);
+router.get("/allDepartments", departmentsController.allDepartmentsPage);
+router.post(
+  "/addDepartment",
+  upload.single("departmentImage"),
+  departmentsController.addDepartment
+);
+router.post(
+  "/updateDepartment/:id",
+  upload.single("departmentImage"),
+  departmentsController.updateDepartment
+);
+router.get("/deleteDepartment/:id", departmentsController.deleteDepartment);
 
 module.exports = router;

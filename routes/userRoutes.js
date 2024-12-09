@@ -4,7 +4,14 @@ const { getAllDoctorsForIndex } = require("../controllers/doctorController");
 const { SliderPageForIndex } = require("../controllers/sliderController");
 const { getAllServicesForIndex } = require("../controllers/ServicesController");
 const { getAllBlogsForIndex } = require("../controllers/blogController");
-const { getAllTestimonialsForIndex } = require("../controllers/testimonialController");
+const {
+  getAllTestimonialsForIndex,
+} = require("../controllers/testimonialController");
+const {
+  getAllDepartmentsForIndex,
+} = require("../controllers/departmentController");
+const { createAppointment } = require("../controllers/appointmentController");
+
 
 router.get("/", async (req, res) => {
   try {
@@ -87,15 +94,23 @@ router.get("/about", async (req, res) => {
   }
 });
 
-
-router.get("/departments", (req, res) => {
-  res.render("ui/departments.ejs", { title: "Delhi Hospital" });
+router.get("/departments", async (req, res) => {
+  try {
+    const departments = await getAllDepartmentsForIndex();
+    res.render("../views/ui/departments.ejs", {
+      departments,
+      title: "Hospital",
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching departments.");
+  }
 });
 router.get("/service", (req, res) => {
   res.render("ui/service.ejs", { title: "Delhi Hospital" });
 });
 router.get("/service-details", (req, res) => {
-  res.render("ui/service-details.ejs", { title: "Delhi Hospital" });
+  res.render("../views/ui/service-details.ejs", { title: "Delhi Hospital" });
 });
 router.get("/doctor", (req, res) => {
   res.render("ui/doctor.ejs", { title: "Delhi Hospital" });
@@ -112,6 +127,8 @@ router.get("/contact", (req, res) => {
 router.get("/doctor-details", (req, res) => {
   res.render("ui/doctor-details.ejs", { title: "Delhi Hospital" });
 });
+router.post("/appointment", createAppointment);
+
 router.get("/appointment", (req, res) => {
   res.render("ui/appointment.ejs", { title: "Delhi Hospital" });
 });
