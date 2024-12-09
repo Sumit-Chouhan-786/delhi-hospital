@@ -114,7 +114,7 @@ router.post(
 );
 router.get("/deleteServices/:id", servicesController.deleteServices);
 // ================================================================== all appointments
-router.delete("/deleteAppointment/:id", deleteAppointment);
+router.get("/deleteAppointments/:id", deleteAppointment);
 
 router.get("/allAppointment", async (req, res) => {
   try {

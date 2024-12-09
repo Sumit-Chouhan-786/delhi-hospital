@@ -53,16 +53,17 @@ const deleteAppointment = async (req, res) => {
     if (!deletedAppointment) {
       return res.status(404).json({ message: "Appointment not found." });
     }
+
     const appointments = await Appointment.find();
 
-    res.render("../views/all_appointment.ejs", {
-      appointments,
-      title: "Hospital",
-      message: {
-        type: "success",
-        message: "Appointment deleted successfully.",
-      },
-    });
+    // Store data in session
+    req.session.appointments = appointments;
+    req.session.message = {
+      type: "success",
+      message: "Appointment deleted successfully.",
+    };
+
+    res.redirect("/admin/allAppointment");
   } catch (error) {
     console.error(error);
     res
@@ -70,6 +71,7 @@ const deleteAppointment = async (req, res) => {
       .json({ message: "An error occurred while deleting the appointment." });
   }
 };
+
 
 module.exports = {
   createAppointment,
