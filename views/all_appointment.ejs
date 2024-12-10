@@ -39,11 +39,7 @@
                     <%= appointment.age %>
                   </td>
                   <td>
-                    <% if (Array.isArray(appointment.services)) { %>
-                      <%= appointment.services.map(service=> service.title).join(', ') %>
-                        <% } else { %>
-                          <%= appointment.services.title %>
-                            <% } %>
+                    <%= appointment.services ? appointment.services : '' %>
                   </td>
                   <td>
                     <%= appointment.doctor ? appointment.doctor : '' %>
