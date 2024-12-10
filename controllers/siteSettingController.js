@@ -49,7 +49,7 @@ const addSiteSetting = async (req, res) => {
       twitter: req.body.twitter,
       pinterest: req.body.pinterest,
       instagram: req.body.instagram,
-      logo: req.file ? req.file.filename : null, 
+      logo: req.file.filename, 
     };
 
     // Check if a site setting already exists

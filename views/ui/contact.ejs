@@ -28,7 +28,7 @@
                         <div class="location-item">
                             <i class="icofont-location-pin"></i>
                             <h3>Location</h3>
-                            <p>Sampla Road, Near Prince Hotel,<br> Kharkhoda, Sonipat Haryana</p>
+                            <p style="max-width: 300px;"><%= siteSettings[0].address %></p>
                         </div>
                     </div>
                     <div class="col-sm-6 col-lg-4">
@@ -37,11 +37,8 @@
                             <h3>Email</h3>
                             <ul>
                                 <li>
-                                    <a href="mailto:delhihospitalkkd@gmail.com">delhihospitalkkd@gmail.com</a>
+                                    <a href="mailto:<%= siteSettings[0].email %>"><%= siteSettings[0].email %></a>
                                 </li>
-                                <!-- <li>
-                                    <a href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#f49199959d98918c9599849891b49a959991da979b99"><span class="__cf_email__" data-cfemail="8aefe7ebe3e6eff2ebe7fae6efcae4ebe7efa4e9e5e7">[email&#160;protected]</span></a>
-                                </li> -->
                             </ul>
                         </div>
                     </div>
@@ -51,7 +48,7 @@
                             <h3>Phone</h3>
                             <ul>
                                 <li>
-                                    <a href="tel:+919811884062">+919811884062,</a>
+                                    <a href="tel:+919811884062">+<%= siteSettings[0].number %></a>
                                 </li>
                                 <li>
                                     <a href="tel:+919729017553">+919729017553,</a>
@@ -152,7 +149,7 @@
                                     <i class="icofont-ui-call"></i>
                                 </div>
                                 <h3>Emergency Call</h3>
-                                <p>919811884062</p>
+                                <a href="tel:<%= siteSettings[0].number %>"><%= siteSettings[0].number %></a>
                             </div>
                         </div>
                     </div>

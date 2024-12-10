@@ -6,14 +6,14 @@ const createAppointment = async (req, res) => {
     if (!name || !email || !phone || !services || !doctor || !age) {
       return res.status(400).json({ message: "All fields are required." });
     }
+
     const existingAppointment = await Appointment.findOne({ email });
     if (existingAppointment) {
-      return res
-        .status(400)
-        .json({
-          message: "This email is already registered for an appointment.",
-        });
+      return res.status(400).json({
+        message: "This email is already registered for an appointment.",
+      });
     }
+
     const newAppointment = new Appointment({
       name,
       email,
@@ -24,7 +24,8 @@ const createAppointment = async (req, res) => {
     });
 
     await newAppointment.save();
-    res.status(201).json({ message: "Appointment created successfully." });
+
+    res.redirect("/appointment");
   } catch (error) {
     console.error("Error details:", error);
     res
@@ -71,7 +72,6 @@ const deleteAppointment = async (req, res) => {
       .json({ message: "An error occurred while deleting the appointment." });
   }
 };
-
 
 module.exports = {
   createAppointment,

@@ -1,257 +1,211 @@
 <!DOCTYPE html>
 <html lang="eng">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-    <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
-    <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css" />
-    <!-- Meanmenu CSS -->
-    <link rel="stylesheet" href="/assets/css/meanmenu.css" />
-    <!-- IcoFonts CSS -->
-    <link rel="stylesheet" href="/assets/css/icofont.min.css" />
-    <!-- Slick Slider CSS -->
-    <link rel="stylesheet" href="/assets/css/slick.min.css" />
-    <link rel="stylesheet" href="/assets/css/slick-theme.min.css" />
-    <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="/assets/css/animate.min.css" />
-    <!-- Odometer CSS -->
-    <link rel="stylesheet" href="/assets/css/odometer.min.css" />
-    <!-- Style CSS -->
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="/assets/css/responsive.css" />
-    <!-- Theme Dark CSS -->
-    <link rel="stylesheet" href="/assets/css/theme-dark.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= title %></title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+  <!-- Owl Carousel CSS -->
+  <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
+  <link rel="stylesheet" href="/assets/css/owl.theme.default.min.css" />
+  <!-- Meanmenu CSS -->
+  <link rel="stylesheet" href="/assets/css/meanmenu.css" />
+  <!-- IcoFonts CSS -->
+  <link rel="stylesheet" href="/assets/css/icofont.min.css" />
+  <!-- Slick Slider CSS -->
+  <link rel="stylesheet" href="/assets/css/slick.min.css" />
+  <link rel="stylesheet" href="/assets/css/slick-theme.min.css" />
+  <!-- Magnific Popup CSS -->
+  <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="/assets/css/animate.min.css" />
+  <!-- Odometer CSS -->
+  <link rel="stylesheet" href="/assets/css/odometer.min.css" />
+  <!-- Style CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <!-- Responsive CSS -->
+  <link rel="stylesheet" href="/assets/css/responsive.css" />
+  <!-- Theme Dark CSS -->
+  <link rel="stylesheet" href="/assets/css/theme-dark.css" />
 
-    <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
-  </head>
+  <title>
+    <%= title %>
+  </title>
 
-  <body>
-    <!-- Preloader -->
-    <div class="loader">
-      <div class="d-table">
-        <div class="d-table-cell">
-          <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-          </div>
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="loader">
+    <div class="d-table">
+      <div class="d-table-cell">
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
         </div>
       </div>
     </div>
-    <!-- End Preloader -->
+  </div>
+  <!-- End Preloader -->
 
-    <!-- Header Top -->
-    <div class="header-top position-relative">
-      <div class="fixed-icons position-fixed z-3">
-        <a href="#" class="phone-side-icon mb-1">
-          <i class="fas fa-phone-alt fa-3x"></i>
-        </a>
-        <a href="#" class="whatsUpp-side-icon mb-0">
-          <i class="fab fa-whatsapp fa-3x"></i>
-        </a>
-      </div>
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-sm-9 col-lg-9">
-            <div class="header-top-item">
-              <div class="header-top-left">
-                <ul>
-                  <li>
-                    <a href="tel:+919811884062">
-                      <i class="icofont-ui-call"></i>
-                      Call : +919811884062
-                       
-                    </a>
-                  </li>
-                  <li>
-                    <a href="mailto:delhihospitalkkd@gmail.com">
-                      <i class="icofont-ui-message"></i>
-                      delhihospitalkkd@gmail.com
-                      
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-lg-3">
-            <div class="header-top-item">
-              <div class="header-top-right">
-                <ul>
-                  <li>
-                    <a href="https://www.facebook.com/login/" target="_blank">
-                      <i class="icofont-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://twitter.com/i/flow/login" target="_blank">
-                      <i class="icofont-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.pinterest.com/" target="_blank">
-                      <i class="icofont-pinterest"></i>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Header Top -->
+  <div class="header-top position-relative">
+    <div class="fixed-icons position-fixed z-3">
+      <a href="tel: <%= siteSettings[0].number %>" class="phone-side-icon mb-1">
+        <i class="fas fa-phone-alt fa-3x"></i>
+      </a>
+      <a href="tel: <%= siteSettings[0].number %>" class="whatsUpp-side-icon mb-0">
+        <i class="fab fa-whatsapp fa-3x"></i>
+      </a>
     </div>
-    <!-- End Header Top -->
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-sm-9 col-lg-9">
+          <div class="header-top-item">
+            <div class="header-top-left">
+              <ul>
+                <li>
+                  <a href="tel:<%= siteSettings[0].number %>">
+                    <i class="icofont-ui-call"></i>
+                    <%= siteSettings[0].number %>
 
-    <!-- Start Navbar Area -->
-    <div class="navbar-area sticky-top">
-      <!-- Menu For Mobile Device -->
-      <div class="mobile-nav">
-        <a href="/" class="logo">
-          <img
-            class="rounded-circle"
-            src="/assets/img/DH logo.jpg"
-            alt="Logo"
-            style="width: 80px"
-          />
-        </a>
-      </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:<%= siteSettings[0].email %>">
+                    <i class="icofont-ui-message"></i>
+                    <%= siteSettings[0].email %>
 
-      <!-- Menu For Desktop Device -->
-      <div class="main-nav">
-        <div class="container">
-          <nav class="navbar navbar-expand-md navbar-light">
-            <a class="navbar-brand" href="/">
-              <img
-                class="rounded-circle"
-                src="/assets/img/DH logo.jpg"
-                alt="Logo"
-              />
-            </a>
-            <div
-              class="collapse navbar-collapse mean-menu"
-              id="navbarSupportedContent"
-            >
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a href="/" class="nav-link active">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/departments" class="nav-link">Departments</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/service" class="nav-link dropdown-toggle"
-                    >Services</a
-                  >
-                  <ul class="dropdown-menu">
-                    <li class="nav-item">
-                      <a href="/service-details/" class="nav-link"
-                        >Service Details</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="/doctor" class="nav-link dropdown-toggle">Doctors</a>
-                  <ul class="dropdown-menu">
-                    <li class="nav-item">
-                      <a href="/doctor-details" class="nav-link"
-                        >Doctor Details</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-                <li class="nav-item">
-                  <a href="/blog" class="nav-link">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/contact" class="nav-link">Contact Us</a>
+                  </a>
                 </li>
               </ul>
-              <div class="nav-srh">
-                <div class="search-toggle">
-                  <div
-                    class="bg-primary d-none d-lg-flex text-white px-2 py-2 rounded-2"
-                  >
-                    <a
-                      class="cmn-btn-right text-white text-nowrap"
-                      href="/appointment"
-                      >Get Appointment</a
-                    >
-                  </div>
-                  <button class="search-icon icon-close">
-                    <i class="icofont-close"></i>
-                  </button>
-                </div>
-                <div class="search-area">
-                  <form>
-                    <input
-                      type="text"
-                      class="src-input"
-                      id="search-terms"
-                      placeholder="Search here..."
-                    />
-                    <button
-                      type="submit"
-                      name="submit"
-                      value="Go"
-                      class="search-icon"
-                    >
-                      <i class="icofont-search-1"></i>
-                    </button>
-                  </form>
-                </div>
-              </div>
             </div>
-          </nav>
+          </div>
+        </div>
+        <div class="col-sm-3 col-lg-3">
+          <div class="header-top-item">
+            <div class="header-top-right">
+              <ul>
+                <li>
+                  <a href=" <%= siteSettings[0].facebook %>" target="_blank">
+                    <i class="icofont-facebook"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href=" <%= siteSettings[0].twitter %>" target="_blank">
+                    <i class="icofont-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href=" <%= siteSettings[0].pinterest %>" target="_blank">
+                    <i class="icofont-pinterest"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!-- End Navbar Area -->
-    <!-- Essential JS -->
-    <script
-      data-cfasync="false"
-      src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/bootstrap.bundle.min.js"></script>
-    <!-- fontawsome -->
-    <script
-      defer
-      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
-      integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Owl Carousel JS -->
-    <script src="/assets/js/owl.carousel.min.js"></script>
-    <!-- Meanmenu JS -->
-    <script src="/assets/js/jquery.meanmenu.js"></script>
-    <!-- Slider Slider JS -->
-    <script src="/assets/js/slick.min.js"></script>
-    <!-- Magnific Popup -->
-    <script src="/assets/js/jquery.magnific-popup.min.js"></script>
-    <!-- Wow JS -->
-    <script src="/assets/js/wow.min.js"></script>
-    <!-- Form Ajaxchimp JS -->
-    <script src="/assets/js/jquery.ajaxchimp.min.js"></script>
-    <!-- Form Validator JS -->
-    <script src="/assets/js/form-validator.min.js"></script>
-    <!-- Contact JS -->
-    <script src="/assets/js/contact-form-script.js"></script>
-    <!-- Odometer JS -->
-    <script src="/assets/js/odometer.min.js"></script>
-    <script src="/assets/js/jquery.appear.min.js"></script>
-    <!-- Custom JS -->
-    <script src="/assets/js/custom.js"></script>
-  </body>
+  </div>
+  <!-- End Header Top -->
+
+  <!-- Start Navbar Area -->
+  <div class="navbar-area sticky-top">
+    <!-- Menu For Mobile Device -->
+    <div class="mobile-nav">
+      <a href="/" class="logo">
+        <img class="rounded-circle" src="/uploads/<%= siteSettings[0].logo %>" alt="Logo" style="width: 80px" />
+      </a>
+    </div>
+
+    <!-- Menu For Desktop Device -->
+    <div class="main-nav">
+      <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light">
+          <a class="navbar-brand" href="/">
+            <img class="rounded-circle" src="/uploads/<%= siteSettings[0].logo %>" alt="Logo" />
+          </a>
+          <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="/" class="nav-link active">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="/about" class="nav-link">About</a>
+              </li>
+              <li class="nav-item">
+                <a href="/departments" class="nav-link">Departments</a>
+              </li>
+              <li class="nav-item">
+                <a href="/service" class="nav-link">Services</a>
+              </li>
+              <li class="nav-item">
+                <a href="/doctor" class="nav-link">Doctors</a>
+              </li>
+              <li class="nav-item">
+                <a href="/blog" class="nav-link">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a href="/contact" class="nav-link">Contact Us</a>
+              </li>
+            </ul>
+            <div class="nav-srh">
+              <div class="search-toggle">
+                <div class="bg-primary d-none d-lg-flex text-white px-2 py-2 rounded-2">
+                  <a class="cmn-btn-right text-white text-nowrap" href="/appointment">Get Appointment</a>
+                </div>
+                <button class="search-icon icon-close">
+                  <i class="icofont-close"></i>
+                </button>
+              </div>
+              <div class="search-area">
+                <form>
+                  <input type="text" class="src-input" id="search-terms" placeholder="Search here..." />
+                  <button type="submit" name="submit" value="Go" class="search-icon">
+                    <i class="icofont-search-1"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- End Navbar Area -->
+  <!-- Essential JS -->
+  <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <!-- fontawsome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+    integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+    crossorigin="anonymous"></script>
+  <!-- Owl Carousel JS -->
+  <script src="/assets/js/owl.carousel.min.js"></script>
+  <!-- Meanmenu JS -->
+  <script src="/assets/js/jquery.meanmenu.js"></script>
+  <!-- Slider Slider JS -->
+  <script src="/assets/js/slick.min.js"></script>
+  <!-- Magnific Popup -->
+  <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+  <!-- Wow JS -->
+  <script src="/assets/js/wow.min.js"></script>
+  <!-- Form Ajaxchimp JS -->
+  <script src="/assets/js/jquery.ajaxchimp.min.js"></script>
+  <!-- Form Validator JS -->
+  <script src="/assets/js/form-validator.min.js"></script>
+  <!-- Contact JS -->
+  <script src="/assets/js/contact-form-script.js"></script>
+  <!-- Odometer JS -->
+  <script src="/assets/js/odometer.min.js"></script>
+  <script src="/assets/js/jquery.appear.min.js"></script>
+  <!-- Custom JS -->
+  <script src="/assets/js/custom.js"></script>
+</body>
+
 </html>

@@ -129,9 +129,20 @@ const getAllDoctorsForIndex = async () => {
   }
 };
 
+// get doctor details
+
+const getDoctor = async (getDoctor) => {
+  try {
+    return await Doctor.findById(getDoctor);
+  } catch (err) {
+    throw new Error("Error fetching Service");
+  }
+};
+
 
 module.exports = {
   addDoctorPage,
+  getDoctor,
   getAllDoctorsForIndex,
   addDoctor,
   updateDoctorPage,

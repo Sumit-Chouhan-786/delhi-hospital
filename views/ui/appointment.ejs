@@ -33,12 +33,11 @@
           <h2>Book your appointment</h2>
           <span>We will confirm your appointment within 2 hours</span>
 
-          <!-- Display message if exists -->
-          <% if (message) { %>
-            <div class="alert alert-info">
-              <%= message %>
-            </div>
-          <% } %>
+      <% if (message) { %>
+        <div class="alert <%= message.includes('success') ? 'alert-success' : 'alert-danger' %>">
+          <%= message %>
+        </div>
+        <% } %>
 
           <div class="appointment-form">
             <form action="/appointment" method="POST">

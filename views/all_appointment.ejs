@@ -53,9 +53,6 @@
                     <%= new Date(appointment.created).toLocaleString() %>
                   </td>
                   <td>
-                    <a href="/admin/viewAppointment/<%= appointment._id %>" class="btn btn-primary btn-sm">
-                      <i title="view" class="fas fa-eye"></i>
-                    </a>
                     <a href="/admin/deleteAppointments/<%= appointment._id %>" class="btn btn-danger btn-sm">
                       <i title="delete" class="fas fa-trash"></i>
                     </a>
