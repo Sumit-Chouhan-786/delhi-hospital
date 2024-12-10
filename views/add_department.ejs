@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
           <!-- Start of the form -->
-          <form 
+          <form  id="departmentForm"
             action="/admin/addDepartment" 
             method="POST" 
             enctype="multipart/form-data">
@@ -64,5 +64,26 @@
     </div>
   </div>
 </div>
+<!-- Include CKEditor script -->
+<script>
+  // Initialize CKEditor
+  let editor;
 
+  ClassicEditor
+    .create(document.querySelector('#description'))
+    .then(newEditor => {
+      editor = newEditor;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+  // Ensure that CKEditor content is transferred to the textarea before form submission
+  const form = document.querySelector('#departmentForm');
+  form.addEventListener('submit', (event) => {
+    // Update the textarea with CKEditor's data before submission
+    const descriptionTextarea = document.querySelector('#description');
+    descriptionTextarea.value = editor.getData();
+  });
+</script>
 <%- include("./layout/admin_footer.ejs") %>

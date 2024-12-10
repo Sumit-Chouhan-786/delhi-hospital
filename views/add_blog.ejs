@@ -11,19 +11,21 @@
           </div>
           <div class="card-body">
             <!-- Form starts here -->
-            <form action="/admin/addBlog" method="POST" enctype="multipart/form-data">
+            <form action="/admin/addBlog" method="POST" enctype="multipart/form-data" id="blogForm">
               <!-- Title Field -->
               <div class="mb-3">
                 <label for="title" class="form-label">Blog Title</label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="Enter Blog Title"
                   required />
               </div>
+
               <!-- Description Field -->
               <div class="mb-3">
                 <label for="description" class="form-label">Blog Description</label>
                 <textarea class="form-control" id="description" name="description" placeholder="Enter Blog Description"
-                  rows="5" required></textarea>
+                  rows="10" style="height: 300px;"></textarea>
               </div>
+
               <!-- Image Field -->
               <div class="mb-3">
                 <label for="blogImage" class="form-label">Blog Image</label><br />
@@ -41,4 +43,29 @@
       </div>
     </div>
   </div>
+
+  <!-- Include CKEditor script -->
+  <script>
+    // Initialize CKEditor
+    let editor;
+
+    ClassicEditor
+      .create(document.querySelector('#description'))
+      .then(newEditor => {
+        editor = newEditor;
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    // Ensure that CKEditor content is transferred to the textarea before form submission
+    const form = document.querySelector('#blogForm');
+    form.addEventListener('submit', (event) => {
+      // Update the textarea with CKEditor's data before submission
+      const descriptionTextarea = document.querySelector('#description');
+      descriptionTextarea.value = editor.getData();
+    });
+  </script>
+
+  <!-- Include the admin footer -->
   <%- include("./layout/admin_footer.ejs") %>

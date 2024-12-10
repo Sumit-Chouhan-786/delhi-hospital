@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
           <!-- Start of the form -->
-          <form action="/admin/addServices"
+          <form id="serviceForm" action="/admin/addServices"
             method="POST"
             enctype="multipart/form-data">
             <!-- Student Name Field -->
@@ -29,13 +29,13 @@
               />
             </div>
             
-            <!-- Year Field -->
+            <!-- description Field -->
             <div class="mb-3">
-              <label for="Description" class="form-label">Description</label>
+              <label for="description" class="form-label">Description</label>
               <input
                 type="text"
                 class="form-control"
-                id="Description"
+                id="description"
                 name="description"
                 placeholder="Enter Description"
                 required
@@ -69,5 +69,26 @@
     </div>
   </div>
 </div>
+<script>
+  // Initialize CKEditor
+  let editor;
+
+  ClassicEditor
+    .create(document.querySelector('#description'))
+    .then(newEditor => {
+      editor = newEditor;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+  // Ensure that CKEditor content is transferred to the textarea before form submission
+  const form = document.querySelector('#serviceForm');
+  form.addEventListener('submit', (event) => {
+    // Update the textarea with CKEditor's data before submission
+    const descriptionTextarea = document.querySelector('#description');
+    descriptionTextarea.value = editor.getData();
+  });
+</script>
 
 <%- include("./layout/admin_footer.ejs") %>

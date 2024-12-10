@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
           <!-- Start of Form -->
-          <form action="/admin/addTestimonial" method="POST" enctype="multipart/form-data">
+          <form id="testimonialForm" action="/admin/addTestimonial" method="POST" enctype="multipart/form-data">
             <!-- Name Field -->
             <div class="mb-3">
               <label for="name" class="form-label">Name</label>
@@ -57,5 +57,25 @@
     </div>
   </div>
 </div>
+<script>
+  // Initialize CKEditor
+  let editor;
 
+  ClassicEditor
+    .create(document.querySelector('#description'))
+    .then(newEditor => {
+      editor = newEditor;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+
+  // Ensure that CKEditor content is transferred to the textarea before form submission
+  const form = document.querySelector('#testimonialForm');
+  form.addEventListener('submit', (event) => {
+    // Update the textarea with CKEditor's data before submission
+    const descriptionTextarea = document.querySelector('#description');
+    descriptionTextarea.value = editor.getData();
+  });
+</script>
 <%- include("./layout/admin_footer.ejs") %>
