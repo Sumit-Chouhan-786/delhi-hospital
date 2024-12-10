@@ -10,6 +10,7 @@ const addDoctor = async (req, res) => {
   try {
     const doctor = new Doctor({
       name: req.body.name,
+      description:req.body.description,
       specialist: req.body.specialist,
       doctorImage: req.file.filename,
     });
@@ -67,6 +68,7 @@ const updateDoctor = async (req, res) => {
     await Doctor.findByIdAndUpdate(id, {
       name: req.body.name,
       specialist: req.body.specialist,
+      description: req.body.description,
       doctorImage: new_image,
     });
 

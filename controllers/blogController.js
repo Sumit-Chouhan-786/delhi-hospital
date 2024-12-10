@@ -1,6 +1,7 @@
 const Blog = require("../models/blogModel");
 const path = require("path");
 const fs = require("fs");
+const striptags = require("striptags"); 
 
 //======================================================================== Add Blog controller function
 const addBlog = async (req, res) => {
