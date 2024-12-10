@@ -75,7 +75,7 @@ const updateDoctor = async (req, res) => {
       type: "success",
       message: "Doctor updated successfully!",
     };
-    res.redirect("/admin/allDoctor");
+    res.redirect("/admin/allDoctors");
   } catch (err) {
     res.json({ message: err.message, type: "danger" });
   }
