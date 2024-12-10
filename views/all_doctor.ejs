@@ -1,7 +1,7 @@
 <!-- Include the admin header -->
 <%- include('./layout/admin_header.ejs') %>
 
-<div class="container">
+<div class="container overflow-hidden">
   <div class="row">
     <div class="col-lg-12 my-3">
       <% if (message) { %>
@@ -18,7 +18,7 @@
         ></button>
       </div>
       <% } %>
-      <div>
+      <div style="overflow-x: auto;">
         <!-- Table with dynamic doctor data -->
         <table
           class="table table-bordered table-hover text-center align-middle"
