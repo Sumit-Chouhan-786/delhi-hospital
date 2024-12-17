@@ -25,16 +25,18 @@
   <div class="container">
     <div class="row justify-content-center">
       <% departments.forEach((department) => { %>
-      <div class="col-sm-6 col-lg-4">
-        <div class="department-item">
+      <div class="col-sm-6 col-lg-4 h-100">
+        <div class="department-item h-100">
           <img
             height="50px"
-            class="meet_doctor_img"
+            class="department_image"
             src="/uploads/<%= department.departmentImage %>"
             alt="department"
           />
-          <h3><%= department.title %></h3>
-          <p><%- department.description %></p>
+          <div class="py-2">
+            <h3><%= department.title %></h3>
+            <p><%- department.description %></p>
+          </div>
         </div>
       </div>
       <% }) %>

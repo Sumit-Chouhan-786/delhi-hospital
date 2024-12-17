@@ -645,7 +645,7 @@ button:focus {
 }
 
 .about-item p {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .about-item ul {
@@ -1875,7 +1875,7 @@ footer {
 }
 
 .speciality-right {
-  background-image: url("../img/home-two/4.jpg");
+  background-image: url("../img/home-one/4.jpeg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -4125,8 +4125,6 @@ footer {
 .department-item {
   text-align: center;
   border: 1px solid #0046c0;
-  padding-top: 30px;
-  padding-bottom: 30px;
   transition: 0.5s all ease;
   margin-bottom: 30px;
   position: relative;
@@ -4838,7 +4836,13 @@ footer {
   text-overflow: ellipsis;
 }
 .blog_image {
-  height: 380px;
+  height: 350px;
+  object-fit: cover;
+}
+.department_image {
+  height: 200px;
+  width: 100%;
+  top: 0;
   object-fit: cover;
 }
 
