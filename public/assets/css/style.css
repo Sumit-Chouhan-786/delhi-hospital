@@ -4835,6 +4835,12 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.services_description_truncate {
+  max-height: 80px; /* 1.5em x 4 lines = 6em */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .blog_image {
   height: 350px;
   object-fit: cover;
