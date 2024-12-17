@@ -11,20 +11,22 @@
           </div>
           <div class="card-body">
             <form id="sliderForm" action="/admin/updateSlider/<%= slider._id %>" method="POST" enctype="multipart/form-data">
-              <input type="hidden" name="old_image" value="<%= slider.sliderImage %>" />
-              <div class="form-group">
-                <label for="sliderImage">Slider Image</label>
-                <input type="file" name="sliderImage" class="form-control" />
-              </div>
+             
               <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text" name="title" class="form-control" value="<%= slider.title %>" required />
               </div>
-              <div class="form-group">
+              <div class="form-group mt-3">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" required><%= slider.description %></textarea>
+                <textarea class="form-control" id="description" name="description" placeholder="Enter  Description" rows="5"
+                  required><%= slider.description %></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Update Slider</button>
+              <div class="form-group mt-3">
+                <label for="sliderImage">Slider Image</label>
+                <input type="file" name="sliderImage" class="form-control" />
+              </div>
+              <input type="hidden" name="old_image" value="<%= slider.sliderImage %>" />
+              <button type="submit" class="btn btn-primary mt-3">Update Slider</button>
             </form>
 
 

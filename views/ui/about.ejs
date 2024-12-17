@@ -237,7 +237,7 @@
             alt="Testimonial"
           />
           <h3><%= testimonial.name %></h3>
-          <p><%= testimonial.description %></p>
+          <p><%- testimonial.description %></p>
         </div>
         <% }) %>
       </div>
@@ -265,7 +265,7 @@
             <h3>
               <a href="/blog-details/<%= blog.id %>"> <%= blog.title %> </a>
             </h3>
-            <p><%= blog.description %></p>
+            <p><%- blog.description %></p>
             <ul>
               <li>
                 <a href="/blog-details/<%= blog.id %>">

@@ -32,15 +32,8 @@
             <!-- Description Field -->
             <div class="mb-3">
               <label for="description" class="form-label">Description</label>
-              <input
-                type="text"
-                class="form-control"
-                id="description"
-                name="description"
-                placeholder="Enter department description"
-                value="<%= department.description %>"
-                required
-              />
+              <textarea class="form-control" id="description" name="description" placeholder="Enter  Description" rows="5"
+                required><%= department.description %></textarea>
             </div>
 
             <!-- Department Image Upload Field -->
