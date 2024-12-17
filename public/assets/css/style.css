@@ -4832,9 +4832,19 @@ footer {
 }
 
 .text-truncate-lines {
-    line-height: 1.5em; /* Adjust as per font size */
-    max-height: 110px;    /* 1.5em x 4 lines = 6em */
-    overflow: hidden;
-    text-overflow: ellipsis;
+  line-height: 1.5em; /* Adjust as per font size */
+  max-height: 110px; /* 1.5em x 4 lines = 6em */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.blog_image {
+  height: 415px;
+  object-fit: cover;
 }
 
+@media (max-width: 576px) {
+  .blog_image {
+    height: 330px;
+    object-fit: cover;
+  }
+}
