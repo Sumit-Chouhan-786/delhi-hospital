@@ -4838,7 +4838,7 @@ footer {
   text-overflow: ellipsis;
 }
 .blog_image {
-  height: 415px;
+  height: 380px;
   object-fit: cover;
 }
 
