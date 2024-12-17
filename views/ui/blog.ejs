@@ -36,8 +36,10 @@
             <h3>
               <a href="/blog-details"> <%= blog.title %> </a>
             </h3>
-            <p><%- blog.description %></p>
-            <ul>
+            <div class="text-truncate-lines">
+              <p><%- blog.description %></p>
+            </div>
+            <ul class="mt-5">
               <li>
                 <a href="/blog-details/<%= blog.id %>">
                   Read More

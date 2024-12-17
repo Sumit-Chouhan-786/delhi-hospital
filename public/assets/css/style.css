@@ -4830,3 +4830,11 @@ footer {
   color: #555; /* Text color for content */
   border-top: 1px solid #ddd; /* Add subtle border to accordion content */
 }
+
+.text-truncate-lines {
+    line-height: 1.5em; /* Adjust as per font size */
+    max-height: 110px;    /* 1.5em x 4 lines = 6em */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
