@@ -8,10 +8,12 @@ const session = require("express-session");
 const path = require("path");
 const SiteSettingData = require("./common/common")
 
+
 const app = express();
 
 // Define the port
 const port = process.env.PORT || 5000;
+const host = process.env.HOST || "localhost";
 
 // Connect to the MongoDB database
 mongoose
@@ -78,6 +80,6 @@ app.all("*", (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+app.listen(port, host ,() => {
   console.log(`Server is running on http://localhost:${port}`);
 });
