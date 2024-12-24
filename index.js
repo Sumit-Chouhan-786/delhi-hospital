@@ -12,8 +12,8 @@ const SiteSettingData = require("./common/common")
 const app = express();
 
 // Define the port
-const port = process.env.PORT || 5000;
-const host = process.env.HOST || "localhost";
+const port = process.env.PORT;
+const host = process.env.HOST;
 
 // Connect to the MongoDB database
 mongoose
