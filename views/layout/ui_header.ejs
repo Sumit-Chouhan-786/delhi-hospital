@@ -42,7 +42,7 @@
   <div class="header-top position-relative" style="z-index: 9999;">
     <div class="fixed-icons position-fixed z-3">
       <a target="_blank" href="tel:<%= siteSettings[0].number %>" class="phone-side-icon mb-1">
-        <i class="fas fa-phone-alt fa-2x"></i>
+        <i class="fas fa-phone-alt fa-2x"style="padding: 2px;"></i>
       </a>
       <a target="_blank" href="https://wa.me/<%= siteSettings[0].number %>" class="whatsUpp-side-icon mb-0">
         <i class="fab fa-whatsapp fa-2x"></i>
@@ -72,24 +72,23 @@
             </div>
           </div>
         </div>
-  <div class="col-sm-9 col-lg-4 col-xl-3 d-flex justify-content-center mb-3 mb-sm-0 position-relative">
-    <!-- Search input with icon -->
-    <div class="input-group">
-      <input type="text" class="form-control" placeholder="Enter Doctor Name" id="searchInput">
-      <span class="input-group-text"><i class="fas fa-search"></i></span>
-    </div>
-  
-    <div style="height: 100px; z-index: 9999 !important; overflow-y: scroll; width: 200px; top: 50px; right:25%;"
-      class="position-absolute hide_scroll px-2" name="" id="results">
-      <% allDoctors.forEach(function(doctor) { %>
-        <a href="/appointment" style="white-space: nowrap;font-size: 12px;" value="<%= doctor.name %>"
-          class="doctor-item name d-block hide_scroll py-1 mb-1 overflow-y-scroll">
-          <%= doctor.name %>
-        </a>
-        <% }); %>
-      </div>
-      <span id="noResults" class="position-absolute" style="display: none; top: 20%; right:-100px; font-size: x-small; white-space: nowrap;">No doctor found</span>
-  
+  <div class="col-sm-9 col-lg-4 col-xl-3 find_doctor_parent d-flex justify-content-center mb-3 mb-sm-0 position-relative">
+<!-- Search input with icon -->
+<div class="input-group">
+  <input type="text" class="form-control" placeholder="Find Your Doctor" id="searchInput">
+  <span class="input-group-text"><i class="fas fa-search"></i></span>
+</div>
+
+<div id="results" class="position-absolute custom-results px-2 hide_scroll">
+  <% allDoctors.forEach(function(doctor) { %>
+    <a href="/appointment" class="doctor-item name d-block hide_scroll py-1 mb-1 overflow-y-scroll"
+      value="<%= doctor.name %>">
+      <%= doctor.name %>
+    </a>
+    <% }); %>
+</div>
+<span id="noResults" class="position-absolute custom-no-results">No doctor found</span>
+
   </div>
 
 

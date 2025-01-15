@@ -4857,6 +4857,34 @@ footer {
     display: none;
 }
 
+/* Custom styles for the results container */
+.custom-results {
+  height: 100px;
+  z-index: 9999 !important;
+  overflow-y: scroll;
+  width: 200px;
+  top: 50px;
+  right: 25%;
+}
+
+/* Custom styles for the "No doctor found" message */
+.custom-no-results {
+  display: none;
+  top: 20%;
+  right: -100px;
+  font-size: x-small;
+  white-space: nowrap;
+}
+.find_doctor_parent div input::placeholder{
+font-size: 14px;
+}
+.find_doctor_parent div input:focus {
+  box-shadow: none; 
+  border-color:rgba(0, 0, 0, 0.199);
+}
+
+
+
 @media (max-width: 576px) {
   .blog_image {
     height: 330px;
