@@ -263,4 +263,30 @@ router.get("/privacy-policy", (req, res) => {
   res.render("ui/privacy-policy.ejs", { title: "Delhi Hospital" });
 });
 
+
+router.get("/landing", async (req, res) => {
+  try {
+    // Fetch required data: sliders, services, doctors, and blogs
+    const [sliders, services, doctors, blogs] = await Promise.all([
+      SliderPageForIndex(),
+      getAllServicesForIndex(),
+      getAllDoctorsForIndex(),
+      getAllBlogsForIndex(),
+    ]);
+
+    // Render the landing page with the fetched data
+    res.render("ui/landing.ejs", {
+      title: "Delhi Hospital",
+      sliders: sliders,
+      services: services,
+      doctors: doctors,
+      blogs: blogs,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error fetching data for landing page.");
+  }
+});
+
+
 module.exports = router;
