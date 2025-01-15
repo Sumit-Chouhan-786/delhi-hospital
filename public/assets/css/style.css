@@ -4852,6 +4852,11 @@ footer {
   object-fit: cover;
 }
 
+
+.hide_scroll::-webkit-scrollbar {
+    display: none;
+}
+
 @media (max-width: 576px) {
   .blog_image {
     height: 330px;

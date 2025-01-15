@@ -39,7 +39,7 @@
 
 <body>
   <!-- Header Top -->
-  <div class="header-top position-relative">
+  <div class="header-top position-relative" style="z-index: 9999;">
     <div class="fixed-icons position-fixed z-3">
       <a target="_blank" href="tel:<%= siteSettings[0].number %>" class="phone-side-icon mb-1">
         <i class="fas fa-phone-alt fa-2x"></i>
@@ -49,15 +49,15 @@
       </a>
     </div>
     <div class="container">
-      <div class="row align-items-center justify-content-center">
-        <div class="col-sm-9 col-lg-9">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-sm-9 col-lg-6 col-xl-4">
           <div class="header-top-item">
             <div class="header-top-left">
               <ul>
                 <li>
                   <a href="tel:<%= siteSettings[0].number %>">
                     <i class="icofont-ui-call"></i>
-                   +91 <%= siteSettings[0].number %>
+                    +91 <%= siteSettings[0].number %>
 
                   </a>
                 </li>
@@ -72,7 +72,29 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3 col-lg-3">
+  <div class="col-sm-9 col-lg-4 col-xl-3 d-flex justify-content-center mb-3 mb-sm-0 position-relative">
+    <!-- Search input with icon -->
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Enter Doctor Name" id="searchInput">
+      <span class="input-group-text"><i class="fas fa-search"></i></span>
+    </div>
+  
+    <div style="height: 100px; z-index: 9999 !important; overflow-y: scroll; width: 200px; top: 0px; right:-200px;"
+      class="position-absolute hide_scroll px-2" name="" id="results">
+      <% allDoctors.forEach(function(doctor) { %>
+        <a href="/appointment" style="white-space: nowrap;font-size: 12px;" value="<%= doctor.name %>"
+          class="doctor-item name d-block hide_scroll py-1 mb-1 overflow-y-scroll">
+          <%= doctor.name %>
+        </a>
+        <% }); %>
+      </div>
+      <span id="noResults" class="position-absolute" style="display: none; top: 20%; right:-100px; font-size: x-small; white-space: nowrap;">No doctor found</span>
+  
+  </div>
+
+
+
+        <div class="col-sm-3 col-lg-2 col-xl-3">
           <div class="header-top-item">
             <div class="header-top-right">
               <ul>
@@ -193,6 +215,37 @@
   <script src="/assets/js/jquery.appear.min.js"></script>
   <!-- Custom JS -->
   <script src="/assets/js/custom.js"></script>
+  <script>
+ var input = document.getElementById('searchInput');
+  var resultsDiv = document.getElementById('results');
+  var noResultsMessage = document.getElementById('noResults');
+
+  // Store all doctor data in a separate array
+  var allDoctors = Array.from(document.getElementsByClassName('doctor-item'));
+
+  input.onkeyup = function () {
+    var filter = input.value.toUpperCase();
+    var filteredDoctors = allDoctors.filter(function (doctorItem) {
+      var name = doctorItem.innerText || doctorItem.textContent;
+      return name.toUpperCase().includes(filter);
+    });
+
+    // Clear the results div
+    resultsDiv.innerHTML = '';
+
+    if (filteredDoctors.length > 0) {
+      noResultsMessage.style.display = 'none'; // Hide "No results" message
+
+      // Append only the filtered items
+      filteredDoctors.forEach(function (doctorItem) {
+        resultsDiv.appendChild(doctorItem.cloneNode(true));
+      });
+    } else {
+      noResultsMessage.style.display = 'block'; // Show "No results" message
+    }
+  };
+  </script>
+
 </body>
 
 </html>

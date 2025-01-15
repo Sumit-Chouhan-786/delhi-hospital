@@ -112,7 +112,7 @@
                                                     <div class="form-group">
                                                         <i class="icofont-hospital"></i>
                                                         <label>Services</label>
-                                                        <select class="form-control" name="services" required>
+                                                        <select class="form-control px-1" name="services" required>
                                                             <option value="">Select a Service</option>
                                                             <% services.forEach(service=> { %>
                                                                 <option value="<%= service.title %>">
@@ -126,7 +126,7 @@
                                                     <div class="form-group">
                                                         <i class="icofont-doctor"></i>
                                                         <label>Doctor</label>
-                                                        <select class="form-control" name="doctor" required>
+                                                        <select class="form-control px-1" name="doctor" required>
                                                             <option value="">Choose Your Doctor</option>
                                                             <% doctors.forEach(doctor=> { %>
                                                                 <option value="<%= doctor.name %>">

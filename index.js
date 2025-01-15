@@ -6,7 +6,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const path = require("path");
-const SiteSettingData = require("./common/common")
+const { SiteSettingData, AllDoctorsData } = require("./common/common");
 
 
 const app = express();
@@ -58,6 +58,17 @@ app.use(async (req, res, next) => {
   }
 });
 
+// Middleware to fetch site settings globally
+app.use(async (req, res, next) => {
+  try {
+    const allDoctors = await AllDoctorsData();
+    res.locals.allDoctors = allDoctors; 
+    next(); 
+  } catch (err) {
+    console.error('Error in site settings middleware:', err);
+    next(); 
+  }
+});
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
