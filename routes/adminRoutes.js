@@ -4,6 +4,7 @@ const isAuthenticated = require("../middlewares/isAuthenticated");
 const upload = require("../middlewares/multerMiddleware");
 const testimonialController = require("../controllers/testimonialController");
 const sliderController = require("../controllers/sliderController");
+const sliderLandingController = require("../controllers/landingSliderController");
 const servicesController = require("../controllers/ServicesController");
 const doctorController = require("../controllers/doctorController");
 const siteSettingsController = require("../controllers/siteSettingController");
@@ -98,6 +99,21 @@ router.post(
 );
 router.get("/deleteSlider/:id", sliderController.deleteSlider);
 
+//============================================================================== landing slider routes
+router.get("/addLandingSlider", sliderLandingController.addLandingSliderPage);
+router.post(
+  "/addLandingSlider",
+  upload.single("sliderImage"),
+  sliderLandingController.addLandingSlider
+);
+router.get("/allLandingSliders", sliderLandingController.allLandingSlidersPage);
+router.get("/updateLandingSlider/:id", sliderLandingController.updateLandingSliderPage);
+router.post(
+  "/updateLandingSlider/:id",
+  upload.single("sliderImage"),
+  sliderLandingController.updateLandingSlider
+);
+router.get("/deleteLandingSlider/:id", sliderLandingController.deleteLandingSlider);
 //============================================================================== services routes
 router.get("/addServices", servicesController.addServicesPage);
 router.get("/updateServices/:id", servicesController.updateServicesPage);

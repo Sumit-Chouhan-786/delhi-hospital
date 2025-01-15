@@ -14,6 +14,7 @@ const {
   getAllDepartmentsForIndex,
 } = require("../controllers/departmentController");
 const { createAppointment } = require("../controllers/appointmentController");
+const  landingPageSlider = require("../controllers/landingSliderController");
 
 // =================================================== homepage with doctors, sliders, services, and blogs
 router.get("/", async (req, res) => {
@@ -266,24 +267,24 @@ router.get("/privacy-policy", (req, res) => {
 
 router.get("/landing", async (req, res) => {
   try {
-    // Fetch required data: sliders, services, doctors, and blogs
-    const [sliders, services, doctors, blogs] = await Promise.all([
-      SliderPageForIndex(),
+    const [SliderLanding, services, doctors, blogs] = await Promise.all([
+      landingPageSlider.SliderLandingPageForIndex(),
       getAllServicesForIndex(),
       getAllDoctorsForIndex(),
       getAllBlogsForIndex(),
     ]);
 
-    // Render the landing page with the fetched data
+    console.log("Fetched sliders:", SliderLanding); // Log the fetched data
+
     res.render("ui/landing.ejs", {
       title: "Delhi Hospital",
-      sliders: sliders,
+      SliderLanding: SliderLanding,
       services: services,
       doctors: doctors,
       blogs: blogs,
     });
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching data for landing page:", err.message);
     res.status(500).send("Error fetching data for landing page.");
   }
 });

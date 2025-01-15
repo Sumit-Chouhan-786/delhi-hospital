@@ -1,18 +1,18 @@
-const Slider = require("../models/sliderModel");
+const SliderLanding = require("../models/sliderLandingModel");
 const fs = require("fs");
 const path = require("path");
 
 //======================================================================== Add Slider 
-const addSlider = async (req, res) => {
+const addLandingSlider = async (req, res) => {
   if (!req.file) {
     return res.json({ message: "Image upload failed", type: "danger" });
   }
 
   try {
-    const slider = new Slider({
+    const slider = new SliderLanding({
       sliderImage: req.file.filename,
-      title: req.body.title, 
-      description: req.body.description, 
+      title: req.body.title,
+      description: req.body.description,
     });
 
     await slider.save();
@@ -21,7 +21,7 @@ const addSlider = async (req, res) => {
       type: "success",
       message: "Slider added successfully!",
     };
-    res.redirect("/admin/allSliders");
+    res.redirect("/admin/allLandingSliders");
   } catch (err) {
     res.json({ message: err.message, type: "danger" });
   }
@@ -29,12 +29,12 @@ const addSlider = async (req, res) => {
 
 
 //======================================================================== Render Add Slider page
-const addSliderPage = (req, res) => {
-  res.render("add_slider.ejs", { title: "Add Slider" });
+const addLandingSliderPage = (req, res) => {
+  res.render("add_slider_landing.ejs", { title: "Add Slider" });
 };
 
 //======================================================================== Update Slider controller function
-const updateSlider = async (req, res) => {
+const updateLandingSlider = async (req, res) => {
   const id = req.params.id;
   let new_image = "";
 
@@ -53,7 +53,7 @@ const updateSlider = async (req, res) => {
     }
 
     // Update the slider with the new or old image, title, and description
-    await Slider.findByIdAndUpdate(id, {
+    await SliderLanding.findByIdAndUpdate(id, {
       sliderImage: new_image,
       title: req.body.title, // Title from the form input
       description: req.body.description, // Description from the form input
@@ -64,7 +64,7 @@ const updateSlider = async (req, res) => {
       type: "success",
       message: "Slider updated successfully!",
     };
-    res.redirect("/admin/allSliders");
+    res.redirect("/admin/allLandingSliders");
   } catch (err) {
     res.json({ message: err.message, type: "danger" });
   }
@@ -72,15 +72,15 @@ const updateSlider = async (req, res) => {
 
 
 //======================================================================== Render Update Slider page
-const updateSliderPage = async (req, res) => {
+const updateLandingSliderPage = async (req, res) => {
   try {
-    const slider = await Slider.findById(req.params.id);
+    const slider = await SliderLanding.findById(req.params.id);
 
     if (!slider) {
       return res.status(404).json({ message: "Slider not found" });
     }
 
-    res.render("update_slider", {
+    res.render("update_slider_landing", {
       title: "Update Slider",
       slider: slider, // Now includes title and description in the slider object
     });
@@ -91,10 +91,10 @@ const updateSliderPage = async (req, res) => {
 
 
 //======================================================================== Delete Slider controller function
-const deleteSlider = async (req, res) => {
+const deleteLandingSlider = async (req, res) => {
   try {
     // Find the slider by its ID
-    const slider = await Slider.findById(req.params.id);
+    const slider = await SliderLanding.findById(req.params.id);
     
     if (!slider) {
       return res.status(404).send("Slider not found");
@@ -111,14 +111,14 @@ const deleteSlider = async (req, res) => {
     }
 
     // Now delete the slider record from the database
-    await Slider.findByIdAndDelete(req.params.id);
+    await SliderLanding.findByIdAndDelete(req.params.id);
 
     // Set success message and redirect
     req.session.message = {
       type: "success",
       message: "Slider deleted successfully!",
     };
-    res.redirect("/admin/allSliders");
+    res.redirect("/admin/allLandingSliders");
   } catch (err) {
     console.error(err);
     res.json({ message: err.message, type: "danger" });
@@ -126,11 +126,14 @@ const deleteSlider = async (req, res) => {
 };
 
 //======================================================================== All Sliders Page controller function
-const allSlidersPage = async (req, res) => {
+const allLandingSlidersPage = async (req, res) => {
   try {
-    const sliders = await Slider.find();
+    const landingSlider = await SliderLanding.find();
 
-    res.render("all_slider", { title: "All Sliders", sliders: sliders });
+    res.render("all_slider_landing", {
+      title: "All Sliders",
+      landingSlider: landingSlider,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error fetching sliders.");
@@ -138,21 +141,23 @@ const allSlidersPage = async (req, res) => {
 };
 
 // ======================================================================== fath all sliders image for ui 
-const SliderPageForIndex = async () => {
+const SliderLandingPageForIndex = async () => {
   try {
-    return await Slider.find();
+    return await SliderLanding.find(); 
   } catch (err) {
+    console.error("Error fetching sliders:", err.message);
     throw new Error("Error fetching sliders");
   }
 };
 
 
+
 module.exports = {
-  addSliderPage,
-  SliderPageForIndex,
-  addSlider,
-  updateSliderPage,
-  updateSlider,
-  allSlidersPage,
-  deleteSlider,
+  addLandingSliderPage,
+  SliderLandingPageForIndex,
+  addLandingSlider,
+  updateLandingSliderPage,
+  updateLandingSlider,
+  allLandingSlidersPage,
+  deleteLandingSlider,
 };
