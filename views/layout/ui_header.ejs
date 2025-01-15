@@ -79,7 +79,7 @@
       <span class="input-group-text"><i class="fas fa-search"></i></span>
     </div>
   
-    <div style="height: 100px; z-index: 9999 !important; overflow-y: scroll; width: 200px; top: 0px; right:-200px;"
+    <div style="height: 100px; z-index: 9999 !important; overflow-y: scroll; width: 200px; top: 50px; right:25%;"
       class="position-absolute hide_scroll px-2" name="" id="results">
       <% allDoctors.forEach(function(doctor) { %>
         <a href="/appointment" style="white-space: nowrap;font-size: 12px;" value="<%= doctor.name %>"
@@ -220,11 +220,21 @@
   var resultsDiv = document.getElementById('results');
   var noResultsMessage = document.getElementById('noResults');
 
-  // Store all doctor data in a separate array
+  // Initially hide resultsDiv
+  resultsDiv.style.display = 'none';
+
   var allDoctors = Array.from(document.getElementsByClassName('doctor-item'));
 
   input.onkeyup = function () {
     var filter = input.value.toUpperCase();
+
+    if (filter.trim() === '') {
+      // If input is empty, hide the resultsDiv and "No results" message
+      resultsDiv.style.display = 'none';
+      noResultsMessage.style.display = 'none';
+      return;
+    }
+
     var filteredDoctors = allDoctors.filter(function (doctorItem) {
       var name = doctorItem.innerText || doctorItem.textContent;
       return name.toUpperCase().includes(filter);
@@ -235,15 +245,18 @@
 
     if (filteredDoctors.length > 0) {
       noResultsMessage.style.display = 'none'; // Hide "No results" message
+      resultsDiv.style.display = 'block'; // Show resultsDiv
 
       // Append only the filtered items
       filteredDoctors.forEach(function (doctorItem) {
         resultsDiv.appendChild(doctorItem.cloneNode(true));
       });
     } else {
+      resultsDiv.style.display = 'block'; // Show resultsDiv
       noResultsMessage.style.display = 'block'; // Show "No results" message
     }
   };
+
   </script>
 
 </body>
