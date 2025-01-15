@@ -4,10 +4,10 @@
     <div class="home-slider owl-theme owl-carousel">
         <% SliderLanding.forEach((slider, index)=> { %>
             <div class="slider-item-img">
-                
-                                    <!-- If the slider has a unique image, use it dynamically -->
-                                    <img class="w-100" src="/uploads/<%= slider.sliderImage %>" alt="Shape" />
-                               
+
+                <!-- If the slider has a unique image, use it dynamically -->
+                <img class="w-100" src="/uploads/<%= slider.sliderImage %>" alt="Shape" />
+
             </div>
             <% }) %>
 
@@ -114,103 +114,104 @@
         </div>
     </div>
     <!-- End Counter -->
-        <!-- Drop -->
-        <section class="drop-area pt-100">
-            <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-lg-7 p-0">
-                        <div class="drop-item drop-img">
-                            <div class="drop-left">
-                                <h2>Drop your message for any info or question.</h2>
-                                <form id="contactForm">
+    <!-- Drop -->
+    <section class="drop-area pt-100">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 p-0">
+                    <div class="drop-item drop-img">
+                        <div class="drop-left">
+                            <h2>Drop your message for any info or question.</h2>
+                            <div class="appointment-form">
+                                <form action="/landingAppointment" method="POST">
                                     <div class="row justify-content-center">
-                                        <div class="col-sm-6 col-lg-6">
+                                        <!-- Name Input -->
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="text" name="name" id="name" class="form-control" required
-                                                    data-error="Please enter your name" placeholder="Name">
+                                                <i class="icofont-business-man-alt-1"></i>
+                                                <label for="name">Name</label>
+                                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Name" required
+                                                    data-error="Please enter your name" />
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
-        
-                                        <div class="col-sm-6 col-lg-6">
+                                
+                                        <!-- Email Input -->
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="email" name="email" id="email" class="form-control" required
-                                                    data-error="Please enter your email" placeholder="Email">
+                                                <i class="icofont-ui-message"></i>
+                                                <label for="email">Email</label>
+                                                <input type="email" name="email" id="email" class="form-control" placeholder="Enter Your Email" required
+                                                    data-error="Please enter your email" />
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
-        
-                                        <div class="col-sm-6 col-lg-6">
+                                
+                                        <!-- Phone Input -->
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="text" name="phone_number" id="phone_number" required
-                                                    data-error="Please enter your number" class="form-control"
-                                                    placeholder="Phone">
+                                                <i class="icofont-ui-call"></i>
+                                                <label for="phone_number">Phone</label>
+                                                <input type="text" name="phone" id="phone_number" class="form-control"
+                                                    placeholder="Enter Your Phone Number" required data-error="Please enter your phone number" />
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
-        
-                                        <div class="col-sm-6 col-lg-6">
+                                
+                                        <!-- Subject Input -->
+                                        <div class="col-lg-6">
                                             <div class="form-group">
-                                                <input type="text" name="msg_subject" id="msg_subject" class="form-control"
-                                                    required data-error="Please enter your subject" placeholder="Subject">
+                                                <i class="icofont-hospital"></i>
+                                                <label for="msg_subject">Subject</label>
+                                                <input type="text" name="subject" id="msg_subject" class="form-control" placeholder="Enter Subject"
+                                                    required data-error="Please enter your subject" />
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
-        
-                                        <div class="col-md-12 col-lg-12">
+                                
+                                        <!-- Message Textarea -->
+                                        <div class="col-lg-12">
                                             <div class="form-group">
-                                                <textarea name="message" class="form-control" id="message" cols="30" rows="5"
-                                                    required data-error="Write your message"
-                                                    placeholder="Your Message"></textarea>
+                                                <i class="icofont-message"></i>
+                                                <label for="message">Your Message</label>
+                                                <textarea name="message" id="message" class="form-control" placeholder="Write Your Message" rows="5"
+                                                    required data-error="Please write your message"></textarea>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
-        
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <div class="form-check agree-label">
-                                                    <input name="gridCheck" value="I agree to the terms and privacy policy."
-                                                        class="form-check-input" type="checkbox" id="gridCheck" required>
-        
-                                                    <label class="form-check-label" for="gridCheck">
-                                                        Accept <a href="/terms-condition">Terms & Conditions</a> And <a
-                                                            href="/privacy-policy">Privacy Policy.</a>
-                                                    </label>
-                                                    <div class="help-block with-errors gridCheck-error"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-        
-                                        <div class="col-md-12 col-lg-12">
-                                            <button type="submit" class="drop-btn">
-                                                Send
+                                
+                                        <!-- Submit Button -->
+                                        <div class="col-lg-12">
+                                            <button type="submit" class="btn btn-primary">
+                                                Submit
                                             </button>
-                                            <div id="msgSubmit" class="h3 text-center hidden"></div>
-                                            <div class="clearfix"></div>
                                         </div>
                                     </div>
                                 </form>
+
                             </div>
+
                         </div>
                     </div>
-                    <div class="col-lg-5 p-0">
-                        <div class="speciality-item speciality-right speciality-right-two speciality-right-three">
-                            <img src="assets/img/home-two/4.jpg" alt="Contact">
-                            <div class="speciality-emergency">
-                                <div class="speciality-icon">
-                                    <i class="icofont-ui-call"></i>
-                                </div>
-                                <h3>Emergency Call</h3>
-                                <a href="tel:<%= siteSettings[0].number %>">
-                                    <%= siteSettings[0].number %>
-                                </a>
+                </div>
+                <div class="col-lg-5 p-0">
+                    <div class="speciality-item speciality-right speciality-right-two speciality-right-three">
+                        <img src="assets/img/home-two/4.jpg" alt="Contact">
+                        <div class="speciality-emergency">
+                            <div class="speciality-icon">
+                                <i class="icofont-ui-call"></i>
                             </div>
+                            <h3>Emergency Call</h3>
+                            <a href="tel:<%= siteSettings[0].number %>">
+                                <%= siteSettings[0].number %>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- End Drop -->
+        </div>
+    </section>
+    <!-- End Drop -->
 
     <!-- Services -->
     <section class="services-area pb-70">

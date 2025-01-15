@@ -68,77 +68,89 @@
         <section class="drop-area pt-100">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-lg-7 p-0">
-                        <div class="drop-item drop-img">
-                            <div class="drop-left">
-                                <h2>Drop your message for any info or question.</h2>
-                                <form id="contactForm">
-									<div class="row justify-content-center">
-										<div class="col-sm-6 col-lg-6">
-											<div class="form-group">
-												<input type="text" name="name" id="name" class="form-control" required data-error="Please enter your name" placeholder="Name">
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>
-			
-										<div class="col-sm-6 col-lg-6">
-											<div class="form-group">
-												<input type="email" name="email" id="email" class="form-control" required data-error="Please enter your email" placeholder="Email">
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>
-			
-										<div class="col-sm-6 col-lg-6">
-											<div class="form-group">
-												<input type="text" name="phone_number" id="phone_number" required data-error="Please enter your number" class="form-control" placeholder="Phone">
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>
-			
-										<div class="col-sm-6 col-lg-6">
-											<div class="form-group">
-												<input type="text" name="msg_subject" id="msg_subject" class="form-control" required data-error="Please enter your subject" placeholder="Subject">
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>
-			
-										<div class="col-md-12 col-lg-12">
-											<div class="form-group">
-												<textarea name="message" class="form-control" id="message" cols="30" rows="5" required data-error="Write your message" placeholder="Your Message"></textarea>
-												<div class="help-block with-errors"></div>
-											</div>
-										</div>
-
-                                        <div class="col-lg-12 col-md-12">
-                                            <div class="form-group">
-                                                <div class="form-check agree-label">
-                                                    <input
-                                                        name="gridCheck"
-                                                        value="I agree to the terms and privacy policy."
-                                                        class="form-check-input"
-                                                        type="checkbox"
-                                                        id="gridCheck"
-                                                        required
-                                                    >
-                                            
-                                                    <label class="form-check-label" for="gridCheck">
-                                                        Accept <a href="/terms-condition">Terms & Conditions</a> And <a href="/privacy-policy">Privacy Policy.</a>
-                                                    </label>
-                                                    <div class="help-block with-errors gridCheck-error"></div>
+                    <div class="col-lg-7 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="appointment-item appointment-item-two">
+                            <div class="appointment-shape">
+                                <img src="assets/img/appointment/3.png" alt="Shape" />
+                            </div>
+                            <h2>Book your appointment</h2>
+                            <span>We will confirm your appointment within 2 hours</span>
+                    
+                            <% if (message) { %>
+                                <div class="alert <%= message.includes('success') ? 'alert-success' : 'alert-danger' %>">
+                                    <%= message %>
+                                </div>
+                                <% } %>
+                    
+                                    <div class="appointment-form">
+                                        <form action="/appointment" method="POST">
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <i class="icofont-business-man-alt-1"></i>
+                                                        <label>Name</label>
+                                                        <input type="text" class="form-control" placeholder="Enter Your Name" name="name" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <i class="icofont-ui-message"></i>
+                                                        <label>Email</label>
+                                                        <input type="email" class="form-control" placeholder="Enter Your Email"
+                                                            name="email" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <i class="icofont-ui-call"></i>
+                                                        <label>Phone</label>
+                                                        <input type="text" class="form-control" placeholder="Enter Your Number"
+                                                            name="phone" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <i class="icofont-hospital"></i>
+                                                        <label>Services</label>
+                                                        <select class="form-control" name="services" required>
+                                                            <option value="">Select a Service</option>
+                                                            <% services.forEach(service=> { %>
+                                                                <option value="<%= service.title %>">
+                                                                    <%= service.title %>
+                                                                </option>
+                                                                <% }); %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <i class="icofont-doctor"></i>
+                                                        <label>Doctor</label>
+                                                        <select class="form-control" name="doctor" required>
+                                                            <option value="">Choose Your Doctor</option>
+                                                            <% doctors.forEach(doctor=> { %>
+                                                                <option value="<%= doctor.name %>">
+                                                                    <%= doctor.name %>
+                                                                </option>
+                                                                <% }); %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <i class="icofont-business-man"></i>
+                                                        <label>Age</label>
+                                                        <input type="text" class="form-control" placeholder="Your Age" name="age" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-			
-										<div class="col-md-12 col-lg-12">
-											<button type="submit" class="drop-btn">
-												Send
-											</button>
-											<div id="msgSubmit" class="h3 text-center hidden"></div>
-											<div class="clearfix"></div>
-										</div>
-									</div>
-								</form>
-                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn appointment-btn">
+                                                    Submit
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                         </div>
                     </div>
                     <div class="col-lg-5 p-0">

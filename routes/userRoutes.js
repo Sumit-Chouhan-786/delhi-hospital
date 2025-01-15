@@ -15,6 +15,7 @@ const {
 } = require("../controllers/departmentController");
 const { createAppointment } = require("../controllers/appointmentController");
 const  landingPageSlider = require("../controllers/landingSliderController");
+const landingEnquriController = require("../controllers/landingEnquriController");
 
 // =================================================== homepage with doctors, sliders, services, and blogs
 router.get("/", async (req, res) => {
@@ -235,14 +236,31 @@ router.get("/blog-details/:id", async (req, res) => {
 });
 
 
-// Static route for rendering the contact page
-router.get("/contact", (req, res) => {
-  res.render("ui/contact.ejs", { title: "Delhi Hospital" });
+// Static route for rendering the contact page with doctors and services
+router.get("/contact", async (req, res) => {
+  try {
+    // Fetch services and doctors data
+    const [services, doctors] = await Promise.all([
+      getAllServicesForIndex(),
+      getAllDoctorsForIndex(),
+    ]);
+
+    // Render the contact page and pass the data
+    res.render("ui/contact.ejs", {
+      title: "Delhi Hospital",
+      services: services,
+      doctors: doctors,
+    });
+  } catch (err) {
+    console.error("Error fetching data for contact page:", err.message);
+    res.status(500).send("Error fetching data for contact page.");
+  }
 });
 
 
 // Route for handling appointment creation
 router.post("/appointment", createAppointment);
+
 
 // Static route for rendering the FAQ page
 router.get("/faq", (req, res) => {
@@ -288,6 +306,9 @@ router.get("/landing", async (req, res) => {
     res.status(500).send("Error fetching data for landing page.");
   }
 });
+
+// Route for handling appointment creation
+router.post("/landingAppointment", landingEnquriController.createAppointment);
 
 
 module.exports = router;

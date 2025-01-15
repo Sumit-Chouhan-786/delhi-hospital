@@ -11,6 +11,10 @@ const siteSettingsController = require("../controllers/siteSettingController");
 const adminController = require("../controllers/adminController");
 const blogController = require("../controllers/blogController");
 const departmentsController = require("../controllers/departmentController");
+
+// Moved this line to the correct position
+const landingAppointment = require("../controllers/landingEnquriController");
+
 const {
   getAllAppointmentForIndex,
   deleteAppointment,
@@ -107,13 +111,20 @@ router.post(
   sliderLandingController.addLandingSlider
 );
 router.get("/allLandingSliders", sliderLandingController.allLandingSlidersPage);
-router.get("/updateLandingSlider/:id", sliderLandingController.updateLandingSliderPage);
+router.get(
+  "/updateLandingSlider/:id",
+  sliderLandingController.updateLandingSliderPage
+);
 router.post(
   "/updateLandingSlider/:id",
   upload.single("sliderImage"),
   sliderLandingController.updateLandingSlider
 );
-router.get("/deleteLandingSlider/:id", sliderLandingController.deleteLandingSlider);
+router.get(
+  "/deleteLandingSlider/:id",
+  sliderLandingController.deleteLandingSlider
+);
+
 //============================================================================== services routes
 router.get("/addServices", servicesController.addServicesPage);
 router.get("/updateServices/:id", servicesController.updateServicesPage);
@@ -129,18 +140,41 @@ router.post(
   servicesController.updateServices
 );
 router.get("/deleteServices/:id", servicesController.deleteServices);
+
 // ================================================================== all appointments
 router.get("/deleteAppointments/:id", deleteAppointment);
 
 router.get("/allAppointment", async (req, res) => {
   try {
-    const appointments = await getAllAppointmentForIndex(); 
+    const appointments = await getAllAppointmentForIndex();
     res.render("all_appointment", {
-      appointments, 
-      title: "Hospital", 
+      appointments,
+      title: "Hospital",
     });
   } catch (err) {
     console.error(err);
+    res.status(500).send("Error fetching appointments.");
+  }
+});
+
+// ================================================================== all landing appointments
+router.get(
+  "/deleteLandingAppointments/:id",
+  landingAppointment.deleteAppointment
+);
+
+router.get("/allLandingAppointment", async (req, res) => {
+  try {
+    // Fetch all landing appointments asynchronously
+    const landingAppointments = await landingAppointment.getAllAppointments();
+
+    // Render the EJS view after fetching the data
+    res.render("all_landing_appoinment", {
+      landingAppointments, // Pass data to the view
+      title: "Hospital",
+    });
+  } catch (err) {
+    console.error("Error fetching appointments:", err);
     res.status(500).send("Error fetching appointments.");
   }
 });
