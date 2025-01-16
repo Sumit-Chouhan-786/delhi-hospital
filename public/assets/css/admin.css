@@ -4,7 +4,7 @@
 }
 
 .admin_login_bg {
-  background: #FF6807;
+  background: #0046C0;
 }
 .admin_login_bg form {
   background-image: url(../images/Admin-Login-bg.png);
@@ -13,7 +13,7 @@
 }
 
 .navbar {
- background-color: #cb791b !important ;
+ background-color: #0046C0 !important ;
   width: 100%;
   position: sticky;
   top: 0;

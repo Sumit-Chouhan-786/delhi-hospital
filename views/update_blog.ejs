@@ -26,7 +26,7 @@
           <span></span>
         </div>
         <a class="text-white" href="/admin/dashboard"><img height="45" width="45" class="w-100"
-            src="/assets/img/logo.png" alt="logo"></a>
+            src="/assets/img/logo-two.png" alt="logo"></a>
       </div>
       <a class="text-white d-flex align-items-center gap-2" href="/admin/logout">Logout<i
           class="fa-solid fa-right-from-bracket pt-1"></i></a>
@@ -201,7 +201,8 @@
             </div>
             <div class="card-body">
               <!-- Form starts here -->
-              <form id="blogForm" action="/admin/updateBlog/<%= blog._id %>" method="POST" enctype="multipart/form-data">
+              <form id="blogForm" action="/admin/updateBlog/<%= blog._id %>" method="POST"
+                enctype="multipart/form-data">
                 <!-- Title Field -->
                 <div class="mb-3">
                   <label for="title" class="form-label">Blog Title</label>
@@ -211,8 +212,8 @@
                 <!-- Description Field -->
                 <div class="mb-3">
                   <label for="description" class="form-label">Blog Description</label>
-                  <textarea class="form-control" id="description" name="description" placeholder="Enter Blog Description" rows="5"
-                    required><%= blog.description %></textarea>
+                  <textarea class="form-control" id="description" name="description"
+                    placeholder="Enter Blog Description" rows="5" required><%= blog.description %></textarea>
                 </div>
                 <!-- Image Field -->
                 <div class="mb-3">
@@ -225,7 +226,7 @@
                   <!-- Hidden input for old image -->
                   <input type="hidden" name="old_image" value="<%= blog.blogImage %>" />
                 </div>
-          
+
                 <!-- Submit Button -->
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary px-4">Update</button>
