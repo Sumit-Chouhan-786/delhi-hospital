@@ -79,16 +79,16 @@
                   </div>
                 </div>
                 <div class="col-lg-6">
-                  <div class="form-group px-1">
-                    <i class="icofont-hospital"></i>
+                  <div class="form-group">
+                  <i class="icofont-hospital"></i>
                     <label>Services</label>
-                    <select class="form-control" name="services" required>
+                    <select class="form-control px-1" name="doctor" required>
                       <option value="">Select a Service</option>
-                      <% services.forEach(service => { %>
-                        <option  value="<%= service.title %>">
+                      <% services.forEach(service=> { %>
+                        <option value="<%= service.title %>">
                           <%= service.title %>
                         </option>
-                      <% }); %>
+                        <% }); %>
                     </select>
                   </div>
                 </div>
