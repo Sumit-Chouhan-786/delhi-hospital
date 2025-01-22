@@ -8,7 +8,6 @@ const session = require("express-session");
 const path = require("path");
 const { SiteSettingData, AllDoctorsData } = require("./common/common");
 
-
 const app = express();
 
 // Define the port
@@ -45,16 +44,15 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // Middleware to fetch site settings globally
 app.use(async (req, res, next) => {
   try {
     const siteSettings = await SiteSettingData();
-    res.locals.siteSettings = siteSettings; 
-    next(); 
+    res.locals.siteSettings = siteSettings;
+    next();
   } catch (err) {
-    console.error('Error in site settings middleware:', err);
-    next(); 
+    console.error("Error in site settings middleware:", err);
+    next();
   }
 });
 
@@ -62,11 +60,11 @@ app.use(async (req, res, next) => {
 app.use(async (req, res, next) => {
   try {
     const allDoctors = await AllDoctorsData();
-    res.locals.allDoctors = allDoctors; 
-    next(); 
+    res.locals.allDoctors = allDoctors;
+    next();
   } catch (err) {
-    console.error('Error in site settings middleware:', err);
-    next(); 
+    console.error("Error in site settings middleware:", err);
+    next();
   }
 });
 // Serve static files from the 'public' directory
@@ -80,17 +78,17 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 const methodOverride = require("method-override");
-app.use(methodOverride("_method")); 
+app.use(methodOverride("_method"));
 
 app.use("/", require("./routes/userRoutes"));
 app.use("/admin", require("./routes/adminRoutes"));
 
 // Catch-all route for undefined routes (404 error page)
 app.all("*", (req, res) => {
-  res.render("ui/404", { title: "Delhi Hospital" }); 
+  res.render("ui/404", { title: "Delhi Hospital" });
 });
 
 // Start the server
-app.listen(port, host ,() => {
+app.listen(port, host, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

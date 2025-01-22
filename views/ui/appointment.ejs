@@ -46,43 +46,28 @@
                   <div class="form-group">
                     <i class="icofont-business-man-alt-1"></i>
                     <label>Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter Your Name"
-                      name="name"
-                    />
+                    <input type="text" class="form-control" placeholder="Enter Your Name" name="name" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <i class="icofont-ui-message"></i>
                     <label>Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Enter Your Email"
-                      name="email"
-                    />
+                    <input type="email" class="form-control" placeholder="Enter Your Email" name="email" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <i class="icofont-ui-call"></i>
                     <label>Phone</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter Your Number"
-                      name="phone"
-                    />
+                    <input type="text" class="form-control" placeholder="Enter Your Number" name="phone" />
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                  <i class="icofont-hospital"></i>
+                    <i class="icofont-hospital"></i>
                     <label>Services</label>
-                    <select class="form-control px-1" name="doctor" required>
+                    <select class="form-control px-1" name="services" required>
                       <option value="">Select a Service</option>
                       <% services.forEach(service=> { %>
                         <option value="<%= service.title %>">
@@ -98,11 +83,11 @@
                     <label>Doctor</label>
                     <select class="form-control px-1" name="doctor" required>
                       <option value="">Choose Your Doctor</option>
-                      <% doctors.forEach(doctor => { %>
+                      <% doctors.forEach(doctor=> { %>
                         <option value="<%= doctor.name %>">
                           <%= doctor.name %>
                         </option>
-                      <% }); %>
+                        <% }); %>
                     </select>
                   </div>
                 </div>
@@ -110,12 +95,7 @@
                   <div class="form-group">
                     <i class="icofont-business-man"></i>
                     <label>Age</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Your Age"
-                      name="age"
-                    />
+                    <input type="text" class="form-control" placeholder="Your Age" name="age" />
                   </div>
                 </div>
               </div>
@@ -159,15 +139,6 @@
   </div>
 </section>
 <!-- End Appointment -->
-
-<script>
-  // Check for error in query parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get("error") === "email_exists") {
-    alert("An appointment with this email already exists. Please use a different email.");
-  }
-</script>
-
 <script src="assets/js/owl.carousel.min.js"></script>
 <!-- Meanmenu JS -->
 <script src="assets/js/jquery.meanmenu.js"></script>
