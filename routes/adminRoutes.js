@@ -11,6 +11,7 @@ const siteSettingsController = require("../controllers/siteSettingController");
 const adminController = require("../controllers/adminController");
 const blogController = require("../controllers/blogController");
 const departmentsController = require("../controllers/departmentController");
+const pagesController = require("../controllers/pageController")
 
 // Moved this line to the correct position
 const landingAppointment = require("../controllers/landingEnquriController");
@@ -158,6 +159,19 @@ router.get("/allAppointment", async (req, res) => {
 });
 
 // ================================================================== all landing appointments
+
+// ==================================================================Pages routes start
+router.get("/add-page", pagesController.addPageView);
+router.post("/add-page", upload.single("pageImage"), pagesController.addPage);
+router.get("/update-page/:id", pagesController.updatePageView);
+router.post(
+  "/update-page/:id",
+  upload.single("pageImage"),
+  pagesController.updatePage
+);
+router.get("/all-pages", pagesController.allPages);
+router.get("/delete-page/:id", pagesController.deletePage);
+// ==================================================================Pages routes end
 router.get(
   "/deleteLandingAppointments/:id",
   landingAppointment.deleteAppointment

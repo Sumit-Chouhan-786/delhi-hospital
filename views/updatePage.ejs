@@ -36,7 +36,7 @@
                 <div class="col-xl-2 h-100 col-lg-3 px-0 overflow_scroll sidebar_col bg-light">
                     <div class="sidebar">
                         <div class="accordion overflow_x_hidden" id="accordionExample">
-    
+
                             <a href="/admin/dashboard"
                                 class="d-flex bg-white mb-2 justify-content-start w-100 ps-xl-5 align-items-center py-2">
                                 <i class="fa-solid fa-house"></i>Dashboard
@@ -53,7 +53,7 @@
                                 class="d-flex bg-white mb-2 justify-content-start  w-100 ps-xl-5 align-items-center py-2">
                                 <i class="fas fa-cogs"></i>Landing Appointments
                             </a>
-    
+
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="headingTwo">
                                     <span
@@ -63,7 +63,7 @@
                                         <div class="d-flex align-content-center gap-3 fw-medium"><i
                                                 class="fas fa-sliders"></i>
                                             Testimonial</div>
-    
+
                                     </span>
                                 </h2>
                                 <div id="collapseTwo" class="accordion-collapse collapse ps-xl-5"
@@ -83,7 +83,7 @@
                                         <div class="d-flex align-content-center gap-3 fw-medium"><i
                                                 class="fas fa-sliders"></i>
                                             Pages</div>
-    
+
                                     </span>
                                 </h2>
                                 <div id="collapsedemo" class="accordion-collapse collapse ps-xl-5"
@@ -103,7 +103,7 @@
                                         <div class="d-flex align-content-center gap-3 fw-medium"><i
                                                 class="fas fa-sliders"></i>
                                             Department</div>
-    
+
                                     </span>
                                 </h2>
                                 <div id="collapseTweleve" class="accordion-collapse collapse ps-xl-5"
@@ -214,7 +214,7 @@
                                 class="d-flex bg-white my-2 justify-content-start  w-100 ps-xl-5 align-items-center py-2">
                                 <i class="fa-solid fa-calendar-check"></i>Logout
                             </a>
-    
+
                         </div>
                     </div>
                 </div>
@@ -223,34 +223,91 @@
                     <!-- Card for Form -->
                     <div class="card shadow-lg">
                         <div class="card-header bg-primary text-white text-center">
-                            <h3>Update Slider</h3>
+                            <h3>Add Page</h3>
                         </div>
-                        <div class="card-body">
-                            <form id="sliderForm" action="/admin/updateLandingSlider/<%= slider._id %>" method="POST"
-                                enctype="multipart/form-data">
 
-                                <div class="form-group">
-                                    <label for="title">Title</label>
-                                    <input type="text" name="title" class="form-control" value="<%= slider.title %>"
-                                        required />
+                        <form action="/admin/update-page/<%= page._id %>" method="POST" enctype="multipart/form-data" id="pageForm">
+                            <!-- Hidden Input for Old Image -->
+                            <input type="hidden" name="old_image" value="<%= page.pageImage %>" />
+                        
+                            <!-- Name Input -->
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Page Name</label>
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Enter Page Name"
+                                    value="<%= page.name %>" required />
+                            </div>
+                        
+                            <!-- URL Input -->
+                            <div class="mb-3">
+                                <label for="url" class="form-label">Page URL</label>
+                                <input type="text" name="url" class="form-control" id="url" placeholder="Enter Page URL" value="<%= page.url %>"
+                                    required />
+                            </div>
+                        
+                            <!-- Heading Input -->
+                            <div class="mb-3">
+                                <label for="heading" class="form-label">Page Heading</label>
+                                <input type="text" name="heading" class="form-control" id="heading" placeholder="Enter Page Heading"
+                                    value="<%= page.heading %>" required />
+                            </div>
+                        
+                            <!-- Image Field -->
+                            <div class="mb-3">
+                                <label for="pageImage" class="form-label">Page Image</label><br />
+                                <input id="pageImage" type="file" name="pageImage" />
+                                <p class="mt-2">
+                                    <img src="/uploads/<%= page.pageImage %>" alt="Current Image" width="150" />
+                                </p>
+                            </div>
+                        
+                            <!-- Description Input (with TinyMCE Editor) -->
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Page Description</label>
+                                <textarea name="description" class="form-control" id="description" rows="1" placeholder="Enter Page Description"
+                                    required readonly><%= page.description %></textarea>
+                            </div>
+                        
+                            <!-- SEO Section -->
+                            <h5 class="bg-success p-2 rounded-2 text-white">SEO Information</h5>
+                        
+                            <!-- SEO Title Input -->
+                            <div class="mb-3">
+                                <label for="seoTitle" class="form-label">SEO Title</label>
+                                <input type="text" name="seoTitle" class="form-control" id="seoTitle" placeholder="Enter SEO Title"
+                                    value="<%= page.seoTitle %>" />
+                            </div>
+                        
+                            <!-- SEO Keywords Input -->
+                            <div class="mb-3">
+                                <label for="seoKeywords" class="form-label">SEO Keywords</label>
+                                <input type="text" name="seoKeywords" class="form-control" id="seoKeywords" placeholder="Enter SEO Keywords"
+                                    value="<%= page.seoKeywords %>" />
+                            </div>
+                        
+                            <!-- SEO Description Input (with TinyMCE Editor) -->
+                            <div class="mb-3">
+                                <label for="seoDescription" class="form-label">SEO Description</label>
+                                <textarea name="seoDescription" class="form-control" id="seoDescription" rows="1"
+                                    placeholder="Enter SEO Description" readonly><%= page.seoDescription %></textarea>
+                            </div>
+                        
+                            <!-- Status Dropdown Input -->
+                            <div class="mb-3">
+                                <label for="statusDropdown" class="form-label">Status</label>
+                                <div class="dropdown">
+                                    <select class="form-select" name="status" id="statusDropdown">
+                                        <option value="" disabled>-- Select Status --</option>
+                                        <option value="active" <%=page.status==="active" ? "selected" : "" %>>Active
+                                            &#10004;</option>
+                                        <option value="deactive" <%=page.status==="deactive" ? "selected" : "" %>
+                                            >Deactive &#10004;</option>
+                                    </select>
                                 </div>
-                                <div class="form-group mt-3">
-                                    <label for="description">Description</label>
-                                    <textarea class="form-control" id="description" name="description"
-                                        placeholder="Enter  Description" rows="5"
-                                        required><%= slider.description %></textarea>
-                                </div>
-                                <div class="form-group mt-3">
-                                    <label for="sliderImage">Slider Image</label>
-                                    <input type="file" name="sliderImage" class="form-control" />
-                                </div>
-                                <input type="hidden" name="old_image" value="<%= slider.sliderImage %>" />
-                                <button type="submit" class="btn btn-primary mt-3">Update Slider</button>
-                            </form>
-
-
-                            <!-- End of the form -->
-                        </div>
+                            </div>
+                        
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn submit_btn btn-primary w-100 mb-4">Update</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -273,7 +330,7 @@
             });
 
         // Ensure that CKEditor content is transferred to the textarea before form submission
-        const form = document.querySelector('#sliderForm');
+        const form = document.querySelector('#blogForm');
         form.addEventListener('submit', (event) => {
             // Update the textarea with CKEditor's data before submission
             const descriptionTextarea = document.querySelector('#description');
