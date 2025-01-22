@@ -12,6 +12,9 @@ const addBlog = async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       blogImage: req.file.filename,
+      seoTitle: req.body.seoTitle,
+      seoKeywords: req.body.seoKeywords,
+      seoDescription: req.body.seoDescription,
     });
 
     await blog.save();
@@ -70,6 +73,9 @@ const updateBlog = async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       blogImage: new_image,
+      seoTitle: req.body.seoTitle,
+      seoKeywords: req.body.seoKeywords,
+      seoDescription: req.body.seoDescription,
     });
 
     //======================================================================== Set success message in session and redirect

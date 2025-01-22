@@ -212,14 +212,14 @@
           </div>
         </div>
         <div
-          class="col-xl-10 col-lg-9 bg_gray h-100 col-12 mb-3 align-items-center  overflow_scroll d-flex justify-content-center">
-          <div class="card shadow-lg">
+          class="col-xl-10 col-lg-9  h-100 col-12 mb-3 overflow_scroll d-flex">
+          <div class="card shadow-lg bg-white">
             <div class="card-header bg-primary text-white text-center">
               <h3>Update Service</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body bg-white">
               <!-- Start of the form -->
-              <form id="serviceForm" action="/admin/updateServices/<%= service._id %>" method="POST"
+              <form id="serviceForm" class="bg-white" action="/admin/updateServices/<%= service._id %>" method="POST"
                 enctype="multipart/form-data">
                 <!-- Title Field -->
                 <div class="mb-3">
@@ -249,6 +249,25 @@
                       <p class="text-muted">Current Image</p>
                     </div>
                     <% } %>
+                </div>
+                <!-- SEO Title Input -->
+                <div class="mb-3">
+                  <label for="seoTitle" class="form-label">SEO Title</label>
+                  <input type="text" name="seoTitle" class="form-control" id="seoTitle"  value="<%= service.seoTitle || '' %>" placeholder="Enter SEO Title">
+                </div>
+                
+                <!-- SEO Keywords Input -->
+                <div class="mb-3">
+                  <label for="seoKeywords" class="form-label">SEO Keywords</label>
+                  <input type="text" name="seoKeywords" class="form-control" id="seoKeywords" value="<%= service.seoKeywords || '' %>"  placeholder="Enter SEO Keywords">
+                </div>
+                
+                <!-- SEO Description Input (with TinyMCE Editor) -->
+                <div class="mb-3">
+                  <label for="seoDescription" class="form-label">SEO Description</label>
+                  <textarea name="seoDescription" class="form-control" id="seoDescription" rows="1"
+                    placeholder="Enter SEO Description"><%= service.seoDescription || '' %></textarea>
+
                 </div>
 
                 <!-- Submit Button -->

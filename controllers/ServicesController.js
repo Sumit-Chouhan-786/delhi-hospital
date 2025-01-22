@@ -12,6 +12,9 @@ const addServices = async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       servicesImage: req.file.filename,
+      seoTitle: req.body.seoTitle,
+      seoKeywords: req.body.seoKeywords,
+      seoDescription: req.body.seoDescription,
     });
 
     await service.save();
@@ -69,6 +72,9 @@ const updateServices = async (req, res) => {
       title: req.body.title,
       description: req.body.description,
       servicesImage: new_image,
+      seoTitle: req.body.seoTitle,
+      seoKeywords: req.body.seoKeywords,
+      seoDescription: req.body.seoDescription,
     });
 
     req.session.message = {

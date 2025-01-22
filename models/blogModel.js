@@ -6,13 +6,16 @@ const blogSchema = new mongoose.Schema({
     required: true,
   },
   description: {
-    type: mongoose.Schema.Types.Mixed, 
+    type: mongoose.Schema.Types.Mixed,
     required: true,
   },
   blogImage: {
     type: String,
     required: true,
   },
+  seoTitle: { type: String },
+  seoKeywords: { type: String },
+  seoDescription: { type: String },
   created: {
     type: Date,
     required: true,

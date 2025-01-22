@@ -212,15 +212,15 @@
           </div>
         </div>
         <div
-          class="col-xl-10 col-lg-9 bg_gray h-100 col-12 mb-3 align-items-center  overflow_scroll d-flex justify-content-center">
+          class="col-xl-10 col-lg-9 bg_gray h-100 col-12 mb-3 overflow_scroll d-flex ">
           <!-- Card for Form -->
-          <div class="card shadow-lg">
+          <div class="card shadow-lg bg-white">
             <div class="card-header bg-primary text-white text-center">
               <h3>Add Blog</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body bg-white">
               <!-- Form starts here -->
-              <form action="/admin/addBlog" method="POST" enctype="multipart/form-data" id="blogForm">
+              <form class="bg-white" action="/admin/addBlog" method="POST" enctype="multipart/form-data" id="blogForm">
                 <!-- Title Field -->
                 <div class="mb-3">
                   <label for="title" class="form-label">Blog Title</label>
@@ -239,6 +239,23 @@
                   <label for="blogImage" class="form-label">Blog Image</label><br />
                   <input id="blogImage" type="file" name="blogImage" required />
                 </div>
+                  <!-- SEO Title Input -->
+                  <div class="mb-3">
+                    <label for="seoTitle" class="form-label">SEO Title</label>
+                    <input type="text" name="seoTitle" class="form-control" id="seoTitle" placeholder="Enter SEO Title">
+                  </div>
+                  
+                  <!-- SEO Keywords Input -->
+                  <div class="mb-3">
+                    <label for="seoKeywords" class="form-label">SEO Keywords</label>
+                    <input type="text" name="seoKeywords" class="form-control" id="seoKeywords" placeholder="Enter SEO Keywords">
+                  </div>
+                  
+                  <!-- SEO Description Input (with TinyMCE Editor) -->
+                  <div class="mb-3">
+                    <label for="seoDescription" class="form-label">SEO Description</label>
+                    <textarea name="seoDescription" class="form-control" id="seoDescription" rows="1"
+                      placeholder="Enter SEO Description"></textarea>
 
                 <!-- Submit Button -->
                 <div class="text-center">

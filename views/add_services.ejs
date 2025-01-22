@@ -212,15 +212,15 @@
           </div>
         </div>
         <div
-          class="col-xl-10 col-lg-9 bg_gray h-100 col-12 mb-3 align-items-center  overflow_scroll d-flex justify-content-center">
+          class="col-xl-10 col-lg-9  h-100 col-12 mb-3   overflow_scroll d-flex ">
           <!-- Card for Form -->
           <div class="card shadow-lg">
             <div class="card-header bg-primary text-white text-center">
               <h3>Add Services</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body bg_gray">
               <!-- Start of the form -->
-              <form id="serviceForm" action="/admin/addServices" method="POST" enctype="multipart/form-data">
+              <form class="bg-white p-3" id="serviceForm" action="/admin/addServices" method="POST" enctype="multipart/form-data">
                 <!-- Student Name Field -->
 
                 <!-- Title Field -->
@@ -244,6 +244,24 @@
                   <div class="form-text">
                     Upload the service's image here (JPG/PNG).
                   </div>
+                </div>
+                <!-- SEO Title Input -->
+                <div class="mb-3">
+                  <label for="seoTitle" class="form-label">SEO Title</label>
+                  <input type="text" name="seoTitle" class="form-control" id="seoTitle" placeholder="Enter SEO Title">
+                </div>
+                
+                <!-- SEO Keywords Input -->
+                <div class="mb-3">
+                  <label for="seoKeywords" class="form-label">SEO Keywords</label>
+                  <input type="text" name="seoKeywords" class="form-control" id="seoKeywords" placeholder="Enter SEO Keywords">
+                </div>
+                
+                <!-- SEO Description Input (with TinyMCE Editor) -->
+                <div class="mb-3">
+                  <label for="seoDescription" class="form-label">SEO Description</label>
+                  <textarea name="seoDescription" class="form-control" id="seoDescription" rows="1"
+                    placeholder="Enter SEO Description"></textarea>
                 </div>
 
                 <!-- Submit Button -->

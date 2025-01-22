@@ -11,8 +11,11 @@ const servicesSchema = new mongoose.Schema({
   },
   servicesImage: {
     type: String,
-    required:true,
+    required: true,
   },
+  seoTitle: { type: String },
+  seoKeywords: { type: String },
+  seoDescription: { type: String },
   created: {
     type: Date,
     default: Date.now,
