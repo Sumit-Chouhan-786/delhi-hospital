@@ -220,8 +220,9 @@
               </div>
               <div class="card-body">
                 <!-- Start of the form -->
-                <form id="doctorForm" action="/admin/updateDoctor/<%= doctor._id %>" method="POST"
-                  enctype="multipart/form-data" id="update-doctor-form">
+              <form id="doctorForm" action="/admin/updateDoctor/<%= doctor._id %>" method="POST" enctype="multipart/form-data"
+                id="update-doctor-form">
+
                   <!-- Doctor Name Field -->
                   <div class="mb-3">
                     <label for="name" class="form-label">Doctor Name</label>
@@ -239,7 +240,7 @@
                   <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" name="description" placeholder="Enter  Description"
-                      rows="5" required><%= doctor.description %></textarea>
+                      rows="5"><%= doctor.description %></textarea>
                   </div>
                   <!-- Doctor Image Field -->
                   <div class="mb-3">
@@ -292,6 +293,15 @@
         const descriptionTextarea = document.querySelector('#description');
         descriptionTextarea.value = editor.getData();
       });
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+          const descriptionField = document.getElementById("description");
+          if (descriptionField) {
+            descriptionField.focus();
+          }
+        });
+
     </script>
 
     <!-- Include the admin footer -->
